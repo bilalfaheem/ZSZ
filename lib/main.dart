@@ -34,7 +34,7 @@ const simplePeriodicTask = "PeriodicTask";
 const generalPeriodicTask = "generalPeriodicTask";
 
 
-class NotificationsService {
+// class NotificationsService {
   final FlutterLocalNotificationsPlugin flutterLocalNoti =
       FlutterLocalNotificationsPlugin();
 
@@ -99,7 +99,7 @@ class NotificationsService {
           body: {"user_id": User_Login_id_S.toString()});
   if (response.statusCode == 200) {
     var data = jsonDecode(response.body.toString());
-
+  print(data.first["status"].toString() );
 // 10 for notification present
     if (data.first["status"].toString() == "10") {
       sendNotification("WMSTankerId", "WMSTanker", 20, "WMS Tanker", data.first["message"].toString());
@@ -119,7 +119,7 @@ class NotificationsService {
           body: {"user_id": User_Login_id_S.toString()});
   if (response.statusCode == 200) {
     var data = jsonDecode(response.body.toString());
-
+  print(data.first["status"].toString() );
 // 10 for notification present
     if (data.first["status"].toString() == "10") {
       sendNotification("WMSGeneralId", "WMSGeneral", 21, "WMS General", data.first["message"].toString());
@@ -138,7 +138,7 @@ class NotificationsService {
           body: {"user_id": User_Login_id_S.toString()});
   if (response.statusCode == 200) {
     var data = jsonDecode(response.body.toString());
-
+  print(data.first["status"].toString() );
 // 10 for notification present
     if (data.first["status"].toString() == "10") {
       sendNotification("WMSMaintenanceId", "WMSMaintenance", 22, "WMS Maintenance", data.first["message"].toString());
@@ -158,7 +158,7 @@ class NotificationsService {
           body: {"user_id": User_Login_id_S.toString()});
   if (response.statusCode == 200) {
     var data = jsonDecode(response.body.toString());
-
+  print(data.first["status"].toString() );
 // 10 for notification present
     if (data.first["status"].toString() == "1") {
       sendNotification("WMSBroadcastId", "WMSBroadcast", 23, "WMS Broadcast", data.first["message"].toString());
@@ -175,7 +175,7 @@ class NotificationsService {
   }
 }
 
-}
+// }
 
 // // flutter local notification setup
 
@@ -538,14 +538,18 @@ Future<void> main() async {
 Future<void> callbackDispatcher2() async {
   print("call back dispatcher call back dispatcher");
   await Shared_Pref_Login_Id_Func();
-  NotificationsService notificationsService = NotificationsService();
-  notificationsService.initialiseNotifications();
+    // final FlutterLocalNotificationsPlugin flutterLocalNoti =
+    //   FlutterLocalNotificationsPlugin();
+  // NotificationsService notificationsService = NotificationsService();
+  // notificationsService.
+ 
   // int notification_count = 0;
   Workmanager().executeTask((task, inputData) async {
- await notificationsService.tankerPushNotificationFunction();
- await notificationsService.maintenancePushNotificationFunction();
- await notificationsService.generalPushNotificationFunction();
- await notificationsService.broadcastPushNotificationFunction();
+     initialiseNotifications();
+ await tankerPushNotificationFunction();
+ await maintenancePushNotificationFunction();
+ await generalPushNotificationFunction();
+ await broadcastPushNotificationFunction();
 
 
 
