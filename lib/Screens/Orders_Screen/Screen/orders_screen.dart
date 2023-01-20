@@ -1,7 +1,6 @@
 
 
-import 'dart:ffi';
-import 'dart:math';
+
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +28,7 @@ class Orders_Screen extends StatefulWidget {
 }
 
 class _Orders_ScreenState extends State<Orders_Screen> {
-  NotificationsService notificationsService = NotificationsService();
+  NotificationsService2 notificationsService = NotificationsService2();
   var order_object = Order();
   final Order order_screen_var = new Order();
 
@@ -142,22 +141,19 @@ class _Orders_ScreenState extends State<Orders_Screen> {
                       child: Stack(clipBehavior: Clip.none, children: [
                         IconButton(
                             onPressed: () {
-                              // print(DateTime.now().toString());
-                              // print(DateTime.now().microsecondsSinceEpoch);
-                              // print((int.parse(DateTime.now().microsecondsSinceEpoch.toString())).length);
-                              // print(Random().nextInt(10000));
+                            //  await callbackDispatcher2();
                               
-                              // print(DateTime.now().toString());
-                               notificationsService.sendNotification("noto", "Chl gya");
+                             
+                              //  notificationsService.sendNotification("noto", "Chl gya");
                               // // Notification Count Seen
-                              // Notification_Seen_Count_Function(context);
+                              // Notification_Seen_Count_Function(context);                         //remove
 
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //       builder: (context) =>
-                              //           Notification_Screen()),
-                              // );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        Notification_Screen()),
+                              );
                             },
                             icon: Image.asset(
                               "assets/Icons/notification_on.png",

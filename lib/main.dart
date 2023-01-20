@@ -30,12 +30,156 @@ import 'package:workmanager/workmanager.dart';
 import 'package:zsz/Provider/Notification_Icon_Provider/notification_icon_provider.dart';
 
 //this is the name given to the background fetch
-const simplePeriodicTask = "simplePeriodicTask";
+const simplePeriodicTask = "PeriodicTask";
 const generalPeriodicTask = "generalPeriodicTask";
+
+
+class NotificationsService {
+  final FlutterLocalNotificationsPlugin flutterLocalNoti =
+      FlutterLocalNotificationsPlugin();
+
+  final AndroidInitializationSettings androidInitSetting =
+      AndroidInitializationSettings("mipmap/ic_launcher");
+
+  void initialiseNotifications() async {
+    InitializationSettings initializationSettings =
+        InitializationSettings(android: androidInitSetting);
+
+    await flutterLocalNoti.initialize(initializationSettings);
+  }
+
+  void sendNotification(String channelId,String channelName,int notiId, String title, String body) async {
+    AndroidNotificationDetails androidNotificationDetails =
+        AndroidNotificationDetails(channelId,channelName,
+          // "WMSID", "WMSNOTO",
+            importance: Importance.max, priority: Priority.high);
+    NotificationDetails notificationDetails =
+        NotificationDetails(android: androidNotificationDetails);
+    await flutterLocalNoti.show(notiId, title, body, notificationDetails);
+  }
+
+  //Api Call Function
+  Future<void> tankerSeenPushNotificationFunction() async {
+  var response =
+      await http.post(Uri.parse("https://cybernsoft.com/api/tanker_notification.php"),
+          // push_notification.php"),
+          body: {"user_id": User_Login_id_S.toString(), "is_seen": "1"}
+          //  User_Login_id_S.toString()}
+          );
+}
+  Future<void> generalSeenPushNotificationFunction() async {
+  var response =
+      await http.post(Uri.parse("https://cybernsoft.com/api/general_notification.php"),
+          // push_notification.php"),
+          body: {"user_id": User_Login_id_S.toString(), "is_seen": "1"}
+          //  User_Login_id_S.toString()}
+          );
+}
+  Future<void> maintenanceSeenPushNotificationFunction() async {
+  var response =
+      await http.post(Uri.parse("https://cybernsoft.com/api/maintenance_notification.php"),
+          // push_notification.php"),
+          body: {"user_id": User_Login_id_S.toString(), "is_seen": "1"}
+          //  User_Login_id_S.toString()}
+          );
+}
+  Future<void> broadcastSeenPushNotificationFunction(broadCastId) async {
+  var response =
+      await http.post(Uri.parse("https://cybernsoft.com/api/general_broadcast.php"),
+          // push_notification.php"),
+          body: {
+            "user_id": User_Login_id_S.toString(),
+            "broadcast_id": broadCastId.toString()
+          //  "is_seen": "1"
+          }
+          );
+}
+  Future<void> tankerPushNotificationFunction() async {
+  var response = await http.post(Uri.parse("https://cybernsoft.com/api/tanker_notification.php"),
+          body: {"user_id": User_Login_id_S.toString()});
+  if (response.statusCode == 200) {
+    var data = jsonDecode(response.body.toString());
+
+// 10 for notification present
+    if (data.first["status"].toString() == "10") {
+      sendNotification("WMSTankerId", "WMSTanker", 20, "WMS Tanker", data.first["message"].toString());
+      await tankerSeenPushNotificationFunction();
+    } else if (data.first["status"].toString() == "0") {
+    } else {
+    }
+    data;
+  } else {
+    var data = jsonDecode(response.body.toString());
+    data;
+  }
+}
+
+  Future<void> generalPushNotificationFunction() async {
+  var response = await http.post(Uri.parse("https://cybernsoft.com/api/general_notification.php"),
+          body: {"user_id": User_Login_id_S.toString()});
+  if (response.statusCode == 200) {
+    var data = jsonDecode(response.body.toString());
+
+// 10 for notification present
+    if (data.first["status"].toString() == "10") {
+      sendNotification("WMSGeneralId", "WMSGeneral", 21, "WMS General", data.first["message"].toString());
+      await generalSeenPushNotificationFunction();
+    } else if (data.first["status"].toString() == "0") {
+    } else {
+    }
+    data;
+  } else {
+    var data = jsonDecode(response.body.toString());
+    data;
+  }
+}
+  Future<void> maintenancePushNotificationFunction() async {
+  var response = await http.post(Uri.parse("https://cybernsoft.com/api/maintenance_notification.php"),
+          body: {"user_id": User_Login_id_S.toString()});
+  if (response.statusCode == 200) {
+    var data = jsonDecode(response.body.toString());
+
+// 10 for notification present
+    if (data.first["status"].toString() == "10") {
+      sendNotification("WMSMaintenanceId", "WMSMaintenance", 22, "WMS Maintenance", data.first["message"].toString());
+      await maintenanceSeenPushNotificationFunction();
+      // await Tanker_Seen_Push_Notification_Function();
+    } else if (data.first["status"].toString() == "0") {
+    } else {
+    }
+    data;
+  } else {
+    var data = jsonDecode(response.body.toString());
+    data;
+  }
+}
+  Future<void> broadcastPushNotificationFunction() async {
+  var response = await http.post(Uri.parse("https://cybernsoft.com/api/general_broadcast.php"),
+          body: {"user_id": User_Login_id_S.toString()});
+  if (response.statusCode == 200) {
+    var data = jsonDecode(response.body.toString());
+
+// 10 for notification present
+    if (data.first["status"].toString() == "1") {
+      sendNotification("WMSBroadcastId", "WMSBroadcast", 23, "WMS Broadcast", data.first["message"].toString());
+      // showTankerNotification(data.first["message"].toString());
+      await broadcastSeenPushNotificationFunction(data.first["id"].toString());
+      // await Tanker_Seen_Push_Notification_Function();
+    } else if (data.first["status"].toString() == "0") {
+    } else {
+    }
+    data;
+  } else {
+    var data = jsonDecode(response.body.toString());
+    data;
+  }
+}
+
+}
 
 // // flutter local notification setup
 
-// void show_Tanker_Notification(v) async {
+// void showTankerNotification(v) async {
 //   var android = AndroidNotificationDetails("51131", 'WMSTanker',
 //       //  'CHANNEL DESCRIPTION',
 //       priority: Priority.high,
@@ -374,21 +518,41 @@ Future<void> main() async {
   // await Firebase.initializeApp(); //remove
   await Shared_Pref_Login_Id_Func();
 
-  // await Workmanager().initialize(callbackDispatcher, isInDebugMode: false);
-  // await Workmanager().registerPeriodicTask("6", simplePeriodicTask,
-  //     existingWorkPolicy: ExistingWorkPolicy.replace,
-  //     frequency: Duration(minutes: 15), //when should it check the link
-  //     initialDelay:
-  //         Duration(seconds: 5), //duration before showing the notification
-  //     constraints: Constraints(
-  //       networkType: NetworkType.connected,
-  //     ));
+   await Workmanager().initialize(callbackDispatcher2, isInDebugMode: true);
+  await Workmanager().registerPeriodicTask("8", simplePeriodicTask,
+      existingWorkPolicy: ExistingWorkPolicy.replace,
+      frequency: Duration(minutes: 15), //when should it check the link
+      initialDelay:
+          Duration(seconds: 5), //duration before showing the notification
+      constraints: Constraints(
+        networkType: NetworkType.connected,
+      ));
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
   runApp(const MyApp());
 }
+
+// notification api function
+Future<void> callbackDispatcher2() async {
+  print("call back dispatcher call back dispatcher");
+  await Shared_Pref_Login_Id_Func();
+  NotificationsService notificationsService = NotificationsService();
+  notificationsService.initialiseNotifications();
+  // int notification_count = 0;
+  Workmanager().executeTask((task, inputData) async {
+ await notificationsService.tankerPushNotificationFunction();
+ await notificationsService.maintenancePushNotificationFunction();
+ await notificationsService.generalPushNotificationFunction();
+ await notificationsService.broadcastPushNotificationFunction();
+
+
+
+    return Future.value(true);
+  });
+}
+
 
 // // notification api function
 // Future<void> callbackDispatcher() async {

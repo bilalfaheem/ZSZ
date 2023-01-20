@@ -3,7 +3,8 @@ import 'dart:io';
 import 'dart:isolate';
 
 
-Future<SendPort> initIsolate()async{
+// Future<SendPort> initIsolate()async{
+  Future initIsolate()async{
   Completer completer = new Completer<SendPort>();
   ReceivePort isolateToMainStream = ReceivePort();
 
