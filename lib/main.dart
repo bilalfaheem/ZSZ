@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_custom.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zsz/Constant.dart';
 import 'package:zsz/Functions/Push_Notification/Function/BroadCast/Broadcast_Push_Notification.dart';
 import 'package:zsz/Functions/Push_Notification/Function/General/General_Push_Notification.dart';
@@ -32,9 +33,11 @@ import 'package:zsz/Provider/Notification_Icon_Provider/notification_icon_provid
 //this is the name given to the background fetch
 const simplePeriodicTask = "PeriodicTask";
 const generalPeriodicTask = "generalPeriodicTask";
+
 // notification api function
 @pragma('vm:entry-point')
 void callbackDispatcher() async {
+  String userLoginIdNotification = "null";
   print("call back dispatcher call back dispatcher2");
   // await Shared_Pref_Login_Id_Func();
     // final FlutterLocalNotificationsPlugin flutterLocalNoti =
@@ -44,6 +47,14 @@ void callbackDispatcher() async {
  
   // int notification_count = 0;
   Workmanager().executeTask((task, inputData) async {
+
+    userLoginIdFunctionNotification() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  userLoginIdNotification = pref.getString("User_Login_Id").toString();
+  print("${userLoginIdNotification} user login id for notification");
+
+}
 //function part
   final FlutterLocalNotificationsPlugin flutterLocalNoti =
       FlutterLocalNotificationsPlugin();
@@ -68,143 +79,139 @@ void callbackDispatcher() async {
     await flutterLocalNoti.show(notiId, title, body, notificationDetails);
   }
 
-//    //Api Call Function
-//   Future<void> tankerSeenPushNotificationFunction() async {
-//   var response =
-//       await http.post(Uri.parse("https://cybernsoft.com/api/tanker_notification.php"),
-//           // push_notification.php"),
-//           body: {"user_id": User_Login_id_S.toString(), "is_seen": "1"}
-//           //  User_Login_id_S.toString()}
-//           );
-// }
-//   Future<void> generalSeenPushNotificationFunction() async {
-//   var response =
-//       await http.post(Uri.parse("https://cybernsoft.com/api/general_notification.php"),
-//           // push_notification.php"),
-//           body: {"user_id": User_Login_id_S.toString(), "is_seen": "1"}
-//           //  User_Login_id_S.toString()}
-//           );
-// }
-//   Future<void> maintenanceSeenPushNotificationFunction() async {
-//   var response =
-//       await http.post(Uri.parse("https://cybernsoft.com/api/maintenance_notification.php"),
-//           // push_notification.php"),
-//           body: {"user_id": User_Login_id_S.toString(), "is_seen": "1"}
-//           //  User_Login_id_S.toString()}
-//           );
-// }
-//   Future<void> broadcastSeenPushNotificationFunction(broadCastId) async {
-//   var response =
-//       await http.post(Uri.parse("https://cybernsoft.com/api/general_broadcast.php"),
-//           // push_notification.php"),
-//           body: {
-//             "user_id": User_Login_id_S.toString(),
-//             "broadcast_id": broadCastId.toString()
-//           //  "is_seen": "1"
-//           }
-//           );
-// }
-//   Future<void> tankerPushNotificationFunction() async {
-//   var response = await http.post(Uri.parse("https://cybernsoft.com/api/tanker_notification.php"),
-//           body: {"user_id": "51"
-//           //  User_Login_id_S.toString()
-//           });
-//   if (response.statusCode == 200) {
-//     var data = jsonDecode(response.body.toString());
-//   print(data.first["status"].toString() );
-// // 10 for notification present
-//     if (data.first["status"].toString() == "10") {
-//       sendNotification("WMSTankerId", "WMSTanker", 20, "WMS Tanker", data.first["message"].toString());
-//       // await tankerSeenPushNotificationFunction(); remove
-//     } else if (data.first["status"].toString() == "0") {
-//     } else {
-//     }
-//     data;
-//   } else {
-//     var data = jsonDecode(response.body.toString());
-//     data;
-//   }
-// }
+   //Api Call Function
+  Future<void> tankerSeenPushNotificationFunction() async {
+  var response =
+      await http.post(Uri.parse("https://cybernsoft.com/api/tanker_notification.php"),
+          // push_notification.php"),
+          body: {"user_id": userLoginIdNotification.toString(), "is_seen": "1"}
+          //  User_Login_id_S.toString()}
+          );
+}
+  Future<void> generalSeenPushNotificationFunction() async {
+  var response =
+      await http.post(Uri.parse("https://cybernsoft.com/api/general_notification.php"),
+          // push_notification.php"),
+          body: {"user_id": userLoginIdNotification.toString(), "is_seen": "1"}
+          //  User_Login_id_S.toString()}
+          );
+}
+  Future<void> maintenanceSeenPushNotificationFunction() async {
+  var response =
+      await http.post(Uri.parse("https://cybernsoft.com/api/maintenance_notification.php"),
+          // push_notification.php"),
+          body: {"user_id": userLoginIdNotification.toString(), "is_seen": "1"}
+          //  User_Login_id_S.toString()}
+          );
+}
+  Future<void> broadcastSeenPushNotificationFunction(broadCastId) async {
+  var response =
+      await http.post(Uri.parse("https://cybernsoft.com/api/general_broadcast.php"),
+          // push_notification.php"),
+          body: {
+            "user_id": userLoginIdNotification.toString(),
+            "broadcast_id": broadCastId.toString()
+          //  "is_seen": "1"
+          }
+          );
+}
+  Future<void> tankerPushNotificationFunction() async {
+  var response = await http.post(Uri.parse("https://cybernsoft.com/api/tanker_notification.php"),
+          body: {"user_id": userLoginIdNotification.toString()
+          });
+  if (response.statusCode == 200) {
+    var data = jsonDecode(response.body.toString());
+  print(data.first["status"].toString() );
+// 10 for notification present
+    if (data.first["status"].toString() == "10") {
+      sendNotification("WMSTankerId", "WMSTanker", 20, "WMS Tanker", data.first["message"].toString());
+       await tankerSeenPushNotificationFunction(); 
+    } else if (data.first["status"].toString() == "0") {
+    } else {
+    }
+    data;
+  } else {
+    var data = jsonDecode(response.body.toString());
+    data;
+  }
+}
 
-//   Future<void> generalPushNotificationFunction() async {
-//   var response = await http.post(Uri.parse("https://cybernsoft.com/api/general_notification.php"),
-//           body: {"user_id":"51"
-//           //  User_Login_id_S.toString()
-//            });
-//   if (response.statusCode == 200) {
-//     var data = jsonDecode(response.body.toString());
-//   print(data.first["status"].toString() );
-// // 10 for notification present
-//     if (data.first["status"].toString() == "10") {
-//       sendNotification("WMSGeneralId", "WMSGeneral", 21, "WMS General", data.first["message"].toString());
-//       // await generalSeenPushNotificationFunction();   remove
-//     } else if (data.first["status"].toString() == "0") {
-//     } else {
-//     }
-//     data;
-//   } else {
-//     var data = jsonDecode(response.body.toString());
-//     data;
-//   }
-// }
-//   Future<void> maintenancePushNotificationFunction() async {
-//   var response = await http.post(Uri.parse("https://cybernsoft.com/api/maintenance_notification.php"),
-//           body: {"user_id": "51"
-//           // User_Login_id_S.toString()
-//           });
-//   if (response.statusCode == 200) {
-//     var data = jsonDecode(response.body.toString());
-//   print(data.first["status"].toString() );
-// // 10 for notification present
-//     if (data.first["status"].toString() == "10") {
-//       sendNotification("WMSMaintenanceId", "WMSMaintenance", 22, "WMS Maintenance", data.first["message"].toString());
-//       await maintenanceSeenPushNotificationFunction();
-//       // await Tanker_Seen_Push_Notification_Function();
-//     } else if (data.first["status"].toString() == "0") {
-//     } else {
-//     }
-//     data;
-//   } else {
-//     var data = jsonDecode(response.body.toString());
-//     data;
-//   }
-// }
-//   Future<void> broadcastPushNotificationFunction() async {
-//   var response = await http.post(Uri.parse("https://cybernsoft.com/api/general_broadcast.php"),
-//           body: {"user_id": "51"
-//           // User_Login_id_S.toString()
-//           });
-//   if (response.statusCode == 200) {
-//     var data = jsonDecode(response.body.toString());
-//   print(data.first["status"].toString() );
-// // 10 for notification present
-//     if (data.first["status"].toString() == "1") {
-//       sendNotification("WMSBroadcastId", "WMSBroadcast", 23, "WMS Broadcast", data.first["message"].toString());
-//       // showTankerNotification(data.first["message"].toString());
-//       await broadcastSeenPushNotificationFunction(data.first["id"].toString());
-//       // await Tanker_Seen_Push_Notification_Function();
-//     } else if (data.first["status"].toString() == "0") {
-//     } else {
-//     }
-//     data;
-//   } else {
-//     var data = jsonDecode(response.body.toString());
-//     data;
-//   }
-// }
+  Future<void> generalPushNotificationFunction() async {
+  var response = await http.post(Uri.parse("https://cybernsoft.com/api/general_notification.php"),
+          body: {"user_id": userLoginIdNotification.toString()
+           });
+  if (response.statusCode == 200) {
+    var data = jsonDecode(response.body.toString());
+  print(data.first["status"].toString() );
+// 10 for notification present
+    if (data.first["status"].toString() == "10") {
+      sendNotification("WMSGeneralId", "WMSGeneral", 21, "WMS General", data.first["message"].toString());
+       await generalSeenPushNotificationFunction();   
+    } else if (data.first["status"].toString() == "0") {
+    } else {
+    }
+    data;
+  } else {
+    var data = jsonDecode(response.body.toString());
+    data;
+  }
+}
+  Future<void> maintenancePushNotificationFunction() async {
+  var response = await http.post(Uri.parse("https://cybernsoft.com/api/maintenance_notification.php"),
+          body: {"user_id": userLoginIdNotification.toString()
+          });
+  if (response.statusCode == 200) {
+    var data = jsonDecode(response.body.toString());
+  print(data.first["status"].toString() );
+// 10 for notification present
+    if (data.first["status"].toString() == "10") {
+      sendNotification("WMSMaintenanceId", "WMSMaintenance", 22, "WMS Maintenance", data.first["message"].toString());
+      await maintenanceSeenPushNotificationFunction();
+      // await Tanker_Seen_Push_Notification_Function();
+    } else if (data.first["status"].toString() == "0") {
+    } else {
+    }
+    data;
+  } else {
+    var data = jsonDecode(response.body.toString());
+    data;
+  }
+}
+  Future<void> broadcastPushNotificationFunction() async {
+  var response = await http.post(Uri.parse("https://cybernsoft.com/api/general_broadcast.php"),
+          body: {"user_id":userLoginIdNotification.toString()
+          });
+  if (response.statusCode == 200) {
+    var data = jsonDecode(response.body.toString());
+  print(data.first["status"].toString() );
+// 10 for notification present
+    if (data.first["status"].toString() == "1") {
+      sendNotification("WMSBroadcastId", "WMSBroadcast", 23, "WMS Broadcast", data.first["message"].toString());
+      // showTankerNotification(data.first["message"].toString());
+      await broadcastSeenPushNotificationFunction(data.first["id"].toString());
+      // await Tanker_Seen_Push_Notification_Function();
+    } else if (data.first["status"].toString() == "0") {
+    } else {
+    }
+    data;
+  } else {
+    var data = jsonDecode(response.body.toString());
+    data;
+  }
+}
 
 
 
 
 
 //execution part    
-      // await Shared_Pref_Login_Id_Func();
-     initialiseNotifications();
-     sendNotification("www", "wwww", 95, "www", "wwww");
-//  await tankerPushNotificationFunction();
-//  await maintenancePushNotificationFunction();
-//  await generalPushNotificationFunction();
-//  await broadcastPushNotificationFunction();
+       userLoginIdFunctionNotification();
+       initialiseNotifications();
+    //  sendNotification("www", "wwww", 95, "www", "wwww");
+ await tankerPushNotificationFunction();
+ await maintenancePushNotificationFunction();
+ await generalPushNotificationFunction();
+ await broadcastPushNotificationFunction();
 
 
 
