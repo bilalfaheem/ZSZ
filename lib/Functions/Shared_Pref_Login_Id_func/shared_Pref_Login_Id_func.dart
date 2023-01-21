@@ -16,7 +16,7 @@ Shared_Pref_Login_Id_Func() async {
   User_Login_Society_S = pref.getString("User_Login_Society").toString();
   User_Login_Society_id_S = pref.getString("User_Login_Society_Id").toString();
 
-  // debugPrint("${User_Login_id_S} User id shared pref in functions");
+   debugPrint("${User_Login_id_S} User id shared pref in functions");
   // print("${User_Login_update_S} User id shared pref in functions update shared");
 }
 

@@ -27,6 +27,15 @@ class NotificationsService2 {
         NotificationDetails(android: androidNotificationDetails);
     await flutterLocalNoti.show(16, title, body, notificationDetails);
   }
+     void sendNotification2(String channelId,String channelName,int notiId, String title, String body) async {
+    AndroidNotificationDetails androidNotificationDetails =
+        AndroidNotificationDetails(channelId,channelName,
+          // "WMSID", "WMSNOTO",
+            importance: Importance.max, priority: Priority.high);
+    NotificationDetails notificationDetails =
+        NotificationDetails(android: androidNotificationDetails);
+    await flutterLocalNoti.show(notiId, title, body, notificationDetails);
+  }
 
   // void scheduleNotification(String title, String body) async {
   //   AndroidNotificationDetails androidNotificationDetails =
