@@ -54,7 +54,7 @@ void Create_Order_Api_Func(context, h_size, w_size, theme, User_Id,
 // create order notification
       Timer(Duration(seconds: 5), () async {
         // remove
-        await Notification_Count_Function(context);
+        await notificationCountFunction(context);
         // await Tanker_Push_Notification_Function();
       });
 

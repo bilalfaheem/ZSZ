@@ -47,11 +47,11 @@ void Order_Deliver_Api_Func(
       // "Your Order has been Created.");
 
 // create order notification
-      Timer(Duration(seconds: 5), () async {
-        // remove
-        await Notification_Count_Function(context);
-        // await Tanker_Push_Notification_Function();
-      });
+      // Timer(Duration(seconds: 5), () async {
+      //   // remove
+      //   await Notification_Count_Function(context);
+      //   // await Tanker_Push_Notification_Function();       //remove 23/1/23
+      // });
 
       print("Successfully Tanker Delivered");
     } else {

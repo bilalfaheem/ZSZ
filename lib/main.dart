@@ -624,61 +624,7 @@ void callbackDispatcher() async {
 //           //  User_Login_id_S.toString()}
 //           );
 // }
-Future<void> Notification_Count_Function(context) async {
-  // FlutterLocalNotificationsPlugin maintenance_flp =
-  //     FlutterLocalNotificationsPlugin();
 
-  final Noti_Count_Provider =
-      Provider.of<Notification_Icon_Provider>(context, listen: false);
-  final Left_Tanker_Provider =
-      Provider.of<Left_Tanker_Count_Provider>(context, listen: false);
-
-  var response = await http.post(
-      Uri.parse("${Api_Address}notification_count.php"),
-      body: {"user_id": User_Login_id_S.toString()});
-
-  if (response.statusCode == 200) {
-    var data = jsonDecode(response.body.toString());
-    print("Notification Count Status ${data.first["count"]}");
-    print("notificationnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
-
-    //Left Tanker Count Provider
-    Left_Tanker_Provider.Left_Tanker_CountFunc(
-        data.first["remaining_tanker"].toString());
-
-    if (data.first["count"].toString() != "0") {
-      Noti_Count_Provider.Current_Notification_Func(
-          data.first["count"].toString());
-
-      print("count is not not not not not 0");
-//       //tanker push notification                 //remove
-//       await Tanker_Push_Notification_Function();
-
-// //Maintenance push notification
-//       await Maintenance_Push_Notification_Function();
-
-// // General Push Notification
-//       await General_Push_Notification_Function();
-
-//       //Broadcast Push Notication
-//       await Broadcast_Push_Notification_Function();
-//       //   WidgetsFlutterBinding.ensureInitialized(); // remove
-
-      // await Workmanager().initialize(callbackDispatcher, isInDebugMode: false);
-    } else if (data.first["count"].toString() == "0") {
-      Noti_Count_Provider.Current_Notification_Func(
-          data.first["count"].toString());
-      print("Notification Count is 000000000000000000");
-    }
-    // else {
-    //   print("no message");
-    // }
-    // data;
-  } else {
-    var data = jsonDecode(response.body.toString());
-    // data;
-  }
-}
 
 // Future<void> Notification_Seen_Count_Function(context) async {
 //   final Noti_Count_Provider =

@@ -55,7 +55,7 @@ class _Orders_ScreenState extends State<Orders_Screen> {
     Shared_Pref_Login_Id_Func();
 
     // notification count
-    Notification_Count_Function(context);
+    notificationCountFunction(context);
     Driver_All_Func();
 
     super.initState();
@@ -144,10 +144,10 @@ class _Orders_ScreenState extends State<Orders_Screen> {
                             //  await callbackDispatcher2();
                               
                              
-                              notificationsService.sendNotification2("qqq", "qqqq", 342, "qqq", "qqqqq");
+                              // notificationsService.sendNotification2("qqq", "qqqq", 342, "qqq", "qqqqq");
                               //  sendNotification("ddd", "ddddd", 91, "n", "n");
                               // // Notification Count Seen
-                              // Notification_Seen_Count_Function(context);                         //remove
+                               Notification_Seen_Count_Function(context);                         //remove
 
                               Navigator.push(
                                 context,
