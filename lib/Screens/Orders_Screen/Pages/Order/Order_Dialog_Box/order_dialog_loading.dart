@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zsz/Screens/Orders_Screen/Pages/Order/Order_Dialog_Box/order_dialog_Error_Msg.dart';
-import 'package:zsz/Screens/Orders_Screen/Pages/Order/functions/order_create_api_func.dart';
+import 'package:zsz/Constant.dart';
 import 'package:zsz/responsive.dart';
 
 void Order_dialog_loading(BuildContext context, h_size, w_size, theme) {
@@ -24,7 +24,7 @@ void Order_dialog_loading(BuildContext context, h_size, w_size, theme) {
             children: [
               Center(
                 child: Image.asset(
-                  "assets/Logo.png",
+                  zszlogo,
                   width: MediaQuery.of(context).size.width * 0.4,
                   height: MediaQuery.of(context).size.height * 0.1,
                 ),

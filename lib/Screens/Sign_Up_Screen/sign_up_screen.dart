@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:zsz/Constant.dart';
 import 'package:zsz/Functions/Internet/Internet.dart';
 import 'package:zsz/Screens/Login_Screen/functions/get_society_func.dart';
 import 'package:zsz/Screens/Sign_Up_Screen/Provider/signup_society_visibility_provider.dart';
@@ -136,7 +137,7 @@ class _Sign_Up_ScreenState extends State<Sign_Up_Screen> {
                 Container(
                   margin: EdgeInsets.only(top: height(50), bottom: height(15)),
                   child: Center(
-                    child: Image.asset("assets/Logo.png",
+                    child: Image.asset(zszlogo,
                         width: width(220),
                         //  MediaQuery.of(context).size.width * 0.7,
                         height: height(70)

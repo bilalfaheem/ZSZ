@@ -9,6 +9,7 @@ import 'package:zsz/Screens/Login_Screen/Pages/Forget_Password/provider/Contact_
 import 'package:zsz/Screens/Login_Screen/Pages/Otp_Screen/Func/Otp_send_func.dart';
 import 'package:zsz/Screens/Orders_Screen/Pages/Order/functions/Address_Swap.dart';
 import 'package:zsz/responsive.dart';
+import 'package:zsz/Constant.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
   const ForgetPasswordScreen({Key? key}) : super(key: key);
@@ -145,7 +146,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                 Container(
                   margin: EdgeInsets.only(top: height(50), bottom: height(15)),
                   child: Center(
-                    child: Image.asset("assets/Logo.png",
+                    child: Image.asset(zszlogo,
                         width: width(220),
                         //  MediaQuery.of(context).size.width * 0.7,
                         height: height(70)

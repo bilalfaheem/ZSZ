@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zsz/Constant.dart';
 
 void Pass_Failed_dialog_box(
     BuildContext context, h_size, w_size, theme, ttext) {
@@ -21,7 +22,7 @@ void Pass_Failed_dialog_box(
             children: [
               Center(
                 child: Image.asset(
-                  "assets/Logo.png",
+                  zszlogo,
                   width: MediaQuery.of(context).size.width * 0.4,
                   height: MediaQuery.of(context).size.height * 0.1,
                 ),

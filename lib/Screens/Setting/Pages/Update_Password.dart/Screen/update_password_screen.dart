@@ -53,11 +53,14 @@ class _Update_password_screenState extends State<Update_password_screen> {
                   backgroundColor: theme.primaryColorDark,
                   radius: _size.height * 0.07,
                   // backgroundImage: AssetImage("assets/Bottom_Bar/Profile.png"),
-                  child: Image.asset(
-                    Logo2,
-                    height: _size.height * 0.1,
-                    color: Colors.white,
-                    // width: _size.width * 0.5,
+                  child: Padding(
+                    padding:  EdgeInsets.symmetric(horizontal: 8),
+                    child: Image.asset(
+                      logo2,
+                      height: _size.height * 0.1,
+                      color: Colors.white,
+                      // width: _size.width * 0.5,
+                    ),
                   ),
                 )),
                 Container(

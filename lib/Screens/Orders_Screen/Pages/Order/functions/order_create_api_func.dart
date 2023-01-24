@@ -91,7 +91,8 @@ void Create_Order_Api_Func(context, h_size, w_size, theme, User_Id,
       print("Some thing went wronggggggggggggggggggggg");
     }
   } else {
-    Order_dialog_Error_Msg(context, h_size, w_size, theme, "Error Msg ");
+    Navigator.pop(context);
+    Order_dialog_Error_Msg(context, h_size, w_size, theme, "Failed ");
     print(" status is not 200");
   }
 }

@@ -4,6 +4,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zsz/responsive.dart';
+import 'package:zsz/Constant.dart';
 
 void Order_dialog_Success_Msg(
     BuildContext context, h_size, w_size, theme, Success_msg, bool Two_Pop) {
@@ -29,7 +30,7 @@ void Order_dialog_Success_Msg(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                Image.asset("assets/Logo.png",
+                Image.asset(zszlogo,
                     width: width(180), height: height(43)),
               ]),
               Material(

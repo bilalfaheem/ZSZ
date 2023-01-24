@@ -63,7 +63,7 @@ dependencies:
   provider: ^6.0.3
 
   #App Icon launcher
-  flutter_launcher_icons: ^0.9.3
+  flutter_launcher_icons: ^0.11.0
 
   #whatsapp 
   flutter_launch: ^0.3.0
@@ -94,6 +94,13 @@ dependencies:
 
   permission_handler: ^10.2.0
   flutter_background_service: ^2.4.6
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/Logo/ZSZSaima.png"
+
 
 
 dev_dependencies:

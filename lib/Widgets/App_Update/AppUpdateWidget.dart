@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zsz/Constant.dart';
 import 'package:zsz/Screens/Orders_Screen/Pages/Order/functions/order_create_api_func.dart';
 import 'package:zsz/responsive.dart';
 
@@ -23,7 +24,7 @@ void AppUpdateWidget(BuildContext context, h_size, w_size, theme, Update_Msg) {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                Image.asset("assets/Logo.png",
+                Image.asset(zszlogo,
                     width: width(180), height: height(43)),
               ]),
               Material(

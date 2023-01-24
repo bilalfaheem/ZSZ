@@ -5,6 +5,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:zsz/Constant.dart';
 import 'package:zsz/Screens/Billing_Screen/Functions/Billing_Function/billing_func.dart';
 
 class Billing_Tile extends StatelessWidget {
@@ -41,7 +42,7 @@ class Billing_Tile extends StatelessWidget {
             height: _size.height * 0.31,
             width: _size.width * 0.5,
             decoration: BoxDecoration(
-                color: theme.primaryColor,
+                color: bluecardColor,
                 //  Color.fromARGB(240, 20, 72, 111),
                 //  theme.primaryColorDark,
                 // color: Color(0xff4dbfa9),

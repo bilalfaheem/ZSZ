@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
+import 'package:zsz/Constant.dart';
 import 'package:zsz/responsive.dart';
 import 'package:zsz/Functions/Internet/Internet.dart';
 import 'package:zsz/Screens/Login_Screen/Provider/society_name_visibility_provider.dart';
@@ -29,7 +30,7 @@ class Splash_Screen extends StatelessWidget {
               margin: EdgeInsets.only(bottom: height(100)),
               child: Center(
                 child: Image.asset(
-                  "assets/Logo.png",
+                  zszlogo,
                   width: width(250),
 
                   // height: height(75)

@@ -12,6 +12,7 @@ import 'package:zsz/Screens/Login_Screen/functions/login_post_api_func.dart';
 import 'package:zsz/Screens/Sign_Up_Screen/Provider/signup_society_visibility_provider.dart';
 import 'package:zsz/Screens/Sign_Up_Screen/sign_up_screen.dart';
 import 'package:zsz/responsive.dart';
+import 'package:zsz/Constant.dart';
 
 class Login_Screen extends StatefulWidget {
   const Login_Screen({Key? key}) : super(key: key);
@@ -72,7 +73,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                 Container(
                   margin: EdgeInsets.only(top: height(50), bottom: height(15)),
                   child: Center(
-                    child: Image.asset("assets/Logo.png",
+                    child: Image.asset(zszlogo,
                         width: width(220),
                         //  MediaQuery.of(context).size.width * 0.7,
                         height: height(70)

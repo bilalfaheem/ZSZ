@@ -69,7 +69,7 @@ class Sign_Up_Failed extends StatelessWidget {
                           children: [
                             Center(
                               child: Image.asset(
-                                "assets/Logo.png",
+                                zszlogo,
                                 width: MediaQuery.of(context).size.width * 0.4,
                                 height:
                                     MediaQuery.of(context).size.height * 0.1,

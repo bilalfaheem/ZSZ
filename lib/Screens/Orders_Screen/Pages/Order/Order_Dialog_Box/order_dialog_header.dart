@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:zsz/Constant.dart';
 import 'package:zsz/responsive.dart';
 
 Widget Order_Dialog_Header(context) {
@@ -25,7 +25,7 @@ Widget Order_Dialog_Header(context) {
 
       //  SizedBox(height: 1,),
 
-      Image.asset("assets/Logo.png",
+      Image.asset(zszlogo,
           // color: Colors.blue,
 
           width: width(180),

@@ -66,7 +66,7 @@ void Order_dialog_box(
               //     ),
 
               //     Image.asset(
-              //       "assets/Logo.png",
+              //       zszlogo,
               //       // color: Colors.blue,
 
               //       width: MediaQuery.of(context).size.width * 0.4,
