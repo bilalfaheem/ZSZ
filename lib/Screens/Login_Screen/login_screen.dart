@@ -95,7 +95,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                             color: theme.focusColor),
                       ),
                       Text(
-                        "WMS",
+                        "ZSZ",
                         style: GoogleFonts.ubuntu(
                             fontSize: height(20),
                             // MediaQuery.of(context).size.height * 0.04,

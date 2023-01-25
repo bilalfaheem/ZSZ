@@ -49,7 +49,8 @@ class CustomTheme with ChangeNotifier {
         // Color.fromARGB(236, 255, 255, 255),
         dividerColor: Color.fromARGB(21, 0, 0, 0),
 //Card Text
-        highlightColor: Color.fromARGB(135, 0, 0, 0)
+        highlightColor: Color.fromARGB(135, 0, 0, 0),
+        shadowColor: Color(0xffe9ecef)
 
         // textTheme: TextTheme(
         //     headline1: TextStyle(color: Colors.black, fontSize: 19),

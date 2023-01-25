@@ -11,6 +11,7 @@ import 'package:zsz/Functions/Push_Notification/Function/NotificationCount/NotiC
 import 'package:zsz/Functions/Push_Notification/Notification.dart';
 import 'package:zsz/Functions/Shared_Pref_Login_Id_func/shared_Pref_Login_Id_func.dart';
 import 'package:zsz/Provider/Notification_Icon_Provider/notification_icon_provider.dart';
+import 'package:zsz/Screens/Chat_Screen/Pages/ComplainScreen/Function/complain_suggestion_func.dart';
 import 'package:zsz/Screens/Notification_Screen/Screen/notification_screen.dart';
 import 'package:zsz/Screens/Orders_Screen/Pages/Order/Pages/Order_Details/function/driver_suggestion_func.dart';
 import 'package:zsz/Screens/Orders_Screen/Pages/Order/Pages/order.dart';
@@ -57,7 +58,8 @@ class _Orders_ScreenState extends State<Orders_Screen> {
     // notification count
     notificationCountFunction(context);
     Driver_All_Func();
-
+    complainAllFunction();
+    
     super.initState();
   }
 

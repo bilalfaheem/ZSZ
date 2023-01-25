@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:zsz/Screens/Billing_Screen/Screen/billing_screen.dart';
+import 'package:zsz/Screens/Chat_Screen/Pages/ComplainScreen/complain_screen.dart';
 import 'package:zsz/Screens/Detail_Screen/detail_screen.dart';
 import 'package:zsz/Screens/Login_Screen/login_screen.dart';
 import 'package:zsz/Screens/Orders_Screen/Screen/orders_screen.dart';
@@ -24,6 +25,7 @@ class _Home_ScreenState extends State<Home_Screen> {
     Billing_Screen(),
     // Sign_Up_Screen(),
     Orders_Screen(),
+    ComplainScreen(),
     Profile_Screen()
   ];
 
@@ -92,6 +94,13 @@ class _Home_ScreenState extends State<Home_Screen> {
 
                         // assets/Bottom_Bar/Clock.png"),
                         size: _size.height * 0.04),
+                    label: '',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: ImageIcon(AssetImage("assets/Icons/chat.png"),
+
+                        // assets/Bottom_Bar/Clock.png"),
+                        size: _size.height * 0.03),
                     label: '',
                   ),
                   BottomNavigationBarItem(
