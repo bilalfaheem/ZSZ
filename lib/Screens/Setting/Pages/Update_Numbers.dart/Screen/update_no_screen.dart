@@ -45,7 +45,7 @@ class Update_no_screen extends StatelessWidget {
                   radius: _size.height * 0.07,
                   // backgroundImage: AssetImage("assets/Bottom_Bar/Profile.png"),
                   child: Padding(
-                    padding:  EdgeInsets.symmetric(horizontal: 8),
+                    padding: EdgeInsets.symmetric(horizontal: 8),
                     child: Image.asset(
                       logo2,
                       height: _size.height * 0.1,

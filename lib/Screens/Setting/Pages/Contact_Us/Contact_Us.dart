@@ -113,7 +113,7 @@ class Contact_Us extends StatelessWidget {
                                     // Color.fromARGB(142, 112, 205, 115),
                                     child: Image.asset(
                                       "assets/Icons/Phone.png",
-                                      color:Colors.white,
+                                      color: Colors.white,
                                       //  theme.primaryColor,
                                       height: _size.width * 0.06,
                                     ),

@@ -12,14 +12,15 @@ import 'package:zsz/responsive.dart';
 
 class GasBillScreen extends StatelessWidget {
   String Month, DueDate, Amount, Msg;
-  int previousReading,currentReading;
-  GasBillScreen(
-      {required this.Month,
-      required this.DueDate,
-      required this.Amount,
-      required this.Msg,
-      required this.previousReading,
-      required this.currentReading,});
+  int previousReading, currentReading;
+  GasBillScreen({
+    required this.Month,
+    required this.DueDate,
+    required this.Amount,
+    required this.Msg,
+    required this.previousReading,
+    required this.currentReading,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +107,7 @@ class GasBillScreen extends StatelessWidget {
                                   style: GoogleFonts.ubuntu(
                                       fontSize: constraints.maxHeight * 0.085,
                                       color: theme.highlightColor)),
-                              Text("${currentReading-previousReading} units",
+                              Text("${currentReading - previousReading} units",
                                   style: GoogleFonts.ubuntu(
                                       fontSize: constraints.maxHeight * 0.085,
                                       color: theme.focusColor)),

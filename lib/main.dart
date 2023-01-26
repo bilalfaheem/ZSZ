@@ -40,209 +40,209 @@ void callbackDispatcher() async {
   String userLoginIdNotification = "null";
   print("call back dispatcher call back dispatcher2");
   // await Shared_Pref_Login_Id_Func();
-    // final FlutterLocalNotificationsPlugin flutterLocalNoti =
-    //   FlutterLocalNotificationsPlugin();
+  // final FlutterLocalNotificationsPlugin flutterLocalNoti =
+  //   FlutterLocalNotificationsPlugin();
   // NotificationsService notificationsService = NotificationsService();
   // notificationsService.
- 
+
   // int notification_count = 0;
   Workmanager().executeTask((task, inputData) async {
-
     userLoginIdFunctionNotification() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences pref = await SharedPreferences.getInstance();
-  userLoginIdNotification = pref.getString("User_Login_Id").toString();
-  print("${userLoginIdNotification} user login id for notification");
+      WidgetsFlutterBinding.ensureInitialized();
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      userLoginIdNotification = pref.getString("User_Login_Id").toString();
+      print("${userLoginIdNotification} user login id for notification");
+    }
 
-}
 //function part
-  final FlutterLocalNotificationsPlugin flutterLocalNoti =
-      FlutterLocalNotificationsPlugin();
+    final FlutterLocalNotificationsPlugin flutterLocalNoti =
+        FlutterLocalNotificationsPlugin();
 
-  final AndroidInitializationSettings androidInitSetting =
-      AndroidInitializationSettings("mipmap/ic_launcher");
+    final AndroidInitializationSettings androidInitSetting =
+        AndroidInitializationSettings("mipmap/ic_launcher");
 
-  void initialiseNotifications() async {
-    InitializationSettings initializationSettings =
-        InitializationSettings(android: androidInitSetting);
+    void initialiseNotifications() async {
+      InitializationSettings initializationSettings =
+          InitializationSettings(android: androidInitSetting);
 
-    await flutterLocalNoti.initialize(initializationSettings);
-  }
+      await flutterLocalNoti.initialize(initializationSettings);
+    }
 
-   void sendNotification(String channelId,String channelName,int notiId, String title, String body) async {
-    AndroidNotificationDetails androidNotificationDetails =
-        AndroidNotificationDetails(channelId,channelName,
-          // "WMSID", "WMSNOTO",
-            importance: Importance.max, priority: Priority.high);
-    NotificationDetails notificationDetails =
-        NotificationDetails(android: androidNotificationDetails);
-    await flutterLocalNoti.show(notiId, title, body, notificationDetails);
-  }
+    void sendNotification(String channelId, String channelName, int notiId,
+        String title, String body) async {
+      AndroidNotificationDetails androidNotificationDetails =
+          AndroidNotificationDetails(channelId, channelName,
+              // "WMSID", "WMSNOTO",
+              importance: Importance.max,
+              priority: Priority.high);
+      NotificationDetails notificationDetails =
+          NotificationDetails(android: androidNotificationDetails);
+      await flutterLocalNoti.show(notiId, title, body, notificationDetails);
+    }
 
-   //Api Call Function
-  Future<void> tankerSeenPushNotificationFunction() async {
-  var response =
-      await http.post(Uri.parse("https://cybernsoft.com/api/tanker_notification.php"),
+    //Api Call Function
+    Future<void> tankerSeenPushNotificationFunction() async {
+      var response = await http.post(
+          Uri.parse("https://cybernsoft.com/api/tanker_notification.php"),
           // push_notification.php"),
           body: {"user_id": userLoginIdNotification.toString(), "is_seen": "1"}
           //  User_Login_id_S.toString()}
           );
-}
-  Future<void> generalSeenPushNotificationFunction() async {
-  var response =
-      await http.post(Uri.parse("https://cybernsoft.com/api/general_notification.php"),
+    }
+
+    Future<void> generalSeenPushNotificationFunction() async {
+      var response = await http.post(
+          Uri.parse("https://cybernsoft.com/api/general_notification.php"),
           // push_notification.php"),
           body: {"user_id": userLoginIdNotification.toString(), "is_seen": "1"}
           //  User_Login_id_S.toString()}
           );
-}
-  Future<void> maintenanceSeenPushNotificationFunction() async {
-  var response =
-      await http.post(Uri.parse("https://cybernsoft.com/api/maintenance_notification.php"),
+    }
+
+    Future<void> maintenanceSeenPushNotificationFunction() async {
+      var response = await http.post(
+          Uri.parse("https://cybernsoft.com/api/maintenance_notification.php"),
           // push_notification.php"),
           body: {"user_id": userLoginIdNotification.toString(), "is_seen": "1"}
           //  User_Login_id_S.toString()}
           );
-}
-  Future<void> broadcastSeenPushNotificationFunction(broadCastId) async {
-  var response =
-      await http.post(Uri.parse("https://cybernsoft.com/api/general_broadcast.php"),
-          // push_notification.php"),
-          body: {
+    }
+
+    Future<void> broadcastSeenPushNotificationFunction(broadCastId) async {
+      var response = await http
+          .post(Uri.parse("https://cybernsoft.com/api/general_broadcast.php"),
+              // push_notification.php"),
+              body: {
             "user_id": userLoginIdNotification.toString(),
             "broadcast_id": broadCastId.toString()
-          //  "is_seen": "1"
-          }
-          );
-}
-  Future<void> tankerPushNotificationFunction() async {
-  var response = await http.post(Uri.parse("https://cybernsoft.com/api/tanker_notification.php"),
-          body: {"user_id": userLoginIdNotification.toString()
+            //  "is_seen": "1"
           });
-  if (response.statusCode == 200) {
-    var data = jsonDecode(response.body.toString());
-  print(data.first["status"].toString() );
-// 10 for notification present
-    if (data.first["status"].toString() == "10") {
-      sendNotification("WMSTankerId", "WMSTanker", 20, "WMS Tanker", data.first["message"].toString());
-       await tankerSeenPushNotificationFunction(); 
-    } else if (data.first["status"].toString() == "0") {
-    } else {
     }
-    data;
-  } else {
-    var data = jsonDecode(response.body.toString());
-    data;
-  }
-}
 
-  Future<void> generalPushNotificationFunction() async {
-  var response = await http.post(Uri.parse("https://cybernsoft.com/api/general_notification.php"),
-          body: {"user_id": userLoginIdNotification.toString()
-           });
-  if (response.statusCode == 200) {
-    var data = jsonDecode(response.body.toString());
-  print(data.first["status"].toString() );
+    Future<void> tankerPushNotificationFunction() async {
+      var response = await http.post(
+          Uri.parse("https://cybernsoft.com/api/tanker_notification.php"),
+          body: {"user_id": userLoginIdNotification.toString()});
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body.toString());
+        print(data.first["status"].toString());
 // 10 for notification present
-    if (data.first["status"].toString() == "10") {
-      sendNotification("WMSGeneralId", "WMSGeneral", 21, "WMS General", data.first["message"].toString());
-       await generalSeenPushNotificationFunction();   
-    } else if (data.first["status"].toString() == "0") {
-    } else {
+        if (data.first["status"].toString() == "10") {
+          sendNotification("WMSTankerId", "WMSTanker", 20, "WMS Tanker",
+              data.first["message"].toString());
+          await tankerSeenPushNotificationFunction();
+        } else if (data.first["status"].toString() == "0") {
+        } else {}
+        data;
+      } else {
+        var data = jsonDecode(response.body.toString());
+        data;
+      }
     }
-    data;
-  } else {
-    var data = jsonDecode(response.body.toString());
-    data;
-  }
-}
-  Future<void> maintenancePushNotificationFunction() async {
-  var response = await http.post(Uri.parse("https://cybernsoft.com/api/maintenance_notification.php"),
-          body: {"user_id": userLoginIdNotification.toString()
-          });
-  if (response.statusCode == 200) {
-    var data = jsonDecode(response.body.toString());
-  print(data.first["status"].toString() );
+
+    Future<void> generalPushNotificationFunction() async {
+      var response = await http.post(
+          Uri.parse("https://cybernsoft.com/api/general_notification.php"),
+          body: {"user_id": userLoginIdNotification.toString()});
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body.toString());
+        print(data.first["status"].toString());
 // 10 for notification present
-    if (data.first["status"].toString() == "10") {
-      sendNotification("WMSMaintenanceId", "WMSMaintenance", 22, "WMS Maintenance", data.first["message"].toString());
-      await maintenanceSeenPushNotificationFunction();
-      // await Tanker_Seen_Push_Notification_Function();
-    } else if (data.first["status"].toString() == "0") {
-    } else {
+        if (data.first["status"].toString() == "10") {
+          sendNotification("WMSGeneralId", "WMSGeneral", 21, "WMS General",
+              data.first["message"].toString());
+          await generalSeenPushNotificationFunction();
+        } else if (data.first["status"].toString() == "0") {
+        } else {}
+        data;
+      } else {
+        var data = jsonDecode(response.body.toString());
+        data;
+      }
     }
-    data;
-  } else {
-    var data = jsonDecode(response.body.toString());
-    data;
-  }
-}
-  Future<void> broadcastPushNotificationFunction() async {
-  var response = await http.post(Uri.parse("https://cybernsoft.com/api/general_broadcast.php"),
-          body: {"user_id":userLoginIdNotification.toString()
-          });
-  if (response.statusCode == 200) {
-    var data = jsonDecode(response.body.toString());
-  print(data.first["status"].toString() );
+
+    Future<void> maintenancePushNotificationFunction() async {
+      var response = await http.post(
+          Uri.parse("https://cybernsoft.com/api/maintenance_notification.php"),
+          body: {"user_id": userLoginIdNotification.toString()});
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body.toString());
+        print(data.first["status"].toString());
 // 10 for notification present
-    if (data.first["status"].toString() == "1") {
-      sendNotification("WMSBroadcastId", "WMSBroadcast", 23, "WMS Broadcast", data.first["message"].toString());
-      // showTankerNotification(data.first["message"].toString());
-      await broadcastSeenPushNotificationFunction(data.first["id"].toString());
-      // await Tanker_Seen_Push_Notification_Function();
-    } else if (data.first["status"].toString() == "0") {
-    } else {
+        if (data.first["status"].toString() == "10") {
+          sendNotification("WMSMaintenanceId", "WMSMaintenance", 22,
+              "WMS Maintenance", data.first["message"].toString());
+          await maintenanceSeenPushNotificationFunction();
+          // await Tanker_Seen_Push_Notification_Function();
+        } else if (data.first["status"].toString() == "0") {
+        } else {}
+        data;
+      } else {
+        var data = jsonDecode(response.body.toString());
+        data;
+      }
     }
-    data;
-  } else {
-    var data = jsonDecode(response.body.toString());
-    data;
-  }
-}
 
+    Future<void> broadcastPushNotificationFunction() async {
+      var response = await http.post(
+          Uri.parse("https://cybernsoft.com/api/general_broadcast.php"),
+          body: {"user_id": userLoginIdNotification.toString()});
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body.toString());
+        print(data.first["status"].toString());
+// 10 for notification present
+        if (data.first["status"].toString() == "1") {
+          sendNotification("WMSBroadcastId", "WMSBroadcast", 23,
+              "WMS Broadcast", data.first["message"].toString());
+          // showTankerNotification(data.first["message"].toString());
+          await broadcastSeenPushNotificationFunction(
+              data.first["id"].toString());
+          // await Tanker_Seen_Push_Notification_Function();
+        } else if (data.first["status"].toString() == "0") {
+        } else {}
+        data;
+      } else {
+        var data = jsonDecode(response.body.toString());
+        data;
+      }
+    }
 
-
-
-
-//execution part    
-       userLoginIdFunctionNotification();
-       initialiseNotifications();
+//execution part
+    userLoginIdFunctionNotification();
+    initialiseNotifications();
     //  sendNotification("www", "wwww", 95, "www", "wwww");
- await tankerPushNotificationFunction();
- await maintenancePushNotificationFunction();
- await generalPushNotificationFunction();
- await broadcastPushNotificationFunction();
-
-
+    await tankerPushNotificationFunction();
+    await maintenancePushNotificationFunction();
+    await generalPushNotificationFunction();
+    await broadcastPushNotificationFunction();
 
     return Future.value(true);
   });
 }
 
-
 // class NotificationsService {
-  // final FlutterLocalNotificationsPlugin flutterLocalNoti =
-  //     FlutterLocalNotificationsPlugin();
+// final FlutterLocalNotificationsPlugin flutterLocalNoti =
+//     FlutterLocalNotificationsPlugin();
 
-  // final AndroidInitializationSettings androidInitSetting =
-  //     AndroidInitializationSettings("mipmap/ic_launcher");
+// final AndroidInitializationSettings androidInitSetting =
+//     AndroidInitializationSettings("mipmap/ic_launcher");
 
-  // void initialiseNotifications() async {
-  //   InitializationSettings initializationSettings =
-  //       InitializationSettings(android: androidInitSetting);
+// void initialiseNotifications() async {
+//   InitializationSettings initializationSettings =
+//       InitializationSettings(android: androidInitSetting);
 
-  //   await flutterLocalNoti.initialize(initializationSettings);
-  // }
+//   await flutterLocalNoti.initialize(initializationSettings);
+// }
 
-  // void sendNotification(String channelId,String channelName,int notiId, String title, String body) async {
-  //   AndroidNotificationDetails androidNotificationDetails =
-  //       AndroidNotificationDetails(channelId,channelName,
-  //         // "WMSID", "WMSNOTO",
-  //           importance: Importance.max, priority: Priority.high);
-  //   NotificationDetails notificationDetails =
-  //       NotificationDetails(android: androidNotificationDetails);
-  //   await flutterLocalNoti.show(notiId, title, body, notificationDetails);
-  // }
+// void sendNotification(String channelId,String channelName,int notiId, String title, String body) async {
+//   AndroidNotificationDetails androidNotificationDetails =
+//       AndroidNotificationDetails(channelId,channelName,
+//         // "WMSID", "WMSNOTO",
+//           importance: Importance.max, priority: Priority.high);
+//   NotificationDetails notificationDetails =
+//       NotificationDetails(android: androidNotificationDetails);
+//   await flutterLocalNoti.show(notiId, title, body, notificationDetails);
+// }
 
 //   //Api Call Function
 //   Future<void> tankerSeenPushNotificationFunction() async {
@@ -362,9 +362,6 @@ void callbackDispatcher() async {
 // }
 
 //removeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-
-
-
 
 // }
 
@@ -625,7 +622,6 @@ void callbackDispatcher() async {
 //           );
 // }
 
-
 // Future<void> Notification_Seen_Count_Function(context) async {
 //   final Noti_Count_Provider =
 //       Provider.of<Notification_Icon_Provider>(context, listen: false);
@@ -651,11 +647,11 @@ Future<void> main() async {
   //         Permission.notification.request();
   //       }
   //     });
-      
+
   // await Firebase.initializeApp(); //remove
   await Shared_Pref_Login_Id_Func();
 
-   await Workmanager().initialize(callbackDispatcher, isInDebugMode: true);
+  await Workmanager().initialize(callbackDispatcher, isInDebugMode: true);
   await Workmanager().registerPeriodicTask("11311", simplePeriodicTask,
       existingWorkPolicy: ExistingWorkPolicy.replace,
       frequency: Duration(minutes: 15), //when should it check the link
@@ -670,9 +666,6 @@ Future<void> main() async {
   ]);
   runApp(const MyApp());
 }
-
-
-
 
 // // notification api function
 // Future<void> callbackDispatcher() async {

@@ -24,14 +24,14 @@ class CustomTheme with ChangeNotifier {
 
   static ThemeData get lightTheme {
     return ThemeData(
-        primaryColor:Color(0xff2c6e49),
+        primaryColor: Color(0xff2c6e49),
         //  Color(0xff04543c),
         //  Color(0xff015e8b),//wms color
         // Color.fromARGB(208, 23, 113, 109),
         // Colors.green,
-        primaryColorDark:Color(0xff2c6e49),
+        primaryColorDark: Color(0xff2c6e49),
         //  Color.fromARGB(255, 4, 68, 100),
-        primaryColorLight:Color.fromARGB(255, 74, 160, 111),
+        primaryColorLight: Color.fromARGB(255, 74, 160, 111),
         //  Color.fromARGB(193, 48, 129, 169),
         scrollbarTheme: ScrollbarThemeData(
           thickness: MaterialStateProperty.all(2),

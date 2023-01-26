@@ -86,15 +86,16 @@ class Billing_Screen extends StatelessWidget {
                     }),
               ),
               StreamBuilder(
-                  stream: GasCurrentBillingFunc(context,  User_Login_Address_Id_S
-                  ).asStream(),
+                  stream:
+                      GasCurrentBillingFunc(context, User_Login_Address_Id_S)
+                          .asStream(),
                   // gasBillingAllFunc("242").asStream(),
                   // MaintenanceApiFunc(context, User_Login_id_S.toString())
                   //     .asStream(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return Gas_bill_widget(
-                          context, "....", "....", "....", "....",1,1);
+                          context, "....", "....", "....", "....", 1, 1);
                       // Billing_Tile(
                       //     "$User_Login_name_S",
                       //     "$User_Login_Address_S",
@@ -106,15 +107,15 @@ class Billing_Screen extends StatelessWidget {
                       var Index_current = GasCurrentBillingList.first;
                       // MaintenanceList.first;
                       return Gas_bill_widget(
-                        context,
-                        Index_current.month.toString(),
-                        Index_current.payment.toString(),
-                        Index_current.dueDate.toString(),
-                        Index_current.message.toString(),
-                        int.parse(Index_current.currentReading.toString()),
-                        int.parse(Index_current.previousReading.toString(),)
-                        
-                      );
+                          context,
+                          Index_current.month.toString(),
+                          Index_current.payment.toString(),
+                          Index_current.dueDate.toString(),
+                          Index_current.message.toString(),
+                          int.parse(Index_current.currentReading.toString()),
+                          int.parse(
+                            Index_current.previousReading.toString(),
+                          ));
                       // Billing_Tile(
                       //     User_Login_name_S.toString(),
                       //     User_Login_Address_S.toString(),
@@ -125,7 +126,7 @@ class Billing_Screen extends StatelessWidget {
 
                     } else {
                       return Gas_bill_widget(
-                          context, "....", "....", "....", "....",1,1);
+                          context, "....", "....", "....", "....", 1, 1);
                       //  Billing_Tile(
                       //     "$User_Login_name_S",
                       //     "$User_Login_Address_S",

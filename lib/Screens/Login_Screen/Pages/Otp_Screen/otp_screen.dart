@@ -129,7 +129,7 @@ class _OtpScreen2State extends State<OtpScreen2> {
                     radius: size.height * 0.08,
                     // backgroundImage: AssetImage("assets/Bottom_Bar/Profile.png"),
                     child: Padding(
-                      padding:  EdgeInsets.symmetric(horizontal: 8),
+                      padding: EdgeInsets.symmetric(horizontal: 8),
                       child: Image.asset(
                         logo2,
                         height: size.height * 0.1,

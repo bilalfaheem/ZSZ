@@ -55,11 +55,11 @@ class Splash_Screen extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30))),
                       onPressed: () {
-      //                   await Permission.notification.isDenied.then((value) {
-      //   if (value) {
-      //     Permission.notification.request();
-      //   }
-      // });
+                        //                   await Permission.notification.isDenied.then((value) {
+                        //   if (value) {
+                        //     Permission.notification.request();
+                        //   }
+                        // });
                         Society_Name_Visibility_provider
                             .SocietyNameVisibilityStatus_Func(false);
                         // Login_validation_false();

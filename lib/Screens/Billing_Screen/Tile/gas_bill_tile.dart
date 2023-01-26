@@ -5,7 +5,8 @@ import 'package:intl/intl.dart';
 import 'package:zsz/Constant.dart';
 import 'package:zsz/Screens/Billing_Screen/Page/GasBill_Screen/screen/gasbill_screen.dart';
 
-Widget Gas_bill_widget(context, month, amount, date, msg,currentReading,previousReading) {
+Widget Gas_bill_widget(
+    context, month, amount, date, msg, currentReading, previousReading) {
   final _size = MediaQuery.of(context).size;
   final ThemeData theme = Theme.of(context);
   // print(currentReading-previousReading);

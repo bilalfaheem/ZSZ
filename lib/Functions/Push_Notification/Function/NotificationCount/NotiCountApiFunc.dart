@@ -34,18 +34,18 @@ Future<void> notificationCountFunction(context) async {
     if (data.first["count"].toString() == "0") {
       Noti_Count_Provider.Current_Notification_Func(
           data.first["count"].toString());
-      previousNotificationCount = data.first["count"].toString(); 
+      previousNotificationCount = data.first["count"].toString();
       print("Notification Count is 000000000000000000");
-    }else if (data.first["count"].toString() != "0") {
+    } else if (data.first["count"].toString() != "0") {
       Noti_Count_Provider.Current_Notification_Func(
           data.first["count"].toString());
-         await notificationFunctionInApp();
-        // print("no new notifiaction");
-        // // if(previousNotificationCount != data.first["count"].toString()){
-        //   print(" new notifiaction");
-          // callbackDispatcher();
-          previousNotificationCount = data.first["count"].toString();
-        // }
+      await notificationFunctionInApp();
+      // print("no new notifiaction");
+      // // if(previousNotificationCount != data.first["count"].toString()){
+      //   print(" new notifiaction");
+      // callbackDispatcher();
+      previousNotificationCount = data.first["count"].toString();
+      // }
 
 //       print("count is not not not not not 0");
 //       //tanker push notification
@@ -62,16 +62,16 @@ Future<void> notificationCountFunction(context) async {
       //   WidgetsFlutterBinding.ensureInitialized();
 
       // await Workmanager().initialize(callbackDispatcher, isInDebugMode: false);
-    } 
+    }
     // else {
     //   print("no message");
     // }
     // data;
-   else {
-    var data = jsonDecode(response.body.toString());
-    // data;
+    else {
+      var data = jsonDecode(response.body.toString());
+      // data;
+    }
   }
-}
 }
 
 Future<void> Notification_Seen_Count_Function(context) async {

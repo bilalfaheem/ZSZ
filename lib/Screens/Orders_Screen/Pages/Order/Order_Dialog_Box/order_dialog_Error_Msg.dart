@@ -25,8 +25,7 @@ void Order_dialog_Error_Msg(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                Image.asset(zszlogo,
-                    width: width(180), height: height(43)),
+                Image.asset(zszlogo, width: width(180), height: height(43)),
               ]),
               Material(
                 color: Colors.white,

@@ -1,5 +1,3 @@
-
-
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
@@ -25,18 +23,21 @@ class NotificationsService2 {
     AndroidNotificationDetails androidNotificationDetails =
         AndroidNotificationDetails("WMSID", "WMSNOTO",
             importance: Importance.max, priority: Priority.high);
-            
+
 // int.parse(DateTime.now().microsecondsSinceEpoch.toString());
 // Random().nextInt(10000)
     NotificationDetails notificationDetails =
         NotificationDetails(android: androidNotificationDetails);
     await flutterLocalNoti.show(16, title, body, notificationDetails);
   }
-     void sendNotification2(String channelId,String channelName,int notiId, String title, String body) async {
+
+  void sendNotification2(String channelId, String channelName, int notiId,
+      String title, String body) async {
     AndroidNotificationDetails androidNotificationDetails =
-        AndroidNotificationDetails(channelId,channelName,
-          // "WMSID", "WMSNOTO",
-            importance: Importance.max, priority: Priority.high);
+        AndroidNotificationDetails(channelId, channelName,
+            // "WMSID", "WMSNOTO",
+            importance: Importance.max,
+            priority: Priority.high);
     NotificationDetails notificationDetails =
         NotificationDetails(android: androidNotificationDetails);
     await flutterLocalNoti.show(notiId, title, body, notificationDetails);
@@ -58,8 +59,7 @@ class NotificationsService2 {
   // }
 }
 
-Future<void> notificationFunctionInApp()async{
-
+Future<void> notificationFunctionInApp() async {
 //  userLoginIdFunctionNotification() async {
 //   WidgetsFlutterBinding.ensureInitialized();
 //   SharedPreferences pref = await SharedPreferences.getInstance();
@@ -81,151 +81,153 @@ Future<void> notificationFunctionInApp()async{
     await flutterLocalNoti.initialize(initializationSettings);
   }
 
-   void sendNotification(String channelId,String channelName,int notiId, String title, String body) async {
+  void sendNotification(String channelId, String channelName, int notiId,
+      String title, String body) async {
     AndroidNotificationDetails androidNotificationDetails =
-        AndroidNotificationDetails(channelId,channelName,
-          // "WMSID", "WMSNOTO",
-            importance: Importance.max, priority: Priority.high);
+        AndroidNotificationDetails(channelId, channelName,
+            // "WMSID", "WMSNOTO",
+            importance: Importance.max,
+            priority: Priority.high);
     NotificationDetails notificationDetails =
         NotificationDetails(android: androidNotificationDetails);
     await flutterLocalNoti.show(notiId, title, body, notificationDetails);
   }
 
-   //Api Call Function
+  //Api Call Function
   Future<void> tankerSeenPushNotificationFunction() async {
-  var response =
-      await http.post(Uri.parse("https://cybernsoft.com/api/tanker_notification.php"),
-          // push_notification.php"),
-          body: {"user_id": User_Login_id_S.toString(), "is_seen": "1"}
-          //  User_Login_id_S.toString()}
-          );
-}
-  Future<void> generalSeenPushNotificationFunction() async {
-  var response =
-      await http.post(Uri.parse("https://cybernsoft.com/api/general_notification.php"),
-          // push_notification.php"),
-          body: {"user_id": User_Login_id_S.toString(), "is_seen": "1"}
-          //  User_Login_id_S.toString()}
-          );
-}
-  Future<void> maintenanceSeenPushNotificationFunction() async {
-  var response =
-      await http.post(Uri.parse("https://cybernsoft.com/api/maintenance_notification.php"),
-          // push_notification.php"),
-          body: {"user_id": User_Login_id_S.toString(), "is_seen": "1"}
-          //  User_Login_id_S.toString()}
-          );
-}
-  Future<void> broadcastSeenPushNotificationFunction(broadCastId) async {
-  var response =
-      await http.post(Uri.parse("https://cybernsoft.com/api/general_broadcast.php"),
-          // push_notification.php"),
-          body: {
-            "user_id": User_Login_id_S.toString(),
-            "broadcast_id": broadCastId.toString()
-          //  "is_seen": "1"
-          }
-          );
-}
-  Future<void> tankerPushNotificationFunction() async {
-  var response = await http.post(Uri.parse("https://cybernsoft.com/api/tanker_notification.php"),
-          body: {"user_id": User_Login_id_S.toString()
-          });
-  if (response.statusCode == 200) {
-    var data = jsonDecode(response.body.toString());
-  print(data.first["status"].toString() );
-// 10 for notification present
-    if (data.first["status"].toString() == "10") {
-      sendNotification("WMSTankerId", "WMSTanker", 20, "WMS Tanker", data.first["message"].toString());
-       await tankerSeenPushNotificationFunction(); 
-    } else if (data.first["status"].toString() == "0") {
-    } else {
-    }
-    data;
-  } else {
-    var data = jsonDecode(response.body.toString());
-    data;
+    var response = await http
+        .post(Uri.parse("https://cybernsoft.com/api/tanker_notification.php"),
+            // push_notification.php"),
+            body: {"user_id": User_Login_id_S.toString(), "is_seen": "1"}
+            //  User_Login_id_S.toString()}
+            );
   }
-}
+
+  Future<void> generalSeenPushNotificationFunction() async {
+    var response = await http
+        .post(Uri.parse("https://cybernsoft.com/api/general_notification.php"),
+            // push_notification.php"),
+            body: {"user_id": User_Login_id_S.toString(), "is_seen": "1"}
+            //  User_Login_id_S.toString()}
+            );
+  }
+
+  Future<void> maintenanceSeenPushNotificationFunction() async {
+    var response = await http.post(
+        Uri.parse("https://cybernsoft.com/api/maintenance_notification.php"),
+        // push_notification.php"),
+        body: {"user_id": User_Login_id_S.toString(), "is_seen": "1"}
+        //  User_Login_id_S.toString()}
+        );
+  }
+
+  Future<void> broadcastSeenPushNotificationFunction(broadCastId) async {
+    var response = await http
+        .post(Uri.parse("https://cybernsoft.com/api/general_broadcast.php"),
+            // push_notification.php"),
+            body: {
+          "user_id": User_Login_id_S.toString(),
+          "broadcast_id": broadCastId.toString()
+          //  "is_seen": "1"
+        });
+  }
+
+  Future<void> tankerPushNotificationFunction() async {
+    var response = await http.post(
+        Uri.parse("https://cybernsoft.com/api/tanker_notification.php"),
+        body: {"user_id": User_Login_id_S.toString()});
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body.toString());
+      print(data.first["status"].toString());
+// 10 for notification present
+      if (data.first["status"].toString() == "10") {
+        sendNotification("WMSTankerId", "WMSTanker", 20, "WMS Tanker",
+            data.first["message"].toString());
+        await tankerSeenPushNotificationFunction();
+      } else if (data.first["status"].toString() == "0") {
+      } else {}
+      data;
+    } else {
+      var data = jsonDecode(response.body.toString());
+      data;
+    }
+  }
 
   Future<void> generalPushNotificationFunction() async {
-  var response = await http.post(Uri.parse("https://cybernsoft.com/api/general_notification.php"),
-          body: {"user_id": User_Login_id_S.toString()
-           });
-  if (response.statusCode == 200) {
-    var data = jsonDecode(response.body.toString());
-  print(data.first["status"].toString() );
+    var response = await http.post(
+        Uri.parse("https://cybernsoft.com/api/general_notification.php"),
+        body: {"user_id": User_Login_id_S.toString()});
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body.toString());
+      print(data.first["status"].toString());
 // 10 for notification present
-    if (data.first["status"].toString() == "10") {
-      sendNotification("WMSGeneralId", "WMSGeneral", 21, "WMS General", data.first["message"].toString());
-       await generalSeenPushNotificationFunction();   
-    } else if (data.first["status"].toString() == "0") {
+      if (data.first["status"].toString() == "10") {
+        sendNotification("WMSGeneralId", "WMSGeneral", 21, "WMS General",
+            data.first["message"].toString());
+        await generalSeenPushNotificationFunction();
+      } else if (data.first["status"].toString() == "0") {
+      } else {}
+      data;
     } else {
+      var data = jsonDecode(response.body.toString());
+      data;
     }
-    data;
-  } else {
-    var data = jsonDecode(response.body.toString());
-    data;
   }
-}
+
   Future<void> maintenancePushNotificationFunction() async {
-  var response = await http.post(Uri.parse("https://cybernsoft.com/api/maintenance_notification.php"),
-          body: {"user_id": User_Login_id_S.toString()
-          });
-  if (response.statusCode == 200) {
-    var data = jsonDecode(response.body.toString());
-  print(data.first["status"].toString() );
+    var response = await http.post(
+        Uri.parse("https://cybernsoft.com/api/maintenance_notification.php"),
+        body: {"user_id": User_Login_id_S.toString()});
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body.toString());
+      print(data.first["status"].toString());
 // 10 for notification present
-    if (data.first["status"].toString() == "10") {
-      sendNotification("WMSMaintenanceId", "WMSMaintenance", 22, "WMS Maintenance", data.first["message"].toString());
-      await maintenanceSeenPushNotificationFunction();
-      // await Tanker_Seen_Push_Notification_Function();
-    } else if (data.first["status"].toString() == "0") {
+      if (data.first["status"].toString() == "10") {
+        sendNotification("WMSMaintenanceId", "WMSMaintenance", 22,
+            "WMS Maintenance", data.first["message"].toString());
+        await maintenanceSeenPushNotificationFunction();
+        // await Tanker_Seen_Push_Notification_Function();
+      } else if (data.first["status"].toString() == "0") {
+      } else {}
+      data;
     } else {
+      var data = jsonDecode(response.body.toString());
+      data;
     }
-    data;
-  } else {
-    var data = jsonDecode(response.body.toString());
-    data;
   }
-}
+
   Future<void> broadcastPushNotificationFunction() async {
-  var response = await http.post(Uri.parse("https://cybernsoft.com/api/general_broadcast.php"),
-          body: {"user_id":User_Login_id_S.toString()
-          });
-  if (response.statusCode == 200) {
-    var data = jsonDecode(response.body.toString());
-  print(data.first["status"].toString() );
+    var response = await http.post(
+        Uri.parse("https://cybernsoft.com/api/general_broadcast.php"),
+        body: {"user_id": User_Login_id_S.toString()});
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body.toString());
+      print(data.first["status"].toString());
 // 10 for notification present
-    if (data.first["status"].toString() == "1") {
-      sendNotification("WMSBroadcastId", "WMSBroadcast", 23, "WMS Broadcast", data.first["message"].toString());
-      // showTankerNotification(data.first["message"].toString());
-      await broadcastSeenPushNotificationFunction(data.first["id"].toString());
-      // await Tanker_Seen_Push_Notification_Function();
-    } else if (data.first["status"].toString() == "0") {
+      if (data.first["status"].toString() == "1") {
+        sendNotification("WMSBroadcastId", "WMSBroadcast", 23, "WMS Broadcast",
+            data.first["message"].toString());
+        // showTankerNotification(data.first["message"].toString());
+        await broadcastSeenPushNotificationFunction(
+            data.first["id"].toString());
+        // await Tanker_Seen_Push_Notification_Function();
+      } else if (data.first["status"].toString() == "0") {
+      } else {}
+      data;
     } else {
+      var data = jsonDecode(response.body.toString());
+      data;
     }
-    data;
-  } else {
-    var data = jsonDecode(response.body.toString());
-    data;
   }
+
+//execution part
+  //  userLoginIdFunctionNotification();
+  initialiseNotifications();
+  //  sendNotification("www", "wwww", 95, "www", "wwww");
+  await tankerPushNotificationFunction();
+  await maintenancePushNotificationFunction();
+  await generalPushNotificationFunction();
+  await broadcastPushNotificationFunction();
+
+  // return Future.value(true);
 }
-
-
-
-
-
-//execution part    
-      //  userLoginIdFunctionNotification();
-       initialiseNotifications();
-    //  sendNotification("www", "wwww", 95, "www", "wwww");
- await tankerPushNotificationFunction();
- await maintenancePushNotificationFunction();
- await generalPushNotificationFunction();
- await broadcastPushNotificationFunction();
-
-
-
-    // return Future.value(true);
-  }

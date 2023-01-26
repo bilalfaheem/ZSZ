@@ -23,7 +23,7 @@ Future<List<GasBillingCurrentResponse>> GasCurrentBillingFunc(
     if (GasCurrentBillingResponse["status"].toString() == "200" ||
         GasCurrentBillingResponse["status"].toString() == "404") {
       GasCurrentBillingList.clear();
-       gasBillingList.clear();
+      gasBillingList.clear();
       var GasCurrentBillingResponseResponse =
           GasCurrentBillingResponse["current_month"];
       var gasBillingResponseResponse = GasCurrentBillingResponse["response"];

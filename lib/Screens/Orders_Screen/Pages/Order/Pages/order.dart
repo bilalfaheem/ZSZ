@@ -20,7 +20,6 @@ class Order extends StatefulWidget {
 }
 
 class _OrderState extends State<Order> {
-
 // void order_screen_refresh(){
 //   Timer(Duration(seconds: 2), (){
 //     print("Order screen refreshhhhhhhhh");

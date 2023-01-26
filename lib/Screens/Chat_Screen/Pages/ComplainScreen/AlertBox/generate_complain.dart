@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zsz/Functions/Internet/Internet.dart';
+import 'package:zsz/Screens/Chat_Screen/Pages/ComplainScreen/AlertBox/confirm_complain.dart';
 import 'package:zsz/Screens/Chat_Screen/Pages/ComplainScreen/Function/complain_suggestion_func.dart';
 import 'package:zsz/Screens/Orders_Screen/Pages/Order/Order_Dialog_Box/order_dialog_header.dart';
 import 'package:zsz/Screens/Orders_Screen/Pages/Order/Order_Dialog_Box/order_dialog_loading.dart';
@@ -86,7 +87,7 @@ void generateComplain(
 
                     Material(
                       color: Colors.transparent,
-                      child: AutoSizeText("Complain Type:",
+                      child: AutoSizeText("Generate Complain:",
                           maxLines: 2,
                           style: GoogleFonts.ubuntu(
                               fontSize: height(19), color: Colors.black)),
@@ -123,7 +124,7 @@ void generateComplain(
                                       fillColor: Colors.transparent,
                                       // fillColor: theme.dividerColor,
                                       border: InputBorder.none,
-                                      hintText: "Complain",
+                                      hintText: "Reason",
                                       // focusColor: Colors.transparent,
                                       focusColor: theme.primaryColor,
                                     )),
@@ -167,7 +168,7 @@ void generateComplain(
                                 //No item Found
                                 noItemsFoundBuilder: (context) => Container(
                                   height: h_size * 0.1,
-                                  child:const Center(
+                                  child: const Center(
                                     child: Text("No Complain Found"),
                                   ),
                                 ),
@@ -184,8 +185,7 @@ void generateComplain(
                                     if (complainValidation == true) {
                                       print("complain Correct");
                                       return null;
-                                    } else if (complainValidation ==
-                                        false) {
+                                    } else if (complainValidation == false) {
                                       print("complain Wrong");
                                       return "Enter Complain Correctly";
                                     }
@@ -271,14 +271,12 @@ void generateComplain(
                                           .validate()) {
                                         return;
                                       }
+                                      Navigator.pop(context);
+                                      confirmComplain(context, h_size, w_size,
+                                          theme, complainType, complainTypeId);
 
-                                      // connectivity_func_pop(context);
-                                      // Navigator.pop(context);
-                                      // Navigator.pop(context);
-                                      Order_dialog_loading(
-                                          context, h_size, w_size, theme);
-                                      // Order_Deliver_Api_Func(context, h_size,
-                                      //     w_size, theme, Order_Id, complainTypeId);
+                                      // Order_dialog_loading(
+                                      //     context, h_size, w_size, theme);
                                     },
                                     child: Padding(
                                         padding: EdgeInsets.symmetric(
