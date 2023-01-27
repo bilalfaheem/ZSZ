@@ -50,7 +50,7 @@ class ComplainScreen extends StatelessWidget {
                   margin: EdgeInsets.fromLTRB(0, 0, 0, size.height * 0.038),
                   child: PopHeadingBar(context, "Complain", 22, "null")),
              StreamBuilder(
-                            stream: complainListFunc(context, User_Login_id_S.toString()).asStream(),
+                            stream: complainListFunc(context, userLoginIdShared.toString()).asStream(),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -91,8 +91,8 @@ class ComplainScreen extends StatelessWidget {
               //   ),
               // ),
             
-              complainTile(context,size, theme, "maintenance","pending..."),
-              complainTile(context,size, theme, "tanker","complete")
+              // complainTile(context,size, theme, "maintenance","pending..."),
+              // complainTile(context,size, theme, "tanker","complete")
              
                   ])
       )),

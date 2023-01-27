@@ -91,7 +91,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
 //         break;
 // // // Swap on own Address in Adddress Check func
 // //       }
-// //       else if(Forget_Password_address_cont.text.toString().toLowerCase() ==  User_Login_Address_S.toString().toLowerCase()){
+// //       else if(Forget_Password_address_cont.text.toString().toLowerCase() ==  userLoginAddress_S.toString().toLowerCase()){
 // //          address_Correct_variable_Forget_Password = false;
 // //         print("Swap on own Address in Adddress Check func");
 // //         break;

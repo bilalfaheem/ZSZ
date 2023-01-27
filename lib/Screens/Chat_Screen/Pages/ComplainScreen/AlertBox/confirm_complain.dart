@@ -22,9 +22,9 @@ void confirmComplain(
     //     h_size,
     //     w_size,
     //     theme,
-    //     User_Login_id_S.toString(),
+    //     userLoginIdShared.toString(),
     //     Tanker_Type.toString(),
-    //     User_Login_Address_Id_S.toString());
+    //     userLoginAddress_Id_S.toString());
   }
 
   showGeneralDialog(
@@ -100,7 +100,7 @@ void confirmComplain(
                             fontSize: height(18),
                             // _size.height * 0.03,
                             color: theme.highlightColor)),
-                    Text(User_Login_Address_S,
+                    Text(userLoginAddress_S,
                         maxLines: 2,
                         style: GoogleFonts.ubuntu(
                             fontSize: height(18),
@@ -159,7 +159,7 @@ void confirmComplain(
                         //     h_size,
                         //     w_size,
                         //     theme,
-                        //     User_Login_id_S.toString(),
+                        //     userLoginIdShared.toString(),
                         //     Tanker_Type.toString(),
                         //     "");
                       },

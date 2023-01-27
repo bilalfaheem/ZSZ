@@ -9,7 +9,7 @@ List<GasBillingCurrentResponse> GasCurrentBillingList = [];
 List<GasBillingCurrentResponse> gasBillingList = [];
 Future<List<GasBillingCurrentResponse>> GasCurrentBillingFunc(
     context, String Address_Iddd) async {
-  LogoutCheckFunc(User_Login_id_S, context);
+  LogoutCheckFunc(userLoginIdShared, context);
 
   final Response = await http.post(Uri.parse("${Api_Address}gas_billing.php"),
       body: {"address_id": Address_Iddd});

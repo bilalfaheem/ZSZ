@@ -53,18 +53,18 @@ class Profile_Screen extends StatelessWidget {
                 )),
                 StreamBuilder(
                     stream:
-                        Active_User_Func(User_Login_id_S.toString(), context)
+                        Active_User_Func(userLoginIdShared.toString(), context)
                             .asStream(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return Profile_Tile(
                             _size,
                             theme,
-                            User_Login_name_S.toString().toUpperCase(),
+                            userLoginname_S.toString().toUpperCase(),
                             "....",
                             ".....",
-                            "$User_Login_Address_S",
-                            "$User_Login_Society_S");
+                            "$userLoginAddress_S",
+                            "$userLoginSociety_S");
                       } else if (snapshot.hasData) {
                         return Profile_Tile(
                             _size,
@@ -73,11 +73,11 @@ class Profile_Screen extends StatelessWidget {
                                 .fullName
                                 .toString()
                                 .toUpperCase(),
-                            User_login_Cnic,
+                            userLoginCnic,
                             // Active_User_List[0].ownerCnic.toString(),
                             Active_User_List[0].contact.toString(),
                             Active_User_List[0].address.toString(),
-                            "$User_Login_Society_S");
+                            "$userLoginSociety_S");
                       } else {
                         return Profile_Tile(_size, theme, ".....", ".....",
                             ".....", ".....", "......");
@@ -129,7 +129,7 @@ class Profile_Screen extends StatelessWidget {
                             MaterialPageRoute(
                                 builder: (context) => Setting_screen()),
                           );
-                          LogoutCheckFunc(User_Login_id_S, context);
+                          LogoutCheckFunc(userLoginIdShared, context);
                         },
                         child: LayoutBuilder(builder:
                             (BuildContext context, BoxConstraints constraints) {

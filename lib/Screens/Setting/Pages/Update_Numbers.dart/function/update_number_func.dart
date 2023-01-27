@@ -48,7 +48,7 @@ Future<void> Update_Contact_Func(context, h_size, w_size, theme, user_id,
 
       // profile list reload for validation of same password
 //ios
-      // Active_User_Func(User_Login_id_S.toString(),context);
+      // Active_User_Func(userLoginIdShared.toString(),context);
 
       //navigations
       Timer(Duration(milliseconds: 5050), () {

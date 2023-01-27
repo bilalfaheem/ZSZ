@@ -77,7 +77,7 @@ bool billing_status = false;
 List<MaintenanceModel> MaintenanceList = [];
 Future<List<MaintenanceModel>> MaintenanceApiFunc(
     context, String userId) async {
-  LogoutCheckFunc(User_Login_id_S, context);
+  LogoutCheckFunc(userLoginIdShared, context);
 
   final Response = await http
       .post(Uri.parse("${Api_Address}billing.php"), body: {"user_id": userId});

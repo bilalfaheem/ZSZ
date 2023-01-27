@@ -20,7 +20,7 @@ Future<void> notificationCountFunction(context) async {
 
   var response = await http.post(
       Uri.parse("${Api_Address}notification_count.php"),
-      body: {"user_id": User_Login_id_S.toString()});
+      body: {"user_id": userLoginIdShared.toString()});
 
   if (response.statusCode == 200) {
     var data = jsonDecode(response.body.toString());
@@ -80,7 +80,7 @@ Future<void> Notification_Seen_Count_Function(context) async {
 
   var response = await http.post(
       Uri.parse("${Api_Address}notification_count.php"),
-      body: {"user_id": User_Login_id_S.toString(), "is_seen": "1"});
+      body: {"user_id": userLoginIdShared.toString(), "is_seen": "1"});
 
   if (response.statusCode == 200) {
     var data = jsonDecode(response.body.toString());

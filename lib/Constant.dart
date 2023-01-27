@@ -1,14 +1,14 @@
 // Shared Pref Name
 import 'package:flutter/animation.dart';
 
-String User_Login_id_S = "null";
-String User_Login_name_S = "null";
-String User_Login_Address_S = "null";
-String User_Login_Address_Id_S = "null";
-String User_Login_Password_S = "null";
-String User_Login_update_S = "null";
-String User_Login_Society_S = "null";
-String User_Login_Society_id_S = "null";
+String userLoginIdShared = "null";
+String userLoginname_S = "null";
+String userLoginAddress_S = "null";
+String userLoginAddress_Id_S = "null";
+String userLoginPassword_S = "null";
+String userLoginupdate_S = "null";
+String userLoginSociety_S = "null";
+String userLoginSociety_id_S = "null";
 
 // static values
 
@@ -22,6 +22,12 @@ const logo2 = "assets/Logo/ZSZSaima.png";
 // "assets/Logo2.png";
 const gas = "assets/Icons/gas.png";
 const zszlogo = "assets/Logo/ZSZSaima.png";
+const zsz = "assets/Logo/ZSZ.png";
+const galleryIcon = "assets/Icons/gallery.png";
+const file = "assets/Icons/file.png";
+const send = "assets/Icons/send.png";
+const send2 = "assets/Icons/send2.png";
+
 // "assets/Logo.png"
 
 const bluecardColor = Color(0xff015e8b);

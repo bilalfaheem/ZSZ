@@ -63,8 +63,8 @@ Future<void> notificationFunctionInApp() async {
 //  userLoginIdFunctionNotification() async {
 //   WidgetsFlutterBinding.ensureInitialized();
 //   SharedPreferences pref = await SharedPreferences.getInstance();
-//   User_Login_id_S = pref.getString("User_Login_Id").toString();
-//   print("${User_Login_id_S} user login id for notification");
+//   userLoginIdShared = pref.getString("userLoginId").toString();
+//   print("${userLoginIdShared} user login id for notification");
 
 // }
 //function part
@@ -98,8 +98,8 @@ Future<void> notificationFunctionInApp() async {
     var response = await http
         .post(Uri.parse("https://cybernsoft.com/api/tanker_notification.php"),
             // push_notification.php"),
-            body: {"user_id": User_Login_id_S.toString(), "is_seen": "1"}
-            //  User_Login_id_S.toString()}
+            body: {"user_id": userLoginIdShared.toString(), "is_seen": "1"}
+            //  userLoginIdShared.toString()}
             );
   }
 
@@ -107,8 +107,8 @@ Future<void> notificationFunctionInApp() async {
     var response = await http
         .post(Uri.parse("https://cybernsoft.com/api/general_notification.php"),
             // push_notification.php"),
-            body: {"user_id": User_Login_id_S.toString(), "is_seen": "1"}
-            //  User_Login_id_S.toString()}
+            body: {"user_id": userLoginIdShared.toString(), "is_seen": "1"}
+            //  userLoginIdShared.toString()}
             );
   }
 
@@ -116,8 +116,8 @@ Future<void> notificationFunctionInApp() async {
     var response = await http.post(
         Uri.parse("https://cybernsoft.com/api/maintenance_notification.php"),
         // push_notification.php"),
-        body: {"user_id": User_Login_id_S.toString(), "is_seen": "1"}
-        //  User_Login_id_S.toString()}
+        body: {"user_id": userLoginIdShared.toString(), "is_seen": "1"}
+        //  userLoginIdShared.toString()}
         );
   }
 
@@ -126,7 +126,7 @@ Future<void> notificationFunctionInApp() async {
         .post(Uri.parse("https://cybernsoft.com/api/general_broadcast.php"),
             // push_notification.php"),
             body: {
-          "user_id": User_Login_id_S.toString(),
+          "user_id": userLoginIdShared.toString(),
           "broadcast_id": broadCastId.toString()
           //  "is_seen": "1"
         });
@@ -135,7 +135,7 @@ Future<void> notificationFunctionInApp() async {
   Future<void> tankerPushNotificationFunction() async {
     var response = await http.post(
         Uri.parse("https://cybernsoft.com/api/tanker_notification.php"),
-        body: {"user_id": User_Login_id_S.toString()});
+        body: {"user_id": userLoginIdShared.toString()});
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body.toString());
       print(data.first["status"].toString());
@@ -156,7 +156,7 @@ Future<void> notificationFunctionInApp() async {
   Future<void> generalPushNotificationFunction() async {
     var response = await http.post(
         Uri.parse("https://cybernsoft.com/api/general_notification.php"),
-        body: {"user_id": User_Login_id_S.toString()});
+        body: {"user_id": userLoginIdShared.toString()});
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body.toString());
       print(data.first["status"].toString());
@@ -177,7 +177,7 @@ Future<void> notificationFunctionInApp() async {
   Future<void> maintenancePushNotificationFunction() async {
     var response = await http.post(
         Uri.parse("https://cybernsoft.com/api/maintenance_notification.php"),
-        body: {"user_id": User_Login_id_S.toString()});
+        body: {"user_id": userLoginIdShared.toString()});
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body.toString());
       print(data.first["status"].toString());
@@ -199,7 +199,7 @@ Future<void> notificationFunctionInApp() async {
   Future<void> broadcastPushNotificationFunction() async {
     var response = await http.post(
         Uri.parse("https://cybernsoft.com/api/general_broadcast.php"),
-        body: {"user_id": User_Login_id_S.toString()});
+        body: {"user_id": userLoginIdShared.toString()});
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body.toString());
       print(data.first["status"].toString());

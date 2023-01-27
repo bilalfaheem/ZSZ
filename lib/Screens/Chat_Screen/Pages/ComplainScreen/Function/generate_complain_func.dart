@@ -18,9 +18,9 @@ Future<void> generateComplainApiFunc(
     context, h_size, w_size, theme, threadReasonId) async {
   final response =
       await http.post(Uri.parse("${Api_Address}chat/create_thread.php"), body: {
-    "project_id": User_Login_Society_id_S,
+    "project_id": userLoginSociety_id_S,
     // "user_id":"5",
-    "user_id": User_Login_id_S,
+    "user_id": userLoginIdShared,
     "thread_reason_id": threadReasonId.toString()
   });
 
@@ -39,7 +39,7 @@ Future<void> generateComplainApiFunc(
 
       // profile list reload for validation of same password
 //ios
-      // Active_User_Func(User_Login_id_S.toString(),context);
+      // Active_User_Func(userLoginIdShared.toString(),context);
 
     } else if (createThreadStatus == "2") {
       print("Failed to Change Contactttttt");

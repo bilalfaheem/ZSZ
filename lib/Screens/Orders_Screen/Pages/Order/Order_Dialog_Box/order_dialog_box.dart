@@ -21,9 +21,9 @@ void Order_dialog_box(
         h_size,
         w_size,
         theme,
-        User_Login_id_S.toString(),
+        userLoginIdShared.toString(),
         Tanker_Type.toString(),
-        User_Login_Address_Id_S.toString());
+        userLoginAddress_Id_S.toString());
   }
 
   showGeneralDialog(
@@ -107,7 +107,7 @@ void Order_dialog_box(
                         //     h_size,
                         //     w_size,
                         //     theme,
-                        //     User_Login_id_S.toString(),
+                        //     userLoginIdShared.toString(),
                         //     Tanker_Type.toString(),
                         //     "");
                       },

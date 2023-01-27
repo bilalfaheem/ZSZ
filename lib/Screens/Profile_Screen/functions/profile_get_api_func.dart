@@ -30,8 +30,8 @@ import 'package:zsz/Constant.dart';
 // }
 
 List<SingleUserModell> Active_User_List = [];
-String User_login_typee = "null";
-String User_login_Cnic = "null";
+String userLogintypee = "null";
+String userLoginCnic = "null";
 
 Future<List<SingleUserModell>> Active_User_Func(String userId, context) async {
   LogoutCheckFunc(userId, context);
@@ -47,14 +47,14 @@ Future<List<SingleUserModell>> Active_User_Func(String userId, context) async {
     }
 
 //For User Cnic
-    User_login_typee = Active_User_List[0].userType!;
-    print(User_login_typee);
-    if (User_login_typee == "owner") {
-      User_login_Cnic = Active_User_List[0].ownerCnic!;
-    } else if (User_login_typee == "tenant") {
-      User_login_Cnic = Active_User_List[0].tenantCnic!;
+    userLogintypee = Active_User_List[0].userType!;
+    print(userLogintypee);
+    if (userLogintypee == "owner") {
+      userLoginCnic = Active_User_List[0].ownerCnic!;
+    } else if (userLogintypee == "tenant") {
+      userLoginCnic = Active_User_List[0].tenantCnic!;
     } else {
-      User_login_Cnic = "null";
+      userLoginCnic = "null";
     }
     print(Active_User_List.length);
     print("tttttttttttttttttttttttttttttt");

@@ -65,7 +65,7 @@ class _OrderState extends State<Order> {
                       children: [
                         StreamBuilder(
                             stream: Active_Order_Function(
-                                    User_Login_id_S.toString(), context)
+                                    userLoginIdShared.toString(), context)
                                 .asStream(),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
@@ -133,7 +133,7 @@ class _OrderState extends State<Order> {
                   //     Column(
                   //   children: [
                   //     StreamBuilder(
-                  //         stream: Active_Order_Function(User_Login_id_S.toString())
+                  //         stream: Active_Order_Function(userLoginIdShared.toString())
                   //             .asStream(),
                   //         builder: (context, snapshot) {
                   //           if (snapshot.connectionState ==
@@ -258,7 +258,7 @@ class _OrderState extends State<Order> {
                               //remove
                               Order_Type_dialog_box(
                                   context, _size.height, _size.width, theme);
-                              LogoutCheckFunc(User_Login_id_S, context);
+                              LogoutCheckFunc(userLoginIdShared, context);
                             },
                             child: Padding(
                               padding: EdgeInsets.symmetric(

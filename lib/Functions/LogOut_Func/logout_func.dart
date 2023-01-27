@@ -11,14 +11,14 @@ LogOut_Func(context, bool Loading) async {
   pref.clear();
 
 // variable Clear
-  User_Login_id_S = "null";
-  User_Login_name_S = "null";
-  User_Login_Address_S = "null";
-  User_Login_Address_Id_S = "null";
-  User_Login_Password_S = "null";
-  User_Login_update_S = "null";
-  User_Login_Society_S = "null";
-  User_Login_Society_id_S = "null";
+  userLoginIdShared = "null";
+  userLoginname_S = "null";
+  userLoginAddress_S = "null";
+  userLoginAddress_Id_S = "null";
+  userLoginPassword_S = "null";
+  userLoginupdate_S = "null";
+  userLoginSociety_S = "null";
+  userLoginSociety_id_S = "null";
 
   Timer(
       Duration(seconds: Loading ? 2 : 0),

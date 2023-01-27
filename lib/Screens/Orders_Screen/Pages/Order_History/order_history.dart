@@ -24,7 +24,7 @@ class _Order_HistoryState extends State<Order_History> {
             Column(
           children: [
             StreamBuilder(
-                stream: History_Order_Function(User_Login_id_S.toString())
+                stream: History_Order_Function(userLoginIdShared.toString())
                     .asStream(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {

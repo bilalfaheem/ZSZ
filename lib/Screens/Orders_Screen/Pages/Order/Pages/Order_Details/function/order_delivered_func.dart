@@ -16,7 +16,7 @@ String Order_Deliver_Status = "56";
 
 void Order_Deliver_Api_Func(
     context, h_size, w_size, theme, Order_Id, Driver_Id) async {
-  LogoutCheckFunc(User_Login_id_S, context);
+  LogoutCheckFunc(userLoginIdShared, context);
   print(Order_Id);
   print(Driver_Id);
   print("Order Id Driver Id");

@@ -42,11 +42,11 @@ Widget Profile_Tile(_size, theme, name, cnic, contact, unit_no, society_name) {
           title: Text(cnic,
               // Single_User_List[0].ownerCnic.toString(),
 
-              // User_login_Cnic,
+              // userLoginCnic,
               //   "${Profile_List[0].ownerCnic
               // }",
               // ownerCnic}",
-              // "${User_Login_Data["full_name"]}",
+              // "${userLoginData["full_name"]}",
               style: GoogleFonts.ubuntu(
                   fontSize: _size.height * 0.023, color: Colors.black)),
           shape: RoundedRectangleBorder(
@@ -75,7 +75,7 @@ Widget Profile_Tile(_size, theme, name, cnic, contact, unit_no, society_name) {
               // Single_User_List[0].contact.toString(),
 
               // "${Profile_List[0].contact}",
-              // "${User_Login_Data["contact"]}",
+              // "${userLoginData["contact"]}",
               style: GoogleFonts.ubuntu(
                   fontSize: _size.height * 0.023, color: Colors.black)),
           shape: RoundedRectangleBorder(
@@ -104,7 +104,7 @@ Widget Profile_Tile(_size, theme, name, cnic, contact, unit_no, society_name) {
           title: Text(unit_no,
 
               // "${Profile_List[0].unitNo}",
-              // "${User_Login_Data["unit_no"]}",
+              // "${userLoginData["unit_no"]}",
               style: GoogleFonts.ubuntu(
                   fontSize: _size.height * 0.023, color: Colors.black)),
           shape: RoundedRectangleBorder(
@@ -134,7 +134,7 @@ Widget Profile_Tile(_size, theme, name, cnic, contact, unit_no, society_name) {
           title: Text(society_name,
 
               // "${Profile_List[0].unitNo}",
-              // "${User_Login_Data["unit_no"]}",
+              // "${userLoginData["unit_no"]}",
               style: GoogleFonts.ubuntu(
                   fontSize: _size.height * 0.023, color: Colors.black)),
           shape: RoundedRectangleBorder(

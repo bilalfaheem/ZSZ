@@ -166,7 +166,7 @@ class Update_no_screen extends StatelessWidget {
                                     _size.height,
                                     _size.width,
                                     theme,
-                                    User_Login_id_S.toString(),
+                                    userLoginIdShared.toString(),
                                     new_contact.text.toString(),
                                     _change_Contact_formKey);
                                 // Update_Contact_Func("70",

@@ -71,7 +71,7 @@ class Setting_screen extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30))),
                       onPressed: () {
-                        LogoutCheckFunc(User_Login_id_S, context);
+                        LogoutCheckFunc(userLoginIdShared, context);
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -98,7 +98,7 @@ class Setting_screen extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30))),
                       onPressed: () {
-                        LogoutCheckFunc(User_Login_id_S, context);
+                        LogoutCheckFunc(userLoginIdShared, context);
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -157,7 +157,7 @@ class Setting_screen extends StatelessWidget {
                         // 1.0.2
                         // SharedPreferences pref =
                         //     await SharedPreferences.getInstance();
-                        // pref.remove("User_Login_Id");
+                        // pref.remove("userLoginId");
                         // pref.clear();
                         // Timer(
                         //     const Duration(seconds: 3),

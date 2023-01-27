@@ -37,7 +37,7 @@ class Notification_Screen extends StatelessWidget {
                     Container(
                         child: StreamBuilder(
                             stream: Noti_History_Api_Function(
-                                    User_Login_id_S.toString())
+                                    userLoginIdShared.toString())
                                 .asStream(),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==

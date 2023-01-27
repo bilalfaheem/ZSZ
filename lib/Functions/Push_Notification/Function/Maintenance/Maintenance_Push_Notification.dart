@@ -11,7 +11,7 @@ import 'package:zsz/main.dart';
 
 //   var response = await http.post(
 //       Uri.parse("${Api_Address}maintenance_notification.php"),
-//       body: {"user_id": User_Login_id_S.toString()});
+//       body: {"user_id": userLoginIdShared.toString()});
 //   if (response.statusCode == 200) {
 //     var data = jsonDecode(response.body.toString());
 //     print("Maintenance Notification Status ${data.first["status"]}");
@@ -43,7 +43,7 @@ import 'package:zsz/main.dart';
 //   var response =
 //       await http.post(Uri.parse("${Api_Address}maintenance_notification.php"),
 //           // push_notification.php"),
-//           body: {"user_id": User_Login_id_S.toString(), "is_seen": "1"}
-//           //  User_Login_id_S.toString()}
+//           body: {"user_id": userLoginIdShared.toString(), "is_seen": "1"}
+//           //  userLoginIdShared.toString()}
 //           );
 // }

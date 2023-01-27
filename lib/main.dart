@@ -47,12 +47,8 @@ void callbackDispatcher() async {
 
   // int notification_count = 0;
   Workmanager().executeTask((task, inputData) async {
-    userLoginIdFunctionNotification() async {
-      WidgetsFlutterBinding.ensureInitialized();
-      SharedPreferences pref = await SharedPreferences.getInstance();
-      userLoginIdNotification = pref.getString("User_Login_Id").toString();
-      print("${userLoginIdNotification} user login id for notification");
-    }
+
+
 
 //function part
     final FlutterLocalNotificationsPlugin flutterLocalNoti =
@@ -86,7 +82,7 @@ void callbackDispatcher() async {
           Uri.parse("https://cybernsoft.com/api/tanker_notification.php"),
           // push_notification.php"),
           body: {"user_id": userLoginIdNotification.toString(), "is_seen": "1"}
-          //  User_Login_id_S.toString()}
+          //  userLoginIdShared.toString()}
           );
     }
 
@@ -95,7 +91,7 @@ void callbackDispatcher() async {
           Uri.parse("https://cybernsoft.com/api/general_notification.php"),
           // push_notification.php"),
           body: {"user_id": userLoginIdNotification.toString(), "is_seen": "1"}
-          //  User_Login_id_S.toString()}
+          //  userLoginIdShared.toString()}
           );
     }
 
@@ -104,7 +100,7 @@ void callbackDispatcher() async {
           Uri.parse("https://cybernsoft.com/api/maintenance_notification.php"),
           // push_notification.php"),
           body: {"user_id": userLoginIdNotification.toString(), "is_seen": "1"}
-          //  User_Login_id_S.toString()}
+          //  userLoginIdShared.toString()}
           );
     }
 
@@ -125,7 +121,7 @@ void callbackDispatcher() async {
           body: {"user_id": userLoginIdNotification.toString()});
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body.toString());
-        print(data.first["status"].toString());
+        print("${data.first["status"].toString()} workmanager");
 // 10 for notification present
         if (data.first["status"].toString() == "10") {
           sendNotification("WMSTankerId", "WMSTanker", 20, "WMS Tanker",
@@ -146,7 +142,7 @@ void callbackDispatcher() async {
           body: {"user_id": userLoginIdNotification.toString()});
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body.toString());
-        print(data.first["status"].toString());
+        print("${data.first["status"].toString()} workmanager");
 // 10 for notification present
         if (data.first["status"].toString() == "10") {
           sendNotification("WMSGeneralId", "WMSGeneral", 21, "WMS General",
@@ -167,7 +163,7 @@ void callbackDispatcher() async {
           body: {"user_id": userLoginIdNotification.toString()});
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body.toString());
-        print(data.first["status"].toString());
+        print("${data.first["status"].toString()} workmanager");
 // 10 for notification present
         if (data.first["status"].toString() == "10") {
           sendNotification("WMSMaintenanceId", "WMSMaintenance", 22,
@@ -189,7 +185,7 @@ void callbackDispatcher() async {
           body: {"user_id": userLoginIdNotification.toString()});
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body.toString());
-        print(data.first["status"].toString());
+        print("${data.first["status"].toString()} workmanager");
 // 10 for notification present
         if (data.first["status"].toString() == "1") {
           sendNotification("WMSBroadcastId", "WMSBroadcast", 23,
@@ -207,14 +203,29 @@ void callbackDispatcher() async {
       }
     }
 
-//execution part
-    userLoginIdFunctionNotification();
-    initialiseNotifications();
-    //  sendNotification("www", "wwww", 95, "www", "wwww");
+userLoginIdFunctionNotification() async {
+      WidgetsFlutterBinding.ensureInitialized();
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      userLoginIdNotification = pref.getString("userLoginId").toString();
+      print("${userLoginIdNotification} user login id for notification>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+      if(userLoginIdNotification != "null"&&userLoginIdNotification != null){
+        print("not Null>>>>>>>>>>>>>>>>");
+          initialiseNotifications();
     await tankerPushNotificationFunction();
     await maintenancePushNotificationFunction();
     await generalPushNotificationFunction();
     await broadcastPushNotificationFunction();
+      }
+    }
+
+//execution part
+  await  userLoginIdFunctionNotification();
+    // initialiseNotifications();
+    // //  sendNotification("www", "wwww", 95, "www", "wwww");
+    // await tankerPushNotificationFunction();
+    // await maintenancePushNotificationFunction();
+    // await generalPushNotificationFunction();
+    // await broadcastPushNotificationFunction();
 
     return Future.value(true);
   });
@@ -249,24 +260,24 @@ void callbackDispatcher() async {
 //   var response =
 //       await http.post(Uri.parse("https://cybernsoft.com/api/tanker_notification.php"),
 //           // push_notification.php"),
-//           body: {"user_id": User_Login_id_S.toString(), "is_seen": "1"}
-//           //  User_Login_id_S.toString()}
+//           body: {"user_id": userLoginIdShared.toString(), "is_seen": "1"}
+//           //  userLoginIdShared.toString()}
 //           );
 // }
 //   Future<void> generalSeenPushNotificationFunction() async {
 //   var response =
 //       await http.post(Uri.parse("https://cybernsoft.com/api/general_notification.php"),
 //           // push_notification.php"),
-//           body: {"user_id": User_Login_id_S.toString(), "is_seen": "1"}
-//           //  User_Login_id_S.toString()}
+//           body: {"user_id": userLoginIdShared.toString(), "is_seen": "1"}
+//           //  userLoginIdShared.toString()}
 //           );
 // }
 //   Future<void> maintenanceSeenPushNotificationFunction() async {
 //   var response =
 //       await http.post(Uri.parse("https://cybernsoft.com/api/maintenance_notification.php"),
 //           // push_notification.php"),
-//           body: {"user_id": User_Login_id_S.toString(), "is_seen": "1"}
-//           //  User_Login_id_S.toString()}
+//           body: {"user_id": userLoginIdShared.toString(), "is_seen": "1"}
+//           //  userLoginIdShared.toString()}
 //           );
 // }
 //   Future<void> broadcastSeenPushNotificationFunction(broadCastId) async {
@@ -274,7 +285,7 @@ void callbackDispatcher() async {
 //       await http.post(Uri.parse("https://cybernsoft.com/api/general_broadcast.php"),
 //           // push_notification.php"),
 //           body: {
-//             "user_id": User_Login_id_S.toString(),
+//             "user_id": userLoginIdShared.toString(),
 //             "broadcast_id": broadCastId.toString()
 //           //  "is_seen": "1"
 //           }
@@ -282,7 +293,7 @@ void callbackDispatcher() async {
 // }
 //   Future<void> tankerPushNotificationFunction() async {
 //   var response = await http.post(Uri.parse("https://cybernsoft.com/api/tanker_notification.php"),
-//           body: {"user_id": User_Login_id_S.toString()});
+//           body: {"user_id": userLoginIdShared.toString()});
 //   if (response.statusCode == 200) {
 //     var data = jsonDecode(response.body.toString());
 //   print(data.first["status"].toString() );
@@ -302,7 +313,7 @@ void callbackDispatcher() async {
 
 //   Future<void> generalPushNotificationFunction() async {
 //   var response = await http.post(Uri.parse("https://cybernsoft.com/api/general_notification.php"),
-//           body: {"user_id": User_Login_id_S.toString()});
+//           body: {"user_id": userLoginIdShared.toString()});
 //   if (response.statusCode == 200) {
 //     var data = jsonDecode(response.body.toString());
 //   print(data.first["status"].toString() );
@@ -321,7 +332,7 @@ void callbackDispatcher() async {
 // }
 //   Future<void> maintenancePushNotificationFunction() async {
 //   var response = await http.post(Uri.parse("https://cybernsoft.com/api/maintenance_notification.php"),
-//           body: {"user_id": User_Login_id_S.toString()});
+//           body: {"user_id": userLoginIdShared.toString()});
 //   if (response.statusCode == 200) {
 //     var data = jsonDecode(response.body.toString());
 //   print(data.first["status"].toString() );
@@ -341,7 +352,7 @@ void callbackDispatcher() async {
 // }
 //   Future<void> broadcastPushNotificationFunction() async {
 //   var response = await http.post(Uri.parse("https://cybernsoft.com/api/general_broadcast.php"),
-//           body: {"user_id": User_Login_id_S.toString()});
+//           body: {"user_id": userLoginIdShared.toString()});
 //   if (response.statusCode == 200) {
 //     var data = jsonDecode(response.body.toString());
 //   print(data.first["status"].toString() );
@@ -426,7 +437,7 @@ void callbackDispatcher() async {
 //   var response =
 //       await http.post(Uri.parse("${Api_Address}tanker_notification.php"),
 //           // push_notification.php"),
-//           body: {"user_id": User_Login_id_S.toString()});
+//           body: {"user_id": userLoginIdShared.toString()});
 //   if (response.statusCode == 200) {
 //     var data = jsonDecode(response.body.toString());
 //     print("Tanker Notification Statua ${data.first["status"]}");
@@ -464,8 +475,8 @@ void callbackDispatcher() async {
 //   var response =
 //       await http.post(Uri.parse("${Api_Address}tanker_notification.php"),
 //           // push_notification.php"),
-//           body: {"user_id": User_Login_id_S.toString(), "is_seen": "1"}
-//           //  User_Login_id_S.toString()}
+//           body: {"user_id": userLoginIdShared.toString(), "is_seen": "1"}
+//           //  userLoginIdShared.toString()}
 //           );
 // }
 // Future<void> Maintenance_Push_Notification_Function() async {
@@ -474,7 +485,7 @@ void callbackDispatcher() async {
 
 //   var response = await http.post(
 //       Uri.parse("${Api_Address}maintenance_notification.php"),
-//       body: {"user_id": User_Login_id_S.toString()});
+//       body: {"user_id": userLoginIdShared.toString()});
 //   if (response.statusCode == 200) {
 //     var data = jsonDecode(response.body.toString());
 //     print("Maintenance Notification Status ${data.first["status"]}");
@@ -506,18 +517,18 @@ void callbackDispatcher() async {
 //   var response =
 //       await http.post(Uri.parse("${Api_Address}maintenance_notification.php"),
 //           // push_notification.php"),
-//           body: {"user_id": User_Login_id_S.toString(), "is_seen": "1"}
-//           //  User_Login_id_S.toString()}
+//           body: {"user_id": userLoginIdShared.toString(), "is_seen": "1"}
+//           //  userLoginIdShared.toString()}
 //           );
 // }
 // Future<void> Broadcast_Push_Notification_Function() async {
 //   // FlutterLocalNotificationsPlugin Broadcast_flp =
 //   //     FlutterLocalNotificationsPlugin();
 
-//   // var my_user_id = int.parse(User_Login_id_S.toString());
+//   // var my_user_id = int.parse(userLoginIdShared.toString());
 //   // assert(my_user_id is int);
 //   //   print("broadcasttttttttttttttttttttttttttttttttttttttttttttt");
-//   //   print(User_Login_id_S.toString());
+//   //   print(userLoginIdShared.toString());
 
 //   // print(my_user_id);
 //   // print(my_user_id.runtimeType);
@@ -525,7 +536,7 @@ void callbackDispatcher() async {
 
 //   var response = await http.post(
 //       Uri.parse("${Api_Address}general_broadcast.php"),
-//       body: {"user_id": User_Login_id_S.toString()});
+//       body: {"user_id": userLoginIdShared.toString()});
 //   //  my_user_id});
 //   if (response.statusCode == 200) {
 //     var data = jsonDecode(response.body.toString());
@@ -571,10 +582,10 @@ void callbackDispatcher() async {
 //   // remove
 //   var response = await http.post(Uri.parse("${Api_Address}broadcast_seen.php"),
 //       body: {
-//         "user_id": User_Login_id_S.toString(),
+//         "user_id": userLoginIdShared.toString(),
 //         "broadcast_id": broadcast_idd.toString()
 //       }
-//       //  User_Login_id_S.toString()}
+//       //  userLoginIdShared.toString()}
 //       );
 // }
 
@@ -584,7 +595,7 @@ void callbackDispatcher() async {
 
 //   var response = await http.post(
 //       Uri.parse("${Api_Address}general_notification.php"),
-//       body: {"user_id": User_Login_id_S.toString()});
+//       body: {"user_id": userLoginIdShared.toString()});
 //   if (response.statusCode == 200) {
 //     var data = jsonDecode(response.body.toString());
 //     print("General Notification general Statua ${data.first["status"]}");
@@ -617,8 +628,8 @@ void callbackDispatcher() async {
 //   var response =
 //       await http.post(Uri.parse("${Api_Address}general_notification.php"),
 //           // push_notification.php"),
-//           body: {"user_id": User_Login_id_S.toString(), "is_seen": "1"}
-//           //  User_Login_id_S.toString()}
+//           body: {"user_id": userLoginIdShared.toString(), "is_seen": "1"}
+//           //  userLoginIdShared.toString()}
 //           );
 // }
 
@@ -628,7 +639,7 @@ void callbackDispatcher() async {
 
 //   var response = await http.post(
 //       Uri.parse("${Api_Address}notification_count.php"),
-//       body: {"user_id": User_Login_id_S.toString(), "is_seen": "1"});
+//       body: {"user_id": userLoginIdShared.toString(), "is_seen": "1"});
 
 //   if (response.statusCode == 200) {
 //     var data = jsonDecode(response.body.toString());
@@ -651,7 +662,7 @@ Future<void> main() async {
   // await Firebase.initializeApp(); //remove
   await Shared_Pref_Login_Id_Func();
 
-  await Workmanager().initialize(callbackDispatcher, isInDebugMode: true);
+  await Workmanager().initialize(callbackDispatcher, isInDebugMode: false);
   await Workmanager().registerPeriodicTask("11311", simplePeriodicTask,
       existingWorkPolicy: ExistingWorkPolicy.replace,
       frequency: Duration(minutes: 15), //when should it check the link
@@ -761,7 +772,7 @@ class _MyAppState extends State<MyApp> {
       child: Builder(builder: (BuildContext context) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: User_Login_id_S == "null" ? Splash_Screen() : Home_Screen(),
+          home: userLoginIdShared == "null" ? Splash_Screen() : Home_Screen(),
 
           //  Splash_Screen(),
 

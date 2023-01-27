@@ -15,11 +15,11 @@ void LogoutCheckFunc(String userId, context) async {
 
     // print("${UpdateData[0]["is_updated"]} User Updated ");
 
-    // print("${User_Login_update_S} shared update");
+    // print("${userLoginupdate_S} shared update");
 
-    if (User_Login_update_S != UpdateData[0]["is_updated"].toString() ||
-        User_Login_id_S == null ||
-        User_Login_id_S == "null") {
+    if (userLoginupdate_S != UpdateData[0]["is_updated"].toString() ||
+        userLoginIdShared == null ||
+        userLoginIdShared == "null") {
       LogOut_Func(context, false);
       // print("LogOut");
     }

@@ -37,7 +37,7 @@ void Order_Swap_Detail_dialog_box(
       return;
 // Swap on own Address in Adddress Check func
     } else if (address_s_cont.text.toString().toLowerCase() ==
-        User_Login_Address_S.toString().toLowerCase()) {
+        userLoginAddress_S.toString().toLowerCase()) {
       address_Correct_variable = false;
       print("Swap on own Address in Adddress Check func");
       return;
@@ -76,7 +76,7 @@ void Order_Swap_Detail_dialog_box(
 //         break;
 // // Swap on own Address in Adddress Check func
 //       } else if (address_s_cont.text.toString().toLowerCase() ==
-//           User_Login_Address_S.toString().toLowerCase()) {
+//           userLoginAddress_S.toString().toLowerCase()) {
 //         address_Correct_variable = false;
 //         print("Swap on own Address in Adddress Check func");
 //         break;
@@ -230,12 +230,12 @@ void Order_Swap_Detail_dialog_box(
                                   } else if (value.toString().toLowerCase() ==
 
                                       // 1.0.3
-                                      User_Login_Address_S.toString()
+                                      userLoginAddress_S.toString()
                                           .toLowerCase()) {
                                     // print(
                                     //     "${value.toString().toLowerCase()} Text Field valueeeeeeeeeeeee");
                                     // print(
-                                    //     "${User_Login_Address_S.toString().toLowerCase()}  user login Address addressss");
+                                    //     "${userLoginAddress_S.toString().toLowerCase()}  user login Address addressss");
                                     // 1.0.3
 
                                     // 1.0.2
@@ -340,7 +340,7 @@ void Order_Swap_Detail_dialog_box(
                                           .validate()) {
                                         return;
                                       }
-                                      print(User_Login_id_S.toString() +
+                                      print(userLoginIdShared.toString() +
                                           "dfdfd" +
                                           swap_to_Id +
                                           "dfdfdfdfdfdfffffffffffffffffffffffff");
@@ -354,7 +354,7 @@ void Order_Swap_Detail_dialog_box(
                                           h_size,
                                           w_size,
                                           theme,
-                                          User_Login_id_S.toString(),
+                                          userLoginIdShared.toString(),
                                           "Swap $Tanker_Type",
                                           swap_to_Id.toString());
                                     },

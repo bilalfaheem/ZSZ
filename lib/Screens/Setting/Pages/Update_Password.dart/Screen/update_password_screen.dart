@@ -123,10 +123,10 @@ class _Update_password_screenState extends State<Update_password_screen> {
                               if (val == null || val.isEmpty) {
                                 return "Please Enter Password";
                               } else if (val.toString() !=
-                                  User_Login_Password_S.toString()) {
+                                  userLoginPassword_S.toString()) {
                                 return "Wrong Password";
                               } else if (val.toString() ==
-                                  User_Login_Password_S.toString()) {
+                                  userLoginPassword_S.toString()) {
                                 return null;
                               } else if (Change_Pass_Status == "0") {
                                 return "Failed";
@@ -293,7 +293,7 @@ class _Update_password_screenState extends State<Update_password_screen> {
                                     _size.width,
                                     theme,
                                     _current_password_formKey,
-                                    User_Login_id_S.toString(),
+                                    userLoginIdShared.toString(),
                                     Current_Pass.text.toString(),
                                     New_Pass.text.toString(),
                                     Confirm_Pass.text.toString(),

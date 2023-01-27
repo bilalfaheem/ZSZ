@@ -17,7 +17,7 @@ class ComplainApi {
   static Future<List<Complains>> getComplainSuggestions(String query) async {
     final url = Uri.parse("${Api_Address}chat/thread_reason.php");
     final response =
-        await http.post(url, body: {"project_id": User_Login_Society_id_S});
+        await http.post(url, body: {"project_id": userLoginSociety_id_S});
 
     if (response.statusCode == 200) {
       final List complainList = json.decode(response.body);
@@ -53,7 +53,7 @@ Future<List<Complains>> complainAllFunction() async {
   print("Complain All Fucntionnnnnnnnnnnnnnnnnnnnnnn");
   final response = await http.post(
       Uri.parse("${Api_Address}chat/thread_reason.php"),
-      body: {"project_id": User_Login_Society_id_S});
+      body: {"project_id": userLoginSociety_id_S});
   var data = jsonDecode(response.body.toString());
   print("Complain all func");
   if (response.statusCode == 200) {

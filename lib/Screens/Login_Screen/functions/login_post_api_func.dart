@@ -15,7 +15,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 var L_status = 100;
 
 List<LoginUserModel> Profile_List = [];
-var User_Login_Data;
+var userLoginData;
 
 // for first and second round validation
 bool Login_Cnic_Validation = false;
@@ -31,10 +31,10 @@ Future<void> Login_Post_Api(
   // Login_key.currentState!.validate();
 
   if (response.statusCode == 200) {
-    User_Login_Data = jsonDecode(response.body.toString());
+    userLoginData = jsonDecode(response.body.toString());
 
     print('Post Succesfull');
-    L_status = User_Login_Data[0]["status"];
+    L_status = userLoginData[0]["status"];
     print("Status $L_status");
 
 // second round validation start
@@ -49,19 +49,19 @@ Future<void> Login_Post_Api(
       Loading_Indicator(context);
 
       Profile_List.clear();
-      for (Map i in User_Login_Data) {
+      for (Map i in userLoginData) {
         Profile_List.add(LoginUserModel.fromJson(i));
       }
 
       SharedPreferences pref = await SharedPreferences.getInstance();
-      pref.setString("User_Login_Id", Profile_List[0].id!);
-      pref.setString("User_Login_Name", Profile_List.first.fullName!);
-      pref.setString("User_Login_Address", Profile_List.first.unitNo!);
-      pref.setString("User_Login_Address_id", Profile_List.first.address!);
-      pref.setString("User_Login_Password", Profile_List.first.password!);
-      pref.setString("User_Login_Update", User_Login_Data[0]["is_updated"]);
-      pref.setString("User_Login_Society", User_Login_Data[0]["project_title"]);
-      pref.setString("User_Login_Society_Id", User_Login_Data[0]["project_id"]);
+      pref.setString("userLoginId", Profile_List[0].id!);
+      pref.setString("userLoginName", Profile_List.first.fullName!);
+      pref.setString("userLoginAddress", Profile_List.first.unitNo!);
+      pref.setString("userLoginAddress_id", Profile_List.first.address!);
+      pref.setString("userLoginPassword", Profile_List.first.password!);
+      pref.setString("userLoginUpdate", userLoginData[0]["is_updated"]);
+      pref.setString("userLoginSociety", userLoginData[0]["project_title"]);
+      pref.setString("userLoginSociety_Id", userLoginData[0]["project_id"]);
 
       //1.0.3
       Shared_Pref_Login_Id_Func();

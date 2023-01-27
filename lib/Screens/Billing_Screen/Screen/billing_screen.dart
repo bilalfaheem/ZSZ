@@ -40,20 +40,20 @@ class Billing_Screen extends StatelessWidget {
                       _size.height * 0.033),
                   child: PopHeadingBar(context, "My Billing", 22, "null")),
 
-              // Billing_Tile("$User_Login_name_S", "$User_Login_Address_S", "....",
+              // Billing_Tile("$userLoginname_S", "$userLoginAddress_S", "....",
               //     ".....", "....."),
 
               // Billing Tile
               Container(
                 child: StreamBuilder(
                     stream:
-                        MaintenanceApiFunc(context, User_Login_id_S.toString())
+                        MaintenanceApiFunc(context, userLoginIdShared.toString())
                             .asStream(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return Billing_Tile(
-                            "$User_Login_name_S",
-                            "$User_Login_Address_S",
+                            "$userLoginname_S",
+                            "$userLoginAddress_S",
                             ".....",
                             ".....",
                             ".....",
@@ -61,8 +61,8 @@ class Billing_Screen extends StatelessWidget {
                       } else if (snapshot.hasData) {
                         var Index_B = MaintenanceList.first;
                         return Billing_Tile(
-                            User_Login_name_S.toString(),
-                            User_Login_Address_S.toString(),
+                            userLoginname_S.toString(),
+                            userLoginAddress_S.toString(),
                             Index_B.month.toString(),
                             Index_B.dueDate.toString(),
                             Index_B.amount.toString(),
@@ -76,8 +76,8 @@ class Billing_Screen extends StatelessWidget {
                         //     Billing_List.first.payDate.toString());
                       } else {
                         return Billing_Tile(
-                            "$User_Login_name_S",
-                            "$User_Login_Address_S",
+                            "$userLoginname_S",
+                            "$userLoginAddress_S",
                             "....",
                             ".....",
                             ".....",
@@ -87,18 +87,18 @@ class Billing_Screen extends StatelessWidget {
               ),
               StreamBuilder(
                   stream:
-                      GasCurrentBillingFunc(context, User_Login_Address_Id_S)
+                      GasCurrentBillingFunc(context, userLoginAddress_Id_S)
                           .asStream(),
                   // gasBillingAllFunc("242").asStream(),
-                  // MaintenanceApiFunc(context, User_Login_id_S.toString())
+                  // MaintenanceApiFunc(context, userLoginIdShared.toString())
                   //     .asStream(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return Gas_bill_widget(
                           context, "....", "....", "....", "....", 1, 1);
                       // Billing_Tile(
-                      //     "$User_Login_name_S",
-                      //     "$User_Login_Address_S",
+                      //     "$userLoginname_S",
+                      //     "$userLoginAddress_S",
                       //     ".....",
                       //     ".....",
                       //     ".....",
@@ -117,8 +117,8 @@ class Billing_Screen extends StatelessWidget {
                             Index_current.previousReading.toString(),
                           ));
                       // Billing_Tile(
-                      //     User_Login_name_S.toString(),
-                      //     User_Login_Address_S.toString(),
+                      //     userLoginname_S.toString(),
+                      //     userLoginAddress_S.toString(),
                       //     Index_B.month.toString(),
                       //     Index_B.dueDate.toString(),
                       //     Index_B.amount.toString(),
@@ -128,8 +128,8 @@ class Billing_Screen extends StatelessWidget {
                       return Gas_bill_widget(
                           context, "....", "....", "....", "....", 1, 1);
                       //  Billing_Tile(
-                      //     "$User_Login_name_S",
-                      //     "$User_Login_Address_S",
+                      //     "$userLoginname_S",
+                      //     "$userLoginAddress_S",
                       //     "....",
                       //     ".....",
                       //     ".....",
@@ -152,7 +152,7 @@ class Billing_Screen extends StatelessWidget {
                   height: _size.height * 0.38,
                   child: StreamBuilder(
                       stream:
-                          MaintenanceHistoryApiFunc(User_Login_id_S.toString())
+                          MaintenanceHistoryApiFunc(userLoginIdShared.toString())
                               .asStream(),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==

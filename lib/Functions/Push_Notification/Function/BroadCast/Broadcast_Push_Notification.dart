@@ -9,10 +9,10 @@ import 'package:zsz/main.dart';
 //   // FlutterLocalNotificationsPlugin Broadcast_flp =
 //   //     FlutterLocalNotificationsPlugin();
 
-//   // var my_user_id = int.parse(User_Login_id_S.toString());
+//   // var my_user_id = int.parse(userLoginIdShared.toString());
 //   // assert(my_user_id is int);
 //   //   print("broadcasttttttttttttttttttttttttttttttttttttttttttttt");
-//   //   print(User_Login_id_S.toString());
+//   //   print(userLoginIdShared.toString());
 
 //   // print(my_user_id);
 //   // print(my_user_id.runtimeType);
@@ -20,7 +20,7 @@ import 'package:zsz/main.dart';
 
 //   var response = await http.post(
 //       Uri.parse("${Api_Address}general_broadcast.php"),
-//       body: {"user_id": User_Login_id_S.toString()});
+//       body: {"user_id": userLoginIdShared.toString()});
 //   //  my_user_id});
 //   if (response.statusCode == 200) {
 //     var data = jsonDecode(response.body.toString());
@@ -66,9 +66,9 @@ import 'package:zsz/main.dart';
 //   // remove
 //   var response = await http.post(Uri.parse("${Api_Address}broadcast_seen.php"),
 //       body: {
-//         "user_id": User_Login_id_S.toString(),
+//         "user_id": userLoginIdShared.toString(),
 //         "broadcast_id": broadcast_idd.toString()
 //       }
-//       //  User_Login_id_S.toString()}
+//       //  userLoginIdShared.toString()}
 //       );
 // }
