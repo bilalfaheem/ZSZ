@@ -230,7 +230,8 @@ void Order_Swap_Detail_dialog_box(
                                   } else if (value.toString().toLowerCase() ==
 
                                       // 1.0.3
-                                      userLoginAddress_S.toString()
+                                      userLoginAddress_S
+                                          .toString()
                                           .toLowerCase()) {
                                     // print(
                                     //     "${value.toString().toLowerCase()} Text Field valueeeeeeeeeeeee");

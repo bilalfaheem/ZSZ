@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zsz/Screens/Chat_Screen/Pages/ComplainChatScreen/complain_chat_screen.dart';
 
-Widget complainTile(context,size,theme,complainType,status){
-  return  GestureDetector(
+Widget complainTile(context, size, theme, complainType, status,threadId) {
+  return GestureDetector(
     onHorizontalDragEnd: (details) => print(details),
-    onTap: (){
-      Navigator.push(context, MaterialPageRoute(builder: (context) => ComplainChatScreen(),));
+    onTap: () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ComplainChatScreen(complainType: complainType, complainStatus: status, threadId: threadId)
+          ));
     },
     child: Container(
         margin: EdgeInsets.only(top: size.height * 0.01),
@@ -34,7 +38,7 @@ Widget complainTile(context,size,theme,complainType,status){
                             :
                             // Color.fromARGB(198, 87, 24, 98):
                             theme.primaryColor,
-  
+
                 // Paid
                 //     ? Color.fromARGB(203, 210, 4, 45)
                 //     : Color.fromARGB(240, 20, 72, 111),
@@ -61,12 +65,13 @@ Widget complainTile(context,size,theme,complainType,status){
             ),
           ),
           title: Text(
-              complainType[0].toUpperCase() + complainType.substring(1).toLowerCase(),
+              complainType[0].toUpperCase() +
+                  complainType.substring(1).toLowerCase(),
               //  complainType == "tanker"?   complainType.replaceFirst(RegExp(r"t"), "T",0):
               //       complainType == "maintenance"?  complainType.replaceFirst(RegExp(r"m"), "M",0):
               //       complainType == "regular"?   complainType.replaceFirst(RegExp(r"r"), "R",0):
               //        complainType,
-  
+
               style: GoogleFonts.ubuntu(
                   fontSize: size.height * 0.021, color: Colors.black)),
           subtitle: Container(
@@ -75,11 +80,10 @@ Widget complainTile(context,size,theme,complainType,status){
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 3,horizontal: 0),
+                  padding: EdgeInsets.symmetric(vertical: 3, horizontal: 0),
                   decoration: BoxDecoration(
-                    // color: Colors.purple,
-                    borderRadius: BorderRadius.circular(30)
-                  ),
+                      // color: Colors.purple,
+                      borderRadius: BorderRadius.circular(30)),
                   child: Text(status,
                       style: GoogleFonts.ubuntu(
                           fontSize: 16, color: theme.highlightColor)),
@@ -99,14 +103,21 @@ Widget complainTile(context,size,theme,complainType,status){
                 //   ),
                 // )
               ],
-              
             ),
-            
           ),
-          trailing: IconButton(onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => ComplainChatScreen(),));
-          }, icon:Icon( Icons.arrow_forward_ios,color: theme.primaryColor,),
-        ),
-      )),
+          trailing: IconButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ComplainChatScreen(complainType: complainType, complainStatus: status, threadId: threadId)
+                  ));
+            },
+            icon: Icon(
+              Icons.arrow_forward_ios,
+              color: theme.primaryColor,
+            ),
+          ),
+        )),
   );
 }

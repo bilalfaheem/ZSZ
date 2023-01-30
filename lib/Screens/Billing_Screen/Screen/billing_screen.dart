@@ -46,9 +46,9 @@ class Billing_Screen extends StatelessWidget {
               // Billing Tile
               Container(
                 child: StreamBuilder(
-                    stream:
-                        MaintenanceApiFunc(context, userLoginIdShared.toString())
-                            .asStream(),
+                    stream: MaintenanceApiFunc(
+                            context, userLoginIdShared.toString())
+                        .asStream(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return Billing_Tile(
@@ -86,9 +86,8 @@ class Billing_Screen extends StatelessWidget {
                     }),
               ),
               StreamBuilder(
-                  stream:
-                      GasCurrentBillingFunc(context, userLoginAddress_Id_S)
-                          .asStream(),
+                  stream: GasCurrentBillingFunc(context, userLoginAddress_Id_S)
+                      .asStream(),
                   // gasBillingAllFunc("242").asStream(),
                   // MaintenanceApiFunc(context, userLoginIdShared.toString())
                   //     .asStream(),
@@ -151,9 +150,9 @@ class Billing_Screen extends StatelessWidget {
                 child: Container(
                   height: _size.height * 0.38,
                   child: StreamBuilder(
-                      stream:
-                          MaintenanceHistoryApiFunc(userLoginIdShared.toString())
-                              .asStream(),
+                      stream: MaintenanceHistoryApiFunc(
+                              userLoginIdShared.toString())
+                          .asStream(),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {

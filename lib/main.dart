@@ -47,9 +47,6 @@ void callbackDispatcher() async {
 
   // int notification_count = 0;
   Workmanager().executeTask((task, inputData) async {
-
-
-
 //function part
     final FlutterLocalNotificationsPlugin flutterLocalNoti =
         FlutterLocalNotificationsPlugin();
@@ -203,23 +200,25 @@ void callbackDispatcher() async {
       }
     }
 
-userLoginIdFunctionNotification() async {
+    userLoginIdFunctionNotification() async {
       WidgetsFlutterBinding.ensureInitialized();
       SharedPreferences pref = await SharedPreferences.getInstance();
       userLoginIdNotification = pref.getString("userLoginId").toString();
-      print("${userLoginIdNotification} user login id for notification>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-      if(userLoginIdNotification != "null"&&userLoginIdNotification != null){
+      print(
+          "${userLoginIdNotification} user login id for notification>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+      if (userLoginIdNotification != "null" &&
+          userLoginIdNotification != null) {
         print("not Null>>>>>>>>>>>>>>>>");
-          initialiseNotifications();
-    await tankerPushNotificationFunction();
-    await maintenancePushNotificationFunction();
-    await generalPushNotificationFunction();
-    await broadcastPushNotificationFunction();
+        initialiseNotifications();
+        await tankerPushNotificationFunction();
+        await maintenancePushNotificationFunction();
+        await generalPushNotificationFunction();
+        await broadcastPushNotificationFunction();
       }
     }
 
 //execution part
-  await  userLoginIdFunctionNotification();
+    await userLoginIdFunctionNotification();
     // initialiseNotifications();
     // //  sendNotification("www", "wwww", 95, "www", "wwww");
     // await tankerPushNotificationFunction();
