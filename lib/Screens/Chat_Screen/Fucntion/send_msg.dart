@@ -4,6 +4,8 @@ import 'package:zsz/Constant.dart';
 
 
 Future sendMsg(String threadId,String message) async {
+  print(message);
+  print(threadId);
   final response = await https.post(
       Uri.parse("${Api_Address}chat/create_thread_message.php"),
       body: {
