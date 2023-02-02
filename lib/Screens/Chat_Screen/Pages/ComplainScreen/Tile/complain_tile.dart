@@ -4,8 +4,9 @@ import 'package:zsz/Screens/Chat_Screen/Pages/ComplainChatScreen/complain_chat_s
 
 Widget complainTile(context, size, theme, complainType, status,threadId) {
   return GestureDetector(
-    onHorizontalDragEnd: (details) => print(details),
+    // onHorizontalDragEnd: (details) => print(details),
     onTap: () {
+      print(threadId);
       Navigator.push(
           context,
           MaterialPageRoute(

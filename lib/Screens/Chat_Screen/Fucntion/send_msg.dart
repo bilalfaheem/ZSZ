@@ -21,9 +21,11 @@ Future sendMsg(String threadId,String message) async {
     var dataStatus = data["status"].toString();
 
     if (dataStatus == "200") {
+      return true;
       print("<<<<<<<<<<<<<<<<<<<<<<<<<<<msg send successfully >>>>>>>>>>>>>>>>>>>>>>>>>>>");
       }
     } else {
+      return false;
      print("<<<<<<<<<<<<<<<<<<<<<<<<<<<msg send failed >>>>>>>>>>>>>>>>>>>>>>>>>>>");
   }
 }

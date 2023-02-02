@@ -6,8 +6,13 @@ Widget chatHeaderWidget(context, size, theme, complainType, status) {
   return GestureDetector(
     
     child: Container(
+      height: size.height*0.085,
+      color: Colors.green,
         // margin: EdgeInsets.only(top: size.height * 0.01),
         child: ListTile(
+          autofocus: true,
+          focusColor: Colors.white,
+          // focusNode: true,
       horizontalTitleGap: size.width * 0.05,
       selected: false,
       contentPadding: EdgeInsets.symmetric(
