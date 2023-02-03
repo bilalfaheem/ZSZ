@@ -7,7 +7,7 @@ Widget chatHeaderWidget(context, size, theme, complainType, status) {
     
     child: Container(
       height: size.height*0.085,
-      color: Colors.green,
+      color: theme.shadowColor,
         // margin: EdgeInsets.only(top: size.height * 0.01),
         child: ListTile(
           autofocus: true,

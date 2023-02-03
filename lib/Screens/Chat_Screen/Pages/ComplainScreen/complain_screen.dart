@@ -25,9 +25,10 @@ class ComplainScreen extends StatelessWidget {
         floatingActionButton: Container(
           margin: EdgeInsets.only(bottom: 15, right: 10),
           child: FloatingActionButton(
-            onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => Fun(),));
-              // generateComplain(context, size.height, size.width, theme,
-              //     "Tanker_Type", "Order_Id");
+            onPressed: () {
+              // Navigator.push(context, MaterialPageRoute(builder: (context) => Fun(),));
+              generateComplain(context, size.height, size.width, theme,
+                  "Tanker_Type", "Order_Id");
             },
             // isExtended: true,
 
@@ -53,7 +54,7 @@ class ComplainScreen extends StatelessWidget {
                     Container(
                         margin:
                             EdgeInsets.fromLTRB(0, 0, 0, size.height * 0.038),
-                        child: PopHeadingBar(context, "Complain", 22, "null")),
+                        child: PopHeadingBar(context, "Complaint", 22, "null")),
                     StreamBuilder(
                         stream: complainListFunc(
                                 context, userLoginIdShared.toString())

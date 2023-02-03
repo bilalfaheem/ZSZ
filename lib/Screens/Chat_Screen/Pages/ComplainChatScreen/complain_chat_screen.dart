@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zsz/Constant.dart';
 import 'package:zsz/Screens/Chat_Screen/Fucntion/fetch_chat.dart';
 import 'package:zsz/Screens/Chat_Screen/Fucntion/send_msg.dart';
+import 'package:zsz/Screens/Chat_Screen/Pages/ComplainChatScreen/Widget/chat_bubble.dart';
 import 'package:zsz/Screens/Chat_Screen/Pages/ComplainChatScreen/Widget/chat_header_widget.dart';
 
 
@@ -39,10 +40,11 @@ class _ComplainChatScreenState extends State<ComplainChatScreen> {
      if(msgController.text.isNotEmpty){
                   print("msggggggg");
                   print(msgController.text);
-                final send =await sendMsg("4", msgController.text);
+                Future send =await sendMsg("4", msgController.text);
                 print("<<<<<<<<<<<<<<<<<<<<<<$send>>>>>>>>>>>>>>>>>>>>>>");
+                if(send == true){
                 msgController.clear();
-                _handleRefresh();}
+                _handleRefresh();}}
   }
     @override
   void initState() {
@@ -65,7 +67,7 @@ class _ComplainChatScreenState extends State<ComplainChatScreen> {
             
             Expanded(
               child: Container(
-                 padding: EdgeInsets.only(top: size.height*0.086,bottom: 60),
+                 padding: EdgeInsets.only(top: size.height*0.086,bottom: size.height*0.086),
               //  color: Colors.amber,
                  height: size.height*0.7,
                 child: SingleChildScrollView(
@@ -202,7 +204,7 @@ class _ComplainChatScreenState extends State<ComplainChatScreen> {
        Container(
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         decoration: BoxDecoration(
-            color: theme.primaryColor,
+            color: theme.shadowColor,
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(10), topRight: Radius.circular(20))),
         child: Row(
@@ -245,7 +247,7 @@ class _ComplainChatScreenState extends State<ComplainChatScreen> {
                   controller: msgController,
                   minLines: 1,
                   maxLines: 4,
-                  style: GoogleFonts.ubuntu(fontSize: 16, color: Colors.white),
+                  style: GoogleFonts.ubuntu(fontSize: 16, color: theme.highlightColor),
                   decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: "Message...",
@@ -281,55 +283,7 @@ class _ComplainChatScreenState extends State<ComplainChatScreen> {
   }
 }
 
-Widget chatBubble(theme, String msgType, String text) {
-  return Row(
-    mainAxisAlignment:
-        msgType == "user" ? MainAxisAlignment.end : MainAxisAlignment.start,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Container(
-          margin: EdgeInsets.symmetric(horizontal: 7),
-          // margin: EdgeInsets.fromLTRB(size.width * 0.03,
-          //     size.width * 0.027, size.width * 0.1, size.width * 0.027),
-          padding: EdgeInsets.all(8),
-          decoration: BoxDecoration(
-              color: msgType == "admin" ? Colors.grey : Colors.transparent,
-              shape: BoxShape.circle),
-          child: Image.asset(zsz,
-              height: 15,
-              color: msgType == "admin" ? null : Colors.transparent,
-              fit: BoxFit.contain)),
-      Flexible(
-        fit: FlexFit.loose,
-        child: Container(
-          margin: EdgeInsets.only(
-              bottom: 10,
-              right: msgType == "admin" ? 30 : 8,
-              left: msgType == "user" ? 30 : 0),
-          // left: msgType == "user"?30:0),
-          padding: EdgeInsets.all(13),
-          decoration: BoxDecoration(
-              color: msgType == "admin"
-                  ? theme.primaryColor
-                  : Color.fromARGB(255, 208, 205, 205),
-              borderRadius: BorderRadius.only(
-                  topRight: msgType == "admin"
-                      ? Radius.circular(20)
-                      : Radius.circular(0),
-                  topLeft: msgType == "user"
-                      ? Radius.circular(20)
-                      : Radius.circular(0),
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20))),
-          child: Text(
-            "$text",
-            style: TextStyle(fontSize: 17, color: Colors.white),
-          ),
-        ),
-      ),
-    ],
-  );
-}
+
 Widget msgField(theme,size,msgController,threadId,func){
   return
    Column(

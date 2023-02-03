@@ -50,14 +50,16 @@ class CustomTheme with ChangeNotifier {
         dividerColor: Color.fromARGB(21, 0, 0, 0),
 //Card Text
         highlightColor: Color.fromARGB(135, 0, 0, 0),
-        shadowColor: Color(0xffe9ecef)
+        shadowColor: Color(0xffe9ecef),
+
 
         // textTheme: TextTheme(
-        //     headline1: TextStyle(color: Colors.black, fontSize: 19),
-        //     button: TextStyle(
-        //       color: Color.fromRGBO(0, 0, 0, 1),
-        //       // fontSize: MediaQuery.of(context).size.height * 0.4
-        //     )
+        //   style:
+        //     // headline1: TextStyle(color: Colors.black, fontSize: 19),
+        //     // button: TextStyle(
+        //     //   color: Color.fromRGBO(0, 0, 0, 1),
+        //     //   // fontSize: MediaQuery.of(context).size.height * 0.4
+        //     // )
         //     )
         );
   }

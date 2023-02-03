@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:zsz/Constant.dart';
 import 'package:zsz/Screens/Chat_Screen/Fucntion/fetch_chat.dart';
 import 'package:zsz/Screens/Chat_Screen/Fucntion/send_msg.dart';
+import 'package:zsz/Screens/Chat_Screen/Pages/ComplainChatScreen/Widget/chat_bubble.dart';
 import 'package:zsz/Screens/Chat_Screen/Pages/ComplainChatScreen/complain_chat_screen.dart';
 
 class Fun extends StatefulWidget {
