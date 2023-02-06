@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pinput/pinput.dart';
+// import 'package:pinput/pinput.dart';
 // import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 import 'package:zsz/Screens/Login_Screen/Pages/Forget_Change_Password/forget_change_password_screen.dart';
@@ -89,23 +89,23 @@ class _OtpScreen2State extends State<OtpScreen2> {
         Provider.of<Otp_Validation_Status_Provider>(context, listen: false);
     SizeConfig().init(context);
 
-    final defaultPinTheme = PinTheme(
-      width: 40,
-      height: 40,
-      textStyle: TextStyle(
-          // fontFamily: GoogleFonts.ubuntu(),
+    // final defaultPinTheme = PinTheme(
+    //   width: 40,
+    //   height: 40,
+    //   textStyle: TextStyle(
+    //       // fontFamily: GoogleFonts.ubuntu(),
 
-          fontSize: 20,
-          color: Color.fromRGBO(30, 60, 87, 1),
-          fontWeight: FontWeight.w600),
-      decoration: BoxDecoration(
-        color: theme.scaffoldBackgroundColor,
-        // Color.fromARGB(97, 0, 187, 212),
-        border: Border.all(color: theme.primaryColor),
-        //  Color.fromRGBO(234, 239, 243, 1)),
-        borderRadius: BorderRadius.circular(10),
-      ),
-    );
+    //       fontSize: 20,
+    //       color: Color.fromRGBO(30, 60, 87, 1),
+    //       fontWeight: FontWeight.w600),
+    //   decoration: BoxDecoration(
+    //     color: theme.scaffoldBackgroundColor,
+    //     // Color.fromARGB(97, 0, 187, 212),
+    //     border: Border.all(color: theme.primaryColor),
+    //     //  Color.fromRGBO(234, 239, 243, 1)),
+    //     borderRadius: BorderRadius.circular(10),
+    //   ),
+    // );
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -160,55 +160,55 @@ class _OtpScreen2State extends State<OtpScreen2> {
                       //   height: size.height * 0.02,
                       // ),
 
-                      Container(
-                        margin: EdgeInsets.only(
-                            top: size.height * 0.02,
-                            bottom: size.height * 0.01),
-                        child: Center(
-                          child: Pinput(
-                            length: 6,
-                            // onSubmitted: (pin) => print("value$pin"),
-                            defaultPinTheme: defaultPinTheme,
-                            inputFormatters: [
-                              FilteringTextInputFormatter.allow(
-                                  RegExp("[0-9]")),
-                            ],
-                            onCompleted: (pin) async {
-                              // print(
-                              //     "pinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn$pin");
-                              // function
+                      // Container(
+                      //   margin: EdgeInsets.only(
+                      //       top: size.height * 0.02,
+                      //       bottom: size.height * 0.01),
+                      //   child: Center(
+                      //     child: Pinput(
+                      //       length: 6,
+                      //       // onSubmitted: (pin) => print("value$pin"),
+                      //       defaultPinTheme: defaultPinTheme,
+                      //       inputFormatters: [
+                      //         FilteringTextInputFormatter.allow(
+                      //             RegExp("[0-9]")),
+                      //       ],
+                      //       onCompleted: (pin) async {
+                      //         // print(
+                      //         //     "pinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn$pin");
+                      //         // function
 
-                              try {
-                                await FirebaseAuth.instance
-                                    .signInWithCredential(
-                                        PhoneAuthProvider.credential(
-                                            verificationId:
-                                                widget.Otp_verification_code,
-                                            smsCode: pin))
-                                    .then((value) async {
-                                  if (value.user != null) {
-                                    Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                ForgetChangePasswordScreen(
-                                                    User_Id_Forget_Pass: widget
-                                                        .User_Id_Forget_Pass)));
-                                  }
-                                });
-                              } catch (e) {
-                                OTP_Validation_provider.OTP_Validation_Func(
-                                    "wrong");
-                                // ScaffoldMessenger.of(context).showSnackBar(
-                                //     SnackBar(content: Text('Invalid OTP.')));
-                                // FocusScope.of(context).unfocus();
-                                // _scaffoldkey.currentState
-                                //     .showSnackBar(SnackBar(content: Text('invalid OTP')));
-                              }
-                            },
-                          ),
-                        ),
-                      ),
+                      //         try {
+                      //           await FirebaseAuth.instance
+                      //               .signInWithCredential(
+                      //                   PhoneAuthProvider.credential(
+                      //                       verificationId:
+                      //                           widget.Otp_verification_code,
+                      //                       smsCode: pin))
+                      //               .then((value) async {
+                      //             if (value.user != null) {
+                      //               Navigator.pushReplacement(
+                      //                   context,
+                      //                   MaterialPageRoute(
+                      //                       builder: (context) =>
+                      //                           ForgetChangePasswordScreen(
+                      //                               User_Id_Forget_Pass: widget
+                      //                                   .User_Id_Forget_Pass)));
+                      //             }
+                      //           });
+                      //         } catch (e) {
+                      //           OTP_Validation_provider.OTP_Validation_Func(
+                      //               "wrong");
+                      //           // ScaffoldMessenger.of(context).showSnackBar(
+                      //           //     SnackBar(content: Text('Invalid OTP.')));
+                      //           // FocusScope.of(context).unfocus();
+                      //           // _scaffoldkey.currentState
+                      //           //     .showSnackBar(SnackBar(content: Text('invalid OTP')));
+                      //         }
+                      //       },
+                      //     ),
+                      //   ),
+                      // ),
                       Consumer<Otp_Validation_Status_Provider>(
                           builder: (context, value, child) =>
                               value.Otp_validation_status == "wrong"

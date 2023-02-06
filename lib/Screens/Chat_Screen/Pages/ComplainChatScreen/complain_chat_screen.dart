@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zsz/Constant.dart';
+import 'package:zsz/Models/chat_history/chat_history.dart';
 import 'package:zsz/Screens/Chat_Screen/Fucntion/fetch_chat.dart';
 import 'package:zsz/Screens/Chat_Screen/Fucntion/send_msg.dart';
 import 'package:zsz/Screens/Chat_Screen/Pages/ComplainChatScreen/Widget/chat_bubble.dart';
@@ -40,11 +41,16 @@ class _ComplainChatScreenState extends State<ComplainChatScreen> {
      if(msgController.text.isNotEmpty){
                   print("msggggggg");
                   print(msgController.text);
-                Future send =await sendMsg("4", msgController.text);
+                  // chatHistoryList.add(ChatHistory(message: msgController.text));
+                  
+                final send = await sendMsg("4", msgController.text);
+                msgController.clear();
                 print("<<<<<<<<<<<<<<<<<<<<<<$send>>>>>>>>>>>>>>>>>>>>>>");
                 if(send == true){
-                msgController.clear();
-                _handleRefresh();}}
+                // msgController.clear();
+                _handleRefresh();
+                 }
+                }
   }
     @override
   void initState() {
@@ -69,7 +75,7 @@ class _ComplainChatScreenState extends State<ComplainChatScreen> {
               child: Container(
                  padding: EdgeInsets.only(top: size.height*0.086,bottom: size.height*0.086),
               //  color: Colors.amber,
-                 height: size.height*0.7,
+                  height: size.height*0.3,
                 child: SingleChildScrollView(
                   dragStartBehavior: DragStartBehavior.down,
                   // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
@@ -133,8 +139,18 @@ class _ComplainChatScreenState extends State<ComplainChatScreen> {
               //              });
                            }
                      if (snapshot.connectionState != ConnectionState.done) {
-              return Center(
-                child: CircularProgressIndicator(),
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(color: Colors.black,strokeWidth: 2,),
+                    ],
+                  ),
+                  SizedBox(height: 400,)
+                ],
               );
                       }if (!snapshot.hasData &&
                 snapshot.connectionState == ConnectionState.done) {
@@ -195,7 +211,8 @@ class _ComplainChatScreenState extends State<ComplainChatScreen> {
             ),
           ],
         ),
-         chatHeaderWidget(context, size, theme, widget.complainType, widget.complainStatus),
+        msgHeader(context, widget.complainType, widget.complainStatus),
+        //  chatHeaderWidget(context, size, theme, widget.complainType, widget.complainStatus),
       // chatHeaderWidget(context, size, theme, complainType, complainStatus),
           //  msgField(theme, size, msgController, widget.threadId,_handleRefresh()),
         Column(
@@ -216,32 +233,31 @@ class _ComplainChatScreenState extends State<ComplainChatScreen> {
             //     ),
             //   ),
             // ),
-            Container(
-                // height: 40,
-                // width: 200,
-                padding: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(10)),
-                child: Image.asset(
-                  file,
-                  height: 25,
-                )),
-            Container(
-                // height: 40,
-                margin: EdgeInsets.symmetric(horizontal: 5),
-                padding: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(10)),
-                child: Image.asset(galleryIcon, height: 25)),
+            // Container(
+            //     // height: 40,
+            //     // width: 200,
+            //     padding: EdgeInsets.all(5),
+            //     decoration: BoxDecoration(
+            //         color: Colors.white.withOpacity(0.2),
+            //         borderRadius: BorderRadius.circular(10)),
+            //     child: Image.asset(
+            //       file,
+            //       height: 25,
+            //     )),
+            // Container(
+            //     // height: 40,
+            //     margin: EdgeInsets.symmetric(horizontal: 5),
+            //     padding: EdgeInsets.all(5),
+            //     decoration: BoxDecoration(
+            //         color: Colors.white.withOpacity(0.2),
+            //         borderRadius: BorderRadius.circular(10)),
+            //     child: Image.asset(galleryIcon, height: 25)),
             Flexible(
               fit: FlexFit.loose,
               child: Container(
-                // height: 40,
-                // width: 200,
+                margin: EdgeInsets.symmetric(horizontal: 12),
                 decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2),
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(10)),
                 child: TextField(
                   controller: msgController,

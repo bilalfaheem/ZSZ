@@ -1,22 +1,16 @@
 import 'dart:convert';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/date_symbol_data_custom.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zsz/Constant.dart';
-import 'package:zsz/Functions/Push_Notification/Function/BroadCast/Broadcast_Push_Notification.dart';
-import 'package:zsz/Functions/Push_Notification/Function/General/General_Push_Notification.dart';
-import 'package:zsz/Functions/Push_Notification/Function/Maintenance/Maintenance_Push_Notification.dart';
-import 'package:zsz/Functions/Push_Notification/Function/Tanker/Tanker_Push_Notification.dart';
 import 'package:zsz/Functions/Shared_Pref_Login_Id_func/shared_Pref_Login_Id_func.dart';
 import 'package:zsz/Provider/Left_Tanker_Count_Provider/left_tanker_count_provider.dart';
 import 'package:zsz/Provider/Notification_Icon_Provider/notification_icon_provider.dart';
 import 'package:zsz/Provider/Order_screen_refresh_provider.dart/order_screen_refresh_provider.dart';
+import 'package:zsz/Screens/Chat_Screen/Pages/ComplainScreen/Provider/complain_screen_provider.dart';
 import 'package:zsz/Screens/Home_Screen/home_screen.dart';
 import 'package:zsz/Screens/Login_Screen/Pages/Forget_Change_Password/provider/forget_change_pass_provider.dart';
 import 'package:zsz/Screens/Login_Screen/Pages/Forget_Password/provider/Contact_no_visibility_provider.dart';
@@ -28,7 +22,7 @@ import 'package:zsz/Screens/Splash_Screen/splash_screen.dart';
 import 'package:zsz/Theme/theme.dart';
 import 'package:http/http.dart' as http;
 import 'package:workmanager/workmanager.dart';
-import 'package:zsz/Provider/Notification_Icon_Provider/notification_icon_provider.dart';
+
 
 //this is the name given to the background fetch
 const simplePeriodicTask = "PeriodicTask";
@@ -765,8 +759,8 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (_) => ForgetChangePasswordProvider()),
         ChangeNotifierProvider(create: (_) => Otp_Validation_Status_Provider()),
         ChangeNotifierProvider(create: (_) => SocietyNameVisibilityProvider()),
-        ChangeNotifierProvider(
-            create: (_) => SignUpSocietyNameVisibilityProvider()),
+        ChangeNotifierProvider(create: (_) => SignUpSocietyNameVisibilityProvider()),
+        ChangeNotifierProvider(create: (_) => ComplainScreenProvider(),)
       ],
       child: Builder(builder: (BuildContext context) {
         return MaterialApp(
