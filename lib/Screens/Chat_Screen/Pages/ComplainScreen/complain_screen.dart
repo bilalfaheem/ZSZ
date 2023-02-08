@@ -82,7 +82,7 @@ class ComplainScreen extends StatelessWidget {
                                       itemBuilder: (context, index) {
                                         final indexx = complainList[index];
                                         return complainTile(context, size, theme,
-                                            indexx.reason, indexx.status,indexx.threadReasonId);
+                                            indexx.reason, indexx.status,indexx.id,indexx.count);
                                       }),
                                 );
                               }

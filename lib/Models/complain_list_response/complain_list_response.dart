@@ -12,6 +12,7 @@ class ComplainListResponse {
   String? isBlock;
   String? reason;
   String? status;
+  String? count;
 
   ComplainListResponse({
     this.id,
@@ -25,6 +26,7 @@ class ComplainListResponse {
     this.isBlock,
     this.reason,
     this.status,
+    this.count
   });
 
   factory ComplainListResponse.fromJson(Map<dynamic, dynamic> json) {
@@ -40,6 +42,7 @@ class ComplainListResponse {
       isBlock: json['is_block'] as String?,
       reason: json['reason'] as String?,
       status: json['status'] as String?,
+      count: json['count'] as String?,
     );
   }
 
@@ -55,6 +58,7 @@ class ComplainListResponse {
         'is_block': isBlock,
         'reason': reason,
         'status': status,
+        'count': count,
       };
 
   @override
@@ -77,5 +81,6 @@ class ComplainListResponse {
       isCompleted.hashCode ^
       isBlock.hashCode ^
       reason.hashCode ^
-      status.hashCode;
+      status.hashCode ^
+      count.hashCode;
 }

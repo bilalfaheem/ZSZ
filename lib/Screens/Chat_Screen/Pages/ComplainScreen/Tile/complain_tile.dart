@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zsz/Screens/Chat_Screen/Pages/ComplainChatScreen/complain_chat_screen.dart';
 
-Widget complainTile(context, size, theme, complainType, status,threadId) {
+Widget complainTile(context, size, theme, complainType, status,threadId,count) {
   return GestureDetector(
     // onHorizontalDragEnd: (details) => print(details),
     onTap: () {
@@ -106,18 +106,32 @@ Widget complainTile(context, size, theme, complainType, status,threadId) {
               ],
             ),
           ),
-          trailing: IconButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ComplainChatScreen(complainType: complainType, complainStatus: status, threadId: threadId)
-                  ));
-            },
-            icon: Icon(
-              Icons.arrow_forward_ios,
-              color: theme.primaryColor,
-            ),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              count == "0"?Container():
+              Container(
+                padding: EdgeInsets.all(8),
+                decoration: BoxDecoration(shape: BoxShape.circle,
+                color: Colors.red),
+                child: Text(count,
+                      style: GoogleFonts.ubuntu(
+                          fontSize: 16, color: Colors.white)),
+              ),
+              IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ComplainChatScreen(complainType: complainType, complainStatus: status, threadId: threadId)
+                      ));
+                },
+                icon: Icon(
+                  Icons.arrow_forward_ios,
+                  color: theme.primaryColor,
+                ),
+              ),
+            ],
           ),
         )),
   );

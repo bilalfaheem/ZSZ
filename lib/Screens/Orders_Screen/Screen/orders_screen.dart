@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:zsz/Functions/Push_Notification/Function/NotificationCount/NotiCountApiFunc.dart';
 import 'package:zsz/Functions/Push_Notification/Notification.dart';
+import 'package:zsz/Functions/Push_Notification/notification_func.dart';
 import 'package:zsz/Functions/Shared_Pref_Login_Id_func/shared_Pref_Login_Id_func.dart';
 import 'package:zsz/Provider/Notification_Icon_Provider/notification_icon_provider.dart';
 import 'package:zsz/Screens/Chat_Screen/Pages/ComplainScreen/Function/complain_suggestion_func.dart';
@@ -25,7 +26,7 @@ class Orders_Screen extends StatefulWidget {
 }
 
 class _Orders_ScreenState extends State<Orders_Screen> {
-  NotificationsService2 notificationsService = NotificationsService2();
+  // NotificationsService2 notificationsService = NotificationsService2();
   var order_object = Order();
   final Order order_screen_var = new Order();
 
@@ -46,11 +47,11 @@ class _Orders_ScreenState extends State<Orders_Screen> {
   @override
   void initState() {
     _pageControle = PageController();
-    notificationsService.initialiseNotifications();
+    // notificationsService.initialiseNotifications();
 
 // Login Id Initialize
     Shared_Pref_Login_Id_Func();
-
+    // notificationFunc();
     // notification count
     notificationCountFunction(context);
     Driver_All_Func();

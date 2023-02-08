@@ -12,6 +12,7 @@ Widget msgHeader(context, complainType,status) {
       color: theme.shadowColor,
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Row(
+        // crossAxisAlignment: CrossAxisAlignment.start,
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
@@ -59,7 +60,7 @@ Widget msgHeader(context, complainType,status) {
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   complainType,

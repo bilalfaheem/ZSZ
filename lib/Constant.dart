@@ -21,6 +21,7 @@ String Api_Address_Test = "https://cybernsoft.com/saima_test_api/";
 const logo2 = "assets/Logo/ZSZSaima.png";
 // "assets/Logo2.png";
 const gas = "assets/Icons/gas.png";
+const ticket = "assets/Icons/ticket.png";
 const zszlogo = "assets/Logo/ZSZSaima.png";
 const zsz = "assets/Logo/ZSZ.png";
 const galleryIcon = "assets/Icons/gallery.png";

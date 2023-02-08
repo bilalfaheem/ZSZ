@@ -6,6 +6,7 @@ import 'package:zsz/Screens/Billing_Screen/Functions/Billing_History_Function/bi
 import 'package:zsz/Screens/Billing_Screen/Tile/billing_history_tile.dart';
 import 'package:zsz/Screens/Billing_Screen/Tile/billing_tile.dart';
 import 'package:zsz/Screens/Billing_Screen/Tile/gas_bill_tile.dart';
+import 'package:zsz/Screens/Billing_Screen/Tile/gate_pass_widget.dart';
 import 'package:zsz/Widgets/Heading_Bar/PopHeadingBar.dart';
 import 'package:zsz/Constant.dart';
 import 'package:zsz/responsive.dart';
@@ -85,6 +86,7 @@ class Billing_Screen extends StatelessWidget {
                       }
                     }),
               ),
+              // gatePassWidget(context, "month", "amount", "....", "msg", "currentReading", "previousReading"),
               StreamBuilder(
                   stream: GasCurrentBillingFunc(context, userLoginAddress_Id_S)
                       .asStream(),

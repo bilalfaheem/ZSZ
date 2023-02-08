@@ -1,14 +1,15 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:zsz/Constant.dart';
 import 'package:zsz/Screens/Billing_Screen/Screen/billing_screen.dart';
 import 'package:zsz/Screens/Chat_Screen/Pages/ComplainScreen/complain_screen.dart';
 import 'package:zsz/Screens/Detail_Screen/detail_screen.dart';
+import 'package:zsz/Screens/GatePass_Screen/screen/gatepass_screen.dart';
 import 'package:zsz/Screens/Login_Screen/login_screen.dart';
 import 'package:zsz/Screens/Orders_Screen/Screen/orders_screen.dart';
 import 'package:zsz/Screens/Profile_Screen/screen/profile_screen.dart';
-import 'package:zsz/Screens/Sign_Up_Screen/sign_up_screen.dart';
-import 'package:zsz/Theme/theme.dart';
+
 
 //         currentTheme.changeTheme();
 
@@ -25,8 +26,10 @@ class _Home_ScreenState extends State<Home_Screen> {
     Billing_Screen(),
     // Sign_Up_Screen(),
     Orders_Screen(),
+    GatePassScreen(),
     ComplainScreen(),
-    Profile_Screen()
+    Profile_Screen(),
+    
   ];
 
   @override
@@ -96,6 +99,11 @@ class _Home_ScreenState extends State<Home_Screen> {
                         size: _size.height * 0.04),
                     label: '',
                   ),
+                   BottomNavigationBarItem(
+                    icon: ImageIcon(AssetImage(ticket),
+                        size: _size.height * 0.025),
+                    label: '',
+                  ),
                   BottomNavigationBarItem(
                     icon: ImageIcon(AssetImage("assets/Icons/chat.png"),
 
@@ -108,6 +116,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                         size: _size.height * 0.025),
                     label: '',
                   ),
+                 
                 ],
               ),
             )));

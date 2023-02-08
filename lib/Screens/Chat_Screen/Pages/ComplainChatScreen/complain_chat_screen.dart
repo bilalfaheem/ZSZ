@@ -1,10 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zsz/Constant.dart';
-import 'package:zsz/Models/chat_history/chat_history.dart';
 import 'package:zsz/Screens/Chat_Screen/Fucntion/fetch_chat.dart';
 import 'package:zsz/Screens/Chat_Screen/Fucntion/send_msg.dart';
 import 'package:zsz/Screens/Chat_Screen/Pages/ComplainChatScreen/Widget/chat_bubble.dart';
@@ -22,15 +20,17 @@ class _ComplainChatScreenState extends State<ComplainChatScreen> {
   StreamController _postsController = StreamController();
   final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
   TextEditingController msgController = TextEditingController();
+  bool timerStatus = true;
       loadPosts() async {
-    fetchChat("4").then((res) async {
+    fetchChat(widget.threadId.toString()).then((res) async {
       _postsController.add(res);
       return res;
     });
   }
       Future<Null> _handleRefresh() async {
+       
         print("<<<<<<<<<<<<<<<<<<<<handle Refresh>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-    fetchChat("4").then((res) async {
+    fetchChat(widget.threadId.toString()).then((res) async {
       _postsController.add(res);
       
       return null;
@@ -43,20 +43,43 @@ class _ComplainChatScreenState extends State<ComplainChatScreen> {
                   print(msgController.text);
                   // chatHistoryList.add(ChatHistory(message: msgController.text));
                   
-                final send = await sendMsg("4", msgController.text);
+                final send = await sendMsg(widget.threadId, msgController.text);
                 msgController.clear();
                 print("<<<<<<<<<<<<<<<<<<<<<<$send>>>>>>>>>>>>>>>>>>>>>>");
-                if(send == true){
-                // msgController.clear();
-                _handleRefresh();
-                 }
+                // if(send == true){
+                // // msgController.clear();
+                // _handleRefresh();
+                //  }
                 }
+  }
+
+  reload(){
+         Timer.periodic(Duration(seconds: 2), (timer) {
+          print(timerStatus);
+          _handleRefresh();
+          if(timerStatus== false){
+            timer.cancel();
+          }
+           });
   }
     @override
   void initState() {
-    _postsController = new StreamController();
+    // _postsController = new StreamController();
     loadPosts();
+     reload();
     super.initState();
+
+  }
+
+    @override
+  void dispose() {
+  //  reload().dispose();
+  // loadPosts().dispose();
+  timerStatus = false;
+  // reload();
+_postsController.close();
+    print('Dispose useddddddddddddddddddddddddddddd');
+    super.dispose();
   }
 
   @override
