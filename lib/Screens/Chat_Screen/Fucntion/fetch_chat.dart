@@ -21,6 +21,8 @@ Future<List<ChatHistory>> fetchChat(String threadId) async {
       for (Map r in dataResponse) {
         chatHistoryList.add(ChatHistory.fromJson(r));
       }
+    }else if(dataStatus == "0"){
+      chatHistoryList.clear();
     }
 
     return chatHistoryList;

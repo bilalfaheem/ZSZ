@@ -17,21 +17,22 @@ class ComplainChatScreen extends StatefulWidget {
   State<ComplainChatScreen> createState() => _ComplainChatScreenState();}
 
 class _ComplainChatScreenState extends State<ComplainChatScreen> {
-  StreamController _postsController = StreamController();
+ late StreamController chatController;
   final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
   TextEditingController msgController = TextEditingController();
   bool timerStatus = true;
-      loadPosts() async {
+      loadChat() async {
+        print(widget.threadId);
     fetchChat(widget.threadId.toString()).then((res) async {
-      _postsController.add(res);
+      chatController.add(res);
       return res;
     });
   }
-      Future<Null> _handleRefresh() async {
-       
+      Future<Null> refreshChat() async {
+       print(widget.threadId);
         print("<<<<<<<<<<<<<<<<<<<<handle Refresh>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     fetchChat(widget.threadId.toString()).then((res) async {
-      _postsController.add(res);
+      chatController.add(res);
       
       return null;
     });
@@ -46,38 +47,44 @@ class _ComplainChatScreenState extends State<ComplainChatScreen> {
                 final send = await sendMsg(widget.threadId, msgController.text);
                 msgController.clear();
                 print("<<<<<<<<<<<<<<<<<<<<<<$send>>>>>>>>>>>>>>>>>>>>>>");
-                // if(send == true){
-                // // msgController.clear();
-                // _handleRefresh();
-                //  }
-                }
-  }
+                if(send == true){
+                msgController.clear();
+                 }else if(send == false){
+
+                 }
+                }}
 
   reload(){
-         Timer.periodic(Duration(seconds: 2), (timer) {
+         Timer.periodic(Duration(seconds: 1), (timer) {
           print(timerStatus);
-          _handleRefresh();
-          if(timerStatus== false){
-            timer.cancel();
+          switch(timerStatus){
+            case true: refreshChat();
+            break;
+            case false: timer.cancel();
+            break;
           }
+          // if(timerStatus )
+          // if(timerStatus== false){
+          //   timer.cancel();}
            });
   }
     @override
   void initState() {
-    // _postsController = new StreamController();
-    loadPosts();
-     reload();
     super.initState();
-
+    chatController =  StreamController();
+    loadChat();
+     reload();
   }
 
     @override
   void dispose() {
   //  reload().dispose();
-  // loadPosts().dispose();
+  // loadChat().dispose();
   timerStatus = false;
+  chatController.close();
+  loadChat().dispose();
   // reload();
-_postsController.close();
+// _postsController.close();
     print('Dispose useddddddddddddddddddddddddddddd');
     super.dispose();
   }
@@ -108,7 +115,7 @@ _postsController.close();
                     // crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       StreamBuilder(
-              stream: _postsController.stream,
+              stream: chatController.stream,
               builder:(BuildContext context, AsyncSnapshot snapshot) {
                       print('Has error: ${snapshot.hasError}');
                       print('Has data: ${snapshot.hasData}');
@@ -121,7 +128,7 @@ _postsController.close();
                 children: [
                   Scrollbar(
                     child: RefreshIndicator(
-                      onRefresh: _handleRefresh,
+                      onRefresh: refreshChat,
                     child:ListView.builder(
                             // reverse: true,
                             shrinkWrap: true,
@@ -237,7 +244,7 @@ _postsController.close();
         msgHeader(context, widget.complainType, widget.complainStatus),
         //  chatHeaderWidget(context, size, theme, widget.complainType, widget.complainStatus),
       // chatHeaderWidget(context, size, theme, complainType, complainStatus),
-          //  msgField(theme, size, msgController, widget.threadId,_handleRefresh()),
+          //  msgField(theme, size, msgController, widget.threadId,refreshChat()),
         Column(
     mainAxisAlignment: MainAxisAlignment.end,
      children: [

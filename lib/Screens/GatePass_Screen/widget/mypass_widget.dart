@@ -58,10 +58,6 @@ return Container(
   
                 size:250,
   
-                //  size.width*0.6,
-  
-                // image: AssetImage("assets/Icons/Avatar/avatar.png")
-  
                 ),
   
               ),
