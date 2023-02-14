@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
+import 'package:zsz/Constant.dart';
 
 Widget myQrWidget(context){
   final theme = Theme.of(context);
@@ -30,19 +31,8 @@ return Container(
               ),
   
       Container(
-  
-               margin: EdgeInsets.symmetric(vertical: 40
-  
-              //  size.height*0.04
-  
-               ),
-  
-                padding: EdgeInsets.all(30
-  
-                  // size.width*0.08
-  
-                ),
-  
+               margin: EdgeInsets.symmetric(vertical: 40),
+                padding: EdgeInsets.all(30 ),
                 decoration: BoxDecoration(
                   
                   borderRadius: BorderRadius.circular(20),
@@ -53,7 +43,8 @@ return Container(
   
                 child: PrettyQr(
                   data: "User_Token_Shared",
-                  elementColor: theme.primaryColor,
+                 elementColor:theme.primaryColor,
+                  //  image: AssetImage(zsz),
                 roundEdges: true,
   
                 size:250,

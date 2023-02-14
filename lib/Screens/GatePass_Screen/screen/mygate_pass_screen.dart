@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:zsz/Constant.dart';
 import 'package:zsz/Screens/GatePass_Screen/widget/mypass_widget.dart';
 import 'package:zsz/Widgets/Heading_Bar/PopHeadingBar.dart';
@@ -28,7 +29,22 @@ class MyGatePassScreen extends StatelessWidget {
                       // 0
                       _size.height * 0.033),
                   child: PopHeadingBar(context, "Gate Pass", 22, "null")),
-              myQrWidget(context)
+              myQrWidget(context),
+              // PrettyQr(
+  
+                  
+  
+              //     data: "User_Token_Shared",
+  
+              //   roundEdges: true,
+  
+              //   size:100,
+  
+              //   //  size.width*0.6,
+  
+              //   image: AssetImage("assets/shell.png")
+  
+              //   ),
                 ],
               ),),
               

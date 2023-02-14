@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:zsz/Constant.dart';
+import 'package:zsz/Screens/GatePass_Screen/screen/generate_gate_pass_screen.dart';
+import 'package:zsz/Screens/GatePass_Screen/screen/mygate_pass_screen.dart';
+import 'package:zsz/Screens/GatePass_Screen/widget/gate_pass_history_tile.dart';
 import 'package:zsz/Widgets/Heading_Bar/PopHeadingBar.dart';
 import 'package:zsz/responsive.dart';
 
@@ -15,6 +18,27 @@ class GatePassScreen extends StatelessWidget {
     final theme = Theme.of(context);
     SizeConfig().init(context);
     return Scaffold(
+       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        floatingActionButton: Container(
+          margin: EdgeInsets.only(bottom: 15, right: 10),
+          child: FloatingActionButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>GenerateGatePassScreen()  ));
+              // Navigator.push(context, MaterialPageRoute(builder: (context) => Fun(),));
+              // generateComplain(context, size.height, size.width, theme,
+                  // "Tanker_Type", "Order_Id");
+            },
+            // isExtended: true,
+
+            backgroundColor: theme.primaryColor,
+            shape: CircleBorder(),
+            child: Icon(
+              Icons.add,
+              size: 28,
+            ),
+            // foregroundColor: theme.primaryColor,
+          ),
+        ),
 body: SafeArea(
   child:   Padding(
     padding: EdgeInsets.fromLTRB(_size.width * padding_horizontal,
@@ -33,28 +57,33 @@ body: SafeArea(
              
         Center(
           child: Container( margin: EdgeInsets.only(bottom: 15),
-            child: Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-              child: Container(
-                 padding: EdgeInsets.all(30),
-              
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color:theme.shadowColor ,
-              
+            child: GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>MyGatePassScreen()));
+              },
+              child: Card(
+                elevation: 2,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                child: Container(
+                   padding: EdgeInsets.all(30),
+                
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color:theme.shadowColor ,
+                
+                        ),
+                
+                        child: PrettyQr(
+                          data: "User_Token_Shared",
+                          elementColor: theme.primaryColor,
+                        roundEdges: true,
+                
+                        size:100,
+                
+                        ),
+                
                       ),
-              
-                      child: PrettyQr(
-                        data: "User_Token_Shared",
-                        elementColor: theme.primaryColor,
-                      roundEdges: true,
-              
-                      size:100,
-              
-                      ),
-              
-                    ),
+              ),
             ),
           ),
         ),
@@ -64,75 +93,76 @@ body: SafeArea(
                   child: Text("Visitor History",
                       style: GoogleFonts.ubuntu(
                           fontSize: height(18), color: theme.focusColor))),
+                          gatePassHistoryTile(context, "Farhan Ashraf", "2023-01-31 14:51:40"),
 
-        Container(
-          padding: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: theme.shadowColor
-          ),
-          child: Row(
-            children: [
-               Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                 children: [
-                   Text("Name",
-                          style: GoogleFonts.ubuntu(
-                              fontSize: 15, color: theme.highlightColor)),
-                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 10),
-                     child: Text("Date",
-                            style: GoogleFonts.ubuntu(
-                                fontSize: 15, color: theme.highlightColor)),
-                   ),
-                     Text("Time",
-                          style: GoogleFonts.ubuntu(
-                              fontSize: 15, color: theme.highlightColor)),
-                 ],
-               ),
-               Container(
-                margin: EdgeInsets.symmetric(horizontal: 10),
-                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text(":",
-                            style: GoogleFonts.ubuntu(
-                                fontSize: 15, color: theme.highlightColor)),
-                     Container(
-                      margin: EdgeInsets.symmetric(vertical: 10),
-                       child: Text(":",
-                              style: GoogleFonts.ubuntu(
-                                  fontSize: 15, color: theme.highlightColor)),
-                     ),
-                       Text(":",
-                            style: GoogleFonts.ubuntu(
-                                fontSize: 15, color: theme.highlightColor)),
-                   ],
-                 ),
-               ),
-               Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                 children: [
-                   Text("Farhan",
-                          style: GoogleFonts.ubuntu(
-                              fontSize: 15, color: theme.highlightColor)),
-                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 10),
-                     child: Text("12-May-23",
-                            style: GoogleFonts.ubuntu(
-                                fontSize: 15, color: theme.highlightColor)),
-                   ),
-                     Text("12:03",
-                          style: GoogleFonts.ubuntu(
-                              fontSize: 15, color: theme.highlightColor)),
-                 ],
-               ),
-            ],
-          ),
-        )
+        // Container(
+        //   padding: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+        //   decoration: BoxDecoration(
+        //     borderRadius: BorderRadius.circular(15),
+        //     color: theme.shadowColor
+        //   ),
+        //   child: Row(
+        //     children: [
+        //        Column(
+        //         mainAxisAlignment: MainAxisAlignment.start,
+        //         crossAxisAlignment: CrossAxisAlignment.start,
+        //          children: [
+        //            Text("Name",
+        //                   style: GoogleFonts.ubuntu(
+        //                       fontSize: 15, color: theme.highlightColor)),
+        //            Container(
+        //             margin: EdgeInsets.symmetric(vertical: 10),
+        //              child: Text("Date",
+        //                     style: GoogleFonts.ubuntu(
+        //                         fontSize: 15, color: theme.highlightColor)),
+        //            ),
+        //              Text("Time",
+        //                   style: GoogleFonts.ubuntu(
+        //                       fontSize: 15, color: theme.highlightColor)),
+        //          ],
+        //        ),
+        //        Container(
+        //         margin: EdgeInsets.symmetric(horizontal: 10),
+        //          child: Column(
+        //           mainAxisAlignment: MainAxisAlignment.start,
+        //           crossAxisAlignment: CrossAxisAlignment.start,
+        //            children: [
+        //              Text(":",
+        //                     style: GoogleFonts.ubuntu(
+        //                         fontSize: 15, color: theme.highlightColor)),
+        //              Container(
+        //               margin: EdgeInsets.symmetric(vertical: 10),
+        //                child: Text(":",
+        //                       style: GoogleFonts.ubuntu(
+        //                           fontSize: 15, color: theme.highlightColor)),
+        //              ),
+        //                Text(":",
+        //                     style: GoogleFonts.ubuntu(
+        //                         fontSize: 15, color: theme.highlightColor)),
+        //            ],
+        //          ),
+        //        ),
+        //        Column(
+        //         mainAxisAlignment: MainAxisAlignment.start,
+        //         crossAxisAlignment: CrossAxisAlignment.start,
+        //          children: [
+        //            Text("Farhan",
+        //                   style: GoogleFonts.ubuntu(
+        //                       fontSize: 15, color: theme.highlightColor)),
+        //            Container(
+        //             margin: EdgeInsets.symmetric(vertical: 10),
+        //              child: Text("12-May-23",
+        //                     style: GoogleFonts.ubuntu(
+        //                         fontSize: 15, color: theme.highlightColor)),
+        //            ),
+        //              Text("12:03",
+        //                   style: GoogleFonts.ubuntu(
+        //                       fontSize: 15, color: theme.highlightColor)),
+        //          ],
+        //        ),
+        //     ],
+        //   ),
+        // )
         
     
       ],

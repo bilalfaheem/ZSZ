@@ -94,7 +94,11 @@ dependencies:
 
   permission_handler: ^10.2.0
   pretty_qr_code: ^2.0.2
+  qr_flutter: ^4.0.0
+  dropdown_button2: ^1.9.2
+
   # flutter_background_service: ^2.4.6
+
 
 flutter_icons:
   android: "launcher_icon"
