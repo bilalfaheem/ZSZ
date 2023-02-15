@@ -25,6 +25,7 @@ const ticket = "assets/Icons/ticket.png";
 const zszlogo = "assets/Logo/ZSZSaima.png";
 const zsz = "assets/Logo/ZSZ.png";
 const galleryIcon = "assets/Icons/gallery.png";
+const add = "assets/Icons/add.png";
 const file = "assets/Icons/file.png";
 const send = "assets/Icons/send.png";
 const send2 = "assets/Icons/send2.png";

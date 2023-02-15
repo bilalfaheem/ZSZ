@@ -10,7 +10,6 @@ import 'package:zsz/Screens/Login_Screen/login_screen.dart';
 import 'package:zsz/Screens/Orders_Screen/Screen/orders_screen.dart';
 import 'package:zsz/Screens/Profile_Screen/screen/profile_screen.dart';
 
-
 //         currentTheme.changeTheme();
 
 class Home_Screen extends StatefulWidget {
@@ -29,7 +28,6 @@ class _Home_ScreenState extends State<Home_Screen> {
     GatePassScreen(),
     ComplainScreen(),
     Profile_Screen(),
-    
   ];
 
   @override
@@ -99,7 +97,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                         size: _size.height * 0.04),
                     label: '',
                   ),
-                   BottomNavigationBarItem(
+                  BottomNavigationBarItem(
                     icon: ImageIcon(AssetImage(ticket),
                         size: _size.height * 0.025),
                     label: '',
@@ -116,7 +114,6 @@ class _Home_ScreenState extends State<Home_Screen> {
                         size: _size.height * 0.025),
                     label: '',
                   ),
-                 
                 ],
               ),
             )));

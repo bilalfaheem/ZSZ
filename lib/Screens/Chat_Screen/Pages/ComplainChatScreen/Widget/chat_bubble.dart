@@ -15,7 +15,8 @@ Widget chatBubble(theme, String msgType, String text) {
           //     size.width * 0.027, size.width * 0.1, size.width * 0.027),
           padding: EdgeInsets.all(8),
           decoration: BoxDecoration(
-              color: msgType == "admin" ? theme.shadowColor : Colors.transparent,
+              color:
+                  msgType == "admin" ? theme.shadowColor : Colors.transparent,
               shape: BoxShape.circle),
           child: Image.asset(zsz,
               height: 15,
@@ -31,10 +32,9 @@ Widget chatBubble(theme, String msgType, String text) {
           // left: msgType == "user"?30:0),
           padding: EdgeInsets.all(13),
           decoration: BoxDecoration(
-              color: msgType == "admin"
-                  ? theme.primaryColor
-                  :theme.shadowColor,
-                  //  Color.fromARGB(255, 208, 205, 205),
+              color:
+                  msgType == "admin" ? theme.primaryColor : theme.shadowColor,
+              //  Color.fromARGB(255, 208, 205, 205),
               borderRadius: BorderRadius.only(
                   topRight: msgType == "admin"
                       ? Radius.circular(20)
@@ -44,15 +44,16 @@ Widget chatBubble(theme, String msgType, String text) {
                       : Radius.circular(0),
                   bottomLeft: Radius.circular(20),
                   bottomRight: Radius.circular(20))),
-          child: Text(
-            "$text",
-            style: GoogleFonts.ubuntu(
-                              // fontWeight: FontWeight.w500,
-                              // fontSize: constraints.maxHeight * 0.06,
-                              fontSize: 17,
-                             color:msgType == "admin" ? theme.shadowColor : Colors.black.withOpacity(0.7))
-            //  TextStyle(fontSize: 17, color:msgType == "admin" ? theme.shadowColor : Colors.black.withOpacity(0.7) ),
-          ),
+          child: Text("$text",
+              style: GoogleFonts.ubuntu(
+                  // fontWeight: FontWeight.w500,
+                  // fontSize: constraints.maxHeight * 0.06,
+                  fontSize: 17,
+                  color: msgType == "admin"
+                      ? theme.shadowColor
+                      : Colors.black.withOpacity(0.7))
+              //  TextStyle(fontSize: 17, color:msgType == "admin" ? theme.shadowColor : Colors.black.withOpacity(0.7) ),
+              ),
         ),
       ),
     ],

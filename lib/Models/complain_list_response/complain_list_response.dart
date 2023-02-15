@@ -14,20 +14,19 @@ class ComplainListResponse {
   String? status;
   String? count;
 
-  ComplainListResponse({
-    this.id,
-    this.projectId,
-    this.userId,
-    this.threadReasonId,
-    this.createdAt,
-    this.updatedAt,
-    this.isActive,
-    this.isCompleted,
-    this.isBlock,
-    this.reason,
-    this.status,
-    this.count
-  });
+  ComplainListResponse(
+      {this.id,
+      this.projectId,
+      this.userId,
+      this.threadReasonId,
+      this.createdAt,
+      this.updatedAt,
+      this.isActive,
+      this.isCompleted,
+      this.isBlock,
+      this.reason,
+      this.status,
+      this.count});
 
   factory ComplainListResponse.fromJson(Map<dynamic, dynamic> json) {
     return ComplainListResponse(

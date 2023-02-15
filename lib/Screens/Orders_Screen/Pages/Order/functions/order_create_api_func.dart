@@ -42,7 +42,6 @@ void Create_Order_Api_Func(context, h_size, w_size, theme, User_Id,
       //           context,
       //           MaterialPageRoute(builder: (context) => Order_dialog_pending_dues(context, h_size, w_size, theme);),
       //         );
-
     } else if (Order_Create_Status == "1") {
       //order screen refresh func
       order_screen_r.Order_Screen_Refresh_Status_Func();

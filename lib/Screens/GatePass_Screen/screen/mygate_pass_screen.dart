@@ -12,15 +12,17 @@ class MyGatePassScreen extends StatelessWidget {
     final ThemeData theme = Theme.of(context);
     final _size = MediaQuery.of(context).size;
     return Scaffold(
-      body: SafeArea(child: Padding(padding: EdgeInsets.fromLTRB(_size.width * padding_horizontal,
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(_size.width * padding_horizontal,
               _size.height * padding_top, _size.width * padding_horizontal, 0
               // _size.height * padding_bottom
               ),
-              child: Column(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,                
-                children: [
-                         //heading
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              //heading
               Container(
                   margin: EdgeInsets.fromLTRB(
                       0,
@@ -31,24 +33,22 @@ class MyGatePassScreen extends StatelessWidget {
                   child: PopHeadingBar(context, "Gate Pass", 22, "null")),
               myQrWidget(context),
               // PrettyQr(
-  
-                  
-  
+
               //     data: "User_Token_Shared",
-  
+
               //   roundEdges: true,
-  
+
               //   size:100,
-  
+
               //   //  size.width*0.6,
-  
+
               //   image: AssetImage("assets/shell.png")
-  
+
               //   ),
-                ],
-              ),),
-              
-              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

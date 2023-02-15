@@ -24,44 +24,43 @@ class CustomTheme with ChangeNotifier {
 
   static ThemeData get lightTheme {
     return ThemeData(
-        primaryColor: Color(0xff2c6e49),
-        //  Color(0xff04543c),
-        //  Color(0xff015e8b),//wms color
-        // Color.fromARGB(208, 23, 113, 109),
-        // Colors.green,
-        primaryColorDark: Color(0xff2c6e49),
-        //  Color.fromARGB(255, 4, 68, 100),
-        primaryColorLight: Color.fromARGB(255, 74, 160, 111),
-        //  Color.fromARGB(193, 48, 129, 169),
-        scrollbarTheme: ScrollbarThemeData(
-          thickness: MaterialStateProperty.all(2),
-          thumbColor: MaterialStateProperty.all(
-            Color.fromARGB(21, 0, 0, 0),
-          ),
-          // thumbColor: MaterialStateProperty.all(Colors.grey[500]),
+      primaryColor: Color(0xff2c6e49),
+      //  Color(0xff04543c),
+      //  Color(0xff015e8b),//wms color
+      // Color.fromARGB(208, 23, 113, 109),
+      // Colors.green,
+      primaryColorDark: Color(0xff2c6e49),
+      //  Color.fromARGB(255, 4, 68, 100),
+      primaryColorLight: Color.fromARGB(255, 74, 160, 111),
+      //  Color.fromARGB(193, 48, 129, 169),
+      scrollbarTheme: ScrollbarThemeData(
+        thickness: MaterialStateProperty.all(2),
+        thumbColor: MaterialStateProperty.all(
+          Color.fromARGB(21, 0, 0, 0),
         ),
-        //  Color.fromARGB(208, 23, 113, 109),
-        // Color.fromARGB(177, 38, 116, 38),
+        // thumbColor: MaterialStateProperty.all(Colors.grey[500]),
+      ),
+      //  Color.fromARGB(208, 23, 113, 109),
+      // Color.fromARGB(177, 38, 116, 38),
 //text colors
-        focusColor: Colors.black,
-        scaffoldBackgroundColor: Color(0xffF5F8FA),
-        cardColor: Colors.white,
-        // Color.fromARGB(236, 255, 255, 255),
-        dividerColor: Color.fromARGB(21, 0, 0, 0),
+      focusColor: Colors.black,
+      scaffoldBackgroundColor: Color(0xffF5F8FA),
+      cardColor: Colors.white,
+      // Color.fromARGB(236, 255, 255, 255),
+      dividerColor: Color.fromARGB(21, 0, 0, 0),
 //Card Text
-        highlightColor: Color.fromARGB(135, 0, 0, 0),
-        shadowColor: Color(0xffe9ecef),
+      highlightColor: Color.fromARGB(135, 0, 0, 0),
+      shadowColor: Color(0xffe9ecef),
 
-
-        // textTheme: TextTheme(
-        //   style:
-        //     // headline1: TextStyle(color: Colors.black, fontSize: 19),
-        //     // button: TextStyle(
-        //     //   color: Color.fromRGBO(0, 0, 0, 1),
-        //     //   // fontSize: MediaQuery.of(context).size.height * 0.4
-        //     // )
-        //     )
-        );
+      // textTheme: TextTheme(
+      //   style:
+      //     // headline1: TextStyle(color: Colors.black, fontSize: 19),
+      //     // button: TextStyle(
+      //     //   color: Color.fromRGBO(0, 0, 0, 1),
+      //     //   // fontSize: MediaQuery.of(context).size.height * 0.4
+      //     // )
+      //     )
+    );
   }
 
 // Dark theme data

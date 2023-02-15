@@ -100,7 +100,6 @@ Future<void> Update_Contact_Func(context, h_size, w_size, theme, user_id,
     // else {
     //   print("Error Occur");
     // }
-
   } else {
     print("Error In Else Api Function");
     // return data;

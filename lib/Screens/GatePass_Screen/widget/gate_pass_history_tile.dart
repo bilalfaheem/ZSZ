@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:zsz/Screens/Chat_Screen/Pages/ComplainChatScreen/complain_chat_screen.dart';
 
-Widget gatePassHistoryTile(context,complainType, date) {
+Widget gatePassHistoryTile(context, complainType, date) {
   final size = MediaQuery.of(context).size;
   final theme = Theme.of(context);
   return GestureDetector(
@@ -90,25 +90,23 @@ Widget gatePassHistoryTile(context,complainType, date) {
                       decoration: BoxDecoration(
                           // color: Colors.purple,
                           borderRadius: BorderRadius.circular(30)),
-                      child: Text( DateFormat.MMMEd().format(
-                                            DateTime.parse(date))
-                        ,
+                      child: Text(
+                          DateFormat.MMMEd().format(DateTime.parse(date)),
                           style: GoogleFonts.ubuntu(
                               fontSize: 16, color: theme.highlightColor)),
                     ),
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 10),
                       child: Text("|",
-                            style: GoogleFonts.ubuntu(
-                                fontSize: 16, color: theme.highlightColor)),
+                          style: GoogleFonts.ubuntu(
+                              fontSize: 16, color: theme.highlightColor)),
                     ),
                     Container(
                       padding: EdgeInsets.symmetric(vertical: 3, horizontal: 0),
                       decoration: BoxDecoration(
                           // color: Colors.purple,
                           borderRadius: BorderRadius.circular(30)),
-                      child: Text(DateFormat.jm().format(
-                                            DateTime.parse(date)),
+                      child: Text(DateFormat.jm().format(DateTime.parse(date)),
                           style: GoogleFonts.ubuntu(
                               fontSize: 16, color: theme.highlightColor)),
                     )

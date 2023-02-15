@@ -52,43 +52,48 @@ class ComplainScreen extends StatelessWidget {
                             EdgeInsets.fromLTRB(0, 0, 0, size.height * 0.038),
                         child: PopHeadingBar(context, "Complaint", 22, "null")),
                     Consumer<ComplainScreenProvider>(
-                      builder: (context,value,child) {
-                        return StreamBuilder(
-                            stream: complainListFunc(
-                                    context, userLoginIdShared.toString())
-                                .asStream(),
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return Column(
-                                  children: [
-                                    SizedBox(
-                                      height: size.height / 3.7,
+                        builder: (context, value, child) {
+                      return StreamBuilder(
+                          stream: complainListFunc(
+                                  context, userLoginIdShared.toString())
+                              .asStream(),
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return Column(
+                                children: [
+                                  SizedBox(
+                                    height: size.height / 3.7,
+                                  ),
+                                  const Center(
+                                    child: CircularProgressIndicator(
+                                      color: Colors.black,
                                     ),
-                                    const Center(
-                                      child: CircularProgressIndicator(
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ],
-                                );
-                              } else {
-                                return Container(
-                                  child: ListView.builder(
-                                      reverse: true,
-                                      shrinkWrap: true,
-                                      physics: NeverScrollableScrollPhysics(),
-                                      itemCount: complainList.length,
-                                      itemBuilder: (context, index) {
-                                        final indexx = complainList[index];
-                                        return complainTile(context, size, theme,
-                                            indexx.reason, indexx.status,indexx.id,indexx.count);
-                                      }),
-                                );
-                              }
-                            });
-                      }
-                    ),
+                                  ),
+                                ],
+                              );
+                            } else {
+                              return Container(
+                                child: ListView.builder(
+                                    reverse: true,
+                                    shrinkWrap: true,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    itemCount: complainList.length,
+                                    itemBuilder: (context, index) {
+                                      final indexx = complainList[index];
+                                      return complainTile(
+                                          context,
+                                          size,
+                                          theme,
+                                          indexx.reason,
+                                          indexx.status,
+                                          indexx.id,
+                                          indexx.count);
+                                    }),
+                              );
+                            }
+                          });
+                    }),
                     // Container(
                     //   child: TextField(
                     //     controller: chatSearchController,

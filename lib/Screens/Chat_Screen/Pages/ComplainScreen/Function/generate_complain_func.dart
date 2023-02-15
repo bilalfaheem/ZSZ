@@ -18,7 +18,8 @@ import 'package:zsz/Constant.dart';
 
 Future<void> generateComplainApiFunc(
     context, h_size, w_size, theme, threadReasonId) async {
-  final complainProvider = Provider.of<ComplainScreenProvider>(context,listen:false);
+  final complainProvider =
+      Provider.of<ComplainScreenProvider>(context, listen: false);
   final response =
       await http.post(Uri.parse("${Api_Address}chat/create_thread.php"), body: {
     "project_id": userLoginSociety_id_S,
@@ -45,7 +46,6 @@ Future<void> generateComplainApiFunc(
       // profile list reload for validation of same password
 //ios
       // Active_User_Func(userLoginIdShared.toString(),context);
-
     } else if (createThreadStatus == "2") {
       print("Failed to Change Contactttttt");
       Navigator.pop(context);

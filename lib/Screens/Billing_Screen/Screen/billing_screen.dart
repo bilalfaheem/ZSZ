@@ -124,7 +124,6 @@ class Billing_Screen extends StatelessWidget {
                       //     Index_B.dueDate.toString(),
                       //     Index_B.amount.toString(),
                       //     Index_B.payDate.toString());
-
                     } else {
                       return Gas_bill_widget(
                           context, "....", "....", "....", "....", 1, 1);

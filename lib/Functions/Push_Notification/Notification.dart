@@ -178,7 +178,6 @@ Future<void> notificationFunctionInApp() async {
   // return Future.value(true);
 }
 
-
 // class NotificationsService2 {
 //   final FlutterLocalNotificationsPlugin flutterLocalNoti =
 //       FlutterLocalNotificationsPlugin();

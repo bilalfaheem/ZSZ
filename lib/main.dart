@@ -23,7 +23,6 @@ import 'package:zsz/Theme/theme.dart';
 import 'package:http/http.dart' as http;
 import 'package:workmanager/workmanager.dart';
 
-
 //this is the name given to the background fetch
 const simplePeriodicTask = "PeriodicTask";
 const generalPeriodicTask = "generalPeriodicTask";
@@ -267,8 +266,11 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (_) => ForgetChangePasswordProvider()),
         ChangeNotifierProvider(create: (_) => Otp_Validation_Status_Provider()),
         ChangeNotifierProvider(create: (_) => SocietyNameVisibilityProvider()),
-        ChangeNotifierProvider(create: (_) => SignUpSocietyNameVisibilityProvider()),
-        ChangeNotifierProvider(create: (_) => ComplainScreenProvider(),)
+        ChangeNotifierProvider(
+            create: (_) => SignUpSocietyNameVisibilityProvider()),
+        ChangeNotifierProvider(
+          create: (_) => ComplainScreenProvider(),
+        )
       ],
       child: Builder(builder: (BuildContext context) {
         return MaterialApp(

@@ -675,7 +675,6 @@ class _Sign_Up_ScreenState extends State<Sign_Up_Screen> {
                                 }
                               }
                               // end second round
-
                             } else {
                               return "wrong";
                             }

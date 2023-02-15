@@ -8,82 +8,88 @@ import 'package:zsz/Screens/Chat_Screen/Fucntion/send_msg.dart';
 import 'package:zsz/Screens/Chat_Screen/Pages/ComplainChatScreen/Widget/chat_bubble.dart';
 import 'package:zsz/Screens/Chat_Screen/Pages/ComplainChatScreen/Widget/chat_header_widget.dart';
 
-
 class ComplainChatScreen extends StatefulWidget {
-   String complainType,complainStatus,threadId;
-  ComplainChatScreen({required this.complainType,required this.complainStatus, required this.threadId});
+  String complainType, complainStatus, threadId;
+  ComplainChatScreen(
+      {required this.complainType,
+      required this.complainStatus,
+      required this.threadId});
   // const ComplainChatScreen({super.key});
   @override
-  State<ComplainChatScreen> createState() => _ComplainChatScreenState();}
+  State<ComplainChatScreen> createState() => _ComplainChatScreenState();
+}
 
 class _ComplainChatScreenState extends State<ComplainChatScreen> {
- late StreamController chatController;
+  late StreamController chatController;
   final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
   TextEditingController msgController = TextEditingController();
   bool timerStatus = true;
-      loadChat() async {
-        print(widget.threadId);
+  loadChat() async {
+    print(widget.threadId);
     fetchChat(widget.threadId.toString()).then((res) async {
       chatController.add(res);
       return res;
     });
   }
-      Future<Null> refreshChat() async {
-       print(widget.threadId);
-        print("<<<<<<<<<<<<<<<<<<<<handle Refresh>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
+  Future<Null> refreshChat() async {
+    print(widget.threadId);
+    print("<<<<<<<<<<<<<<<<<<<<handle Refresh>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     fetchChat(widget.threadId.toString()).then((res) async {
       chatController.add(res);
-      
+
       return null;
     });
   }
 
-  sendmessage()async{
-     if(msgController.text.isNotEmpty){
-                  print("msggggggg");
-                  print(msgController.text);
-                  // chatHistoryList.add(ChatHistory(message: msgController.text));
-                  
-                final send = await sendMsg(widget.threadId, msgController.text);
-                msgController.clear();
-                print("<<<<<<<<<<<<<<<<<<<<<<$send>>>>>>>>>>>>>>>>>>>>>>");
-                if(send == true){
-                msgController.clear();
-                 }else if(send == false){
+  sendmessage() async {
+    if (msgController.text.isNotEmpty) {
+      print("msggggggg");
+      print(msgController.text);
+      // chatHistoryList.add(ChatHistory(message: msgController.text));
 
-                 }
-                }}
-
-  reload(){
-         Timer.periodic(Duration(seconds: 1), (timer) {
-          print(timerStatus);
-          switch(timerStatus){
-            case true: refreshChat();
-            break;
-            case false: timer.cancel();
-            break;
-          }
-          // if(timerStatus )
-          // if(timerStatus== false){
-          //   timer.cancel();}
-           });
+      final send = await sendMsg(widget.threadId, msgController.text);
+      msgController.clear();
+      print("<<<<<<<<<<<<<<<<<<<<<<$send>>>>>>>>>>>>>>>>>>>>>>");
+      if (send == true) {
+        msgController.clear();
+      } else if (send == false) {}
+    }
   }
-    @override
+
+  reload() {
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      print(timerStatus);
+      switch (timerStatus) {
+        case true:
+          refreshChat();
+          break;
+        case false:
+          timer.cancel();
+          break;
+      }
+      // if(timerStatus )
+      // if(timerStatus== false){
+      //   timer.cancel();}
+    });
+  }
+
+  @override
   void initState() {
     super.initState();
-    chatController =  StreamController();
+    chatController = StreamController();
     loadChat();
-     reload();
+    reload();
   }
 
-    @override
+  @override
   void dispose() {
-  //  reload().dispose();
-  // loadChat().dispose();
-  timerStatus = false;
-  chatController.close();
-  loadChat().dispose();
-  // reload();
+    //  reload().dispose();
+    // loadChat().dispose();
+    timerStatus = false;
+    chatController.close();
+    loadChat().dispose();
+    // reload();
 // _postsController.close();
     print('Dispose useddddddddddddddddddddddddddddd');
     super.dispose();
@@ -97,15 +103,14 @@ class _ComplainChatScreenState extends State<ComplainChatScreen> {
         body: SafeArea(
             child: Stack(
       children: [
-        
         Column(
           children: [
-            
             Expanded(
               child: Container(
-                 padding: EdgeInsets.only(top: size.height*0.086,bottom: size.height*0.086),
-              //  color: Colors.amber,
-                  height: size.height*0.3,
+                padding: EdgeInsets.only(
+                    top: size.height * 0.086, bottom: size.height * 0.086),
+                //  color: Colors.amber,
+                height: size.height * 0.3,
                 child: SingleChildScrollView(
                   dragStartBehavior: DragStartBehavior.down,
                   // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
@@ -115,82 +120,93 @@ class _ComplainChatScreenState extends State<ComplainChatScreen> {
                     // crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       StreamBuilder(
-              stream: chatController.stream,
-              builder:(BuildContext context, AsyncSnapshot snapshot) {
-                      print('Has error: ${snapshot.hasError}');
-                      print('Has data: ${snapshot.hasData}');
-                      print('Snapshot Data ${snapshot.data}'); 
-            
-                       if (snapshot.hasError) {
-              return Text(snapshot.error.toString());
-                      } if(snapshot.hasData){
-              return Column(
-                children: [
-                  Scrollbar(
-                    child: RefreshIndicator(
-                      onRefresh: refreshChat,
-                    child:ListView.builder(
-                            // reverse: true,
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemCount: chatHistoryList.length,
-                            itemBuilder: (context, index) {
-                              final indexx = chatHistoryList[index];
-                              return
-                              chatBubble(theme, indexx.type.toString(), indexx.message.toString());
-                              //  complainTile(context, size, theme,
-                              //     indexx.reason, indexx.status);
-                            }),))
-                ],
-              );
-              //  StreamBuilder(
-              //             stream: fetchChat("4").asStream(),
-              //             builder: (context, snapshot) {
-                            
-              //               if (snapshot.hasData) 
-              //                {  
-              //                 return Container(
-              //                   child: ListView.builder(
-              //                       reverse: true,
-              //                       shrinkWrap: true,
-              //                       physics: NeverScrollableScrollPhysics(),
-              //                       itemCount: chatHistoryList.length,
-              //                       itemBuilder: (context, index) {
-              //                         final indexx = chatHistoryList[index];
-              //                         return
-              //                         chatBubble(theme, indexx.type.toString(), indexx.message.toString());
-              //                         //  complainTile(context, size, theme,
-              //                         //     indexx.reason, indexx.status);
-              //                       }),
-              //                 );
-              //               } else{
-              //                 return Text("null data");
-              //               }
-              //              });
-                           }
-                     if (snapshot.connectionState != ConnectionState.done) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircularProgressIndicator(color: Colors.black,strokeWidth: 2,),
-                    ],
-                  ),
-                  SizedBox(height: 400,)
-                ],
-              );
-                      }if (!snapshot.hasData &&
-                snapshot.connectionState == ConnectionState.done) {
-              return Text('No Posts');
-                      }
-                      else{
-              return Text("null");
-                      }
-              }
-                      ),
+                          stream: chatController.stream,
+                          builder:
+                              (BuildContext context, AsyncSnapshot snapshot) {
+                            print('Has error: ${snapshot.hasError}');
+                            print('Has data: ${snapshot.hasData}');
+                            print('Snapshot Data ${snapshot.data}');
+
+                            if (snapshot.hasError) {
+                              return Text(snapshot.error.toString());
+                            }
+                            if (snapshot.hasData) {
+                              return Column(
+                                children: [
+                                  Scrollbar(
+                                      child: RefreshIndicator(
+                                    onRefresh: refreshChat,
+                                    child: ListView.builder(
+                                        // reverse: true,
+                                        shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
+                                        itemCount: chatHistoryList.length,
+                                        itemBuilder: (context, index) {
+                                          final indexx = chatHistoryList[index];
+                                          return chatBubble(
+                                              theme,
+                                              indexx.type.toString(),
+                                              indexx.message.toString());
+                                          //  complainTile(context, size, theme,
+                                          //     indexx.reason, indexx.status);
+                                        }),
+                                  ))
+                                ],
+                              );
+                              //  StreamBuilder(
+                              //             stream: fetchChat("4").asStream(),
+                              //             builder: (context, snapshot) {
+
+                              //               if (snapshot.hasData)
+                              //                {
+                              //                 return Container(
+                              //                   child: ListView.builder(
+                              //                       reverse: true,
+                              //                       shrinkWrap: true,
+                              //                       physics: NeverScrollableScrollPhysics(),
+                              //                       itemCount: chatHistoryList.length,
+                              //                       itemBuilder: (context, index) {
+                              //                         final indexx = chatHistoryList[index];
+                              //                         return
+                              //                         chatBubble(theme, indexx.type.toString(), indexx.message.toString());
+                              //                         //  complainTile(context, size, theme,
+                              //                         //     indexx.reason, indexx.status);
+                              //                       }),
+                              //                 );
+                              //               } else{
+                              //                 return Text("null data");
+                              //               }
+                              //              });
+                            }
+                            if (snapshot.connectionState !=
+                                ConnectionState.done) {
+                              return Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      CircularProgressIndicator(
+                                        color: Colors.black,
+                                        strokeWidth: 2,
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 400,
+                                  )
+                                ],
+                              );
+                            }
+                            if (!snapshot.hasData &&
+                                snapshot.connectionState ==
+                                    ConnectionState.done) {
+                              return Text('No Posts');
+                            } else {
+                              return Text("null");
+                            }
+                          }),
                       // StreamBuilder(
                       //             stream: fetchChat("4").asStream(),
                       //             builder: (context, snapshot) {
@@ -216,7 +232,7 @@ class _ComplainChatScreenState extends State<ComplainChatScreen> {
                       //                      physics: NeverScrollableScrollPhysics(),
                       //                       itemCount: chatHistoryList.length,
                       //                       itemBuilder: (context, index) {
-                                              
+
                       //                         final indexx = chatHistoryList[index];
                       //                         print(indexx);
                       //                         return
@@ -227,7 +243,7 @@ class _ComplainChatScreenState extends State<ComplainChatScreen> {
                       //                 );
                       //               }
                       //             }),
-                                 
+
                       // chatBubble(theme, "user", "hello its me"),
                       // chatBubble(theme, "admin",
                       //     "hello from the other side hello from the other side hello from the other side"),
@@ -243,99 +259,98 @@ class _ComplainChatScreenState extends State<ComplainChatScreen> {
         ),
         msgHeader(context, widget.complainType, widget.complainStatus),
         //  chatHeaderWidget(context, size, theme, widget.complainType, widget.complainStatus),
-      // chatHeaderWidget(context, size, theme, complainType, complainStatus),
-          //  msgField(theme, size, msgController, widget.threadId,refreshChat()),
+        // chatHeaderWidget(context, size, theme, complainType, complainStatus),
+        //  msgField(theme, size, msgController, widget.threadId,refreshChat()),
         Column(
-    mainAxisAlignment: MainAxisAlignment.end,
-     children: [
-       Container(
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-        decoration: BoxDecoration(
-            color: theme.shadowColor,
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(10), topRight: Radius.circular(20))),
-        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            // Expanded(
-            //   child: TextField(
-            //     decoration: InputDecoration(
-            //       hintText: "Message..."
-            //     ),
-            //   ),
-            // ),
-            // Container(
-            //     // height: 40,
-            //     // width: 200,
-            //     padding: EdgeInsets.all(5),
-            //     decoration: BoxDecoration(
-            //         color: Colors.white.withOpacity(0.2),
-            //         borderRadius: BorderRadius.circular(10)),
-            //     child: Image.asset(
-            //       file,
-            //       height: 25,
-            //     )),
-            // Container(
-            //     // height: 40,
-            //     margin: EdgeInsets.symmetric(horizontal: 5),
-            //     padding: EdgeInsets.all(5),
-            //     decoration: BoxDecoration(
-            //         color: Colors.white.withOpacity(0.2),
-            //         borderRadius: BorderRadius.circular(10)),
-            //     child: Image.asset(galleryIcon, height: 25)),
-            Flexible(
-              fit: FlexFit.loose,
-              child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 12),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
-                child: TextField(
-                  controller: msgController,
-                  minLines: 1,
-                  maxLines: 4,
-                  style: GoogleFonts.ubuntu(fontSize: 16, color: theme.highlightColor),
-                  decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Message...",
-                      contentPadding: EdgeInsets.symmetric(horizontal: 8)),
-                ),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              decoration: BoxDecoration(
+                  color: theme.shadowColor,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(20))),
+              child: Row(
+                children: [
+                  // Expanded(
+                  //   child: TextField(
+                  //     decoration: InputDecoration(
+                  //       hintText: "Message..."
+                  //     ),
+                  //   ),
+                  // ),
+                  // Container(
+                  //     // height: 40,
+                  //     // width: 200,
+                  //     padding: EdgeInsets.all(5),
+                  //     decoration: BoxDecoration(
+                  //         color: Colors.white.withOpacity(0.2),
+                  //         borderRadius: BorderRadius.circular(10)),
+                  //     child: Image.asset(
+                  //       file,
+                  //       height: 25,
+                  //     )),
+                  // Container(
+                  //     // height: 40,
+                  //     margin: EdgeInsets.symmetric(horizontal: 5),
+                  //     padding: EdgeInsets.all(5),
+                  //     decoration: BoxDecoration(
+                  //         color: Colors.white.withOpacity(0.2),
+                  //         borderRadius: BorderRadius.circular(10)),
+                  //     child: Image.asset(galleryIcon, height: 25)),
+                  Flexible(
+                    fit: FlexFit.loose,
+                    child: Container(
+                      margin: EdgeInsets.symmetric(horizontal: 12),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: TextField(
+                        controller: msgController,
+                        minLines: 1,
+                        maxLines: 4,
+                        style: GoogleFonts.ubuntu(
+                            fontSize: 16, color: theme.highlightColor),
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: "Message...",
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 8)),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      sendmessage();
+                    },
+                    child: Container(
+                        // height: 40,
+                        margin: EdgeInsets.only(left: 5),
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Image.asset(
+                          send,
+                          height: 25,
+                        )),
+                  ),
+                ],
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                sendmessage();
-              },
-              child: Container(
-                  // height: 40,
-                  margin: EdgeInsets.only(left: 5),
-                  padding: EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Image.asset(
-                    send,
-                    height: 25,
-                  )),
-            ),
           ],
-        ),
-  ),
-     ],
-   )
-      
-       
+        )
       ],
     )));
   }
 }
 
-
-Widget msgField(theme,size,msgController,threadId,func){
-  return
-   Column(
+Widget msgField(theme, size, msgController, threadId, func) {
+  return Column(
     mainAxisAlignment: MainAxisAlignment.end,
-     children: [
-       Container(
+    children: [
+      Container(
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         decoration: BoxDecoration(
             color: theme.primaryColor,
@@ -391,12 +406,12 @@ Widget msgField(theme,size,msgController,threadId,func){
             ),
             GestureDetector(
               onTap: (() {
-                if(msgController.text.isNotEmpty){
+                if (msgController.text.isNotEmpty) {
                   print("msggggggg");
                   print(msgController.text);
-                sendMsg("4", msgController.text);
-                msgController.clear();
-                func();
+                  sendMsg("4", msgController.text);
+                  msgController.clear();
+                  func();
                 }
               }),
               child: Container(
@@ -413,9 +428,9 @@ Widget msgField(theme,size,msgController,threadId,func){
             ),
           ],
         ),
-  ),
-     ],
-   );
+      ),
+    ],
+  );
 }
 
 // Widget typeMsg(theme,threadId) {
