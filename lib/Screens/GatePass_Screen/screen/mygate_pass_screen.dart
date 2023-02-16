@@ -30,7 +30,7 @@ class MyGatePassScreen extends StatelessWidget {
                       0,
                       // 0
                       _size.height * 0.033),
-                  child: PopHeadingBar(context, "Gate Pass", 22, "null")),
+                  child: PopHeadingBar(context, "Gate Pass", 22, "Back")),
               myQrWidget(context),
               // PrettyQr(
 
