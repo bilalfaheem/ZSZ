@@ -11,6 +11,7 @@ import 'package:zsz/Provider/Left_Tanker_Count_Provider/left_tanker_count_provid
 import 'package:zsz/Provider/Notification_Icon_Provider/notification_icon_provider.dart';
 import 'package:zsz/Provider/Order_screen_refresh_provider.dart/order_screen_refresh_provider.dart';
 import 'package:zsz/Screens/Chat_Screen/Pages/ComplainScreen/Provider/complain_screen_provider.dart';
+import 'package:zsz/Screens/GatePass_Screen/provider/gate_pass_provider.dart';
 import 'package:zsz/Screens/Home_Screen/home_screen.dart';
 import 'package:zsz/Screens/Login_Screen/Pages/Forget_Change_Password/provider/forget_change_pass_provider.dart';
 import 'package:zsz/Screens/Login_Screen/Pages/Forget_Password/provider/Contact_no_visibility_provider.dart';
@@ -268,6 +269,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (_) => SocietyNameVisibilityProvider()),
         ChangeNotifierProvider(
             create: (_) => SignUpSocietyNameVisibilityProvider()),
+        ChangeNotifierProvider(create: (_) => GatePassProvider()),
         ChangeNotifierProvider(
           create: (_) => ComplainScreenProvider(),
         )

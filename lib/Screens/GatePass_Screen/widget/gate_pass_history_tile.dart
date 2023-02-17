@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:zsz/Screens/Chat_Screen/Pages/ComplainChatScreen/complain_chat_screen.dart';
+import 'package:zsz/Screens/GatePass_Screen/screen/activePass_detail.dart';
+import 'package:zsz/Screens/GatePass_Screen/widget/passDetail.dart';
 
 Widget gatePassHistoryTile(context, complainType, date) {
   final size = MediaQuery.of(context).size;
@@ -13,7 +15,7 @@ Widget gatePassHistoryTile(context, complainType, date) {
       // Navigator.push(
       //     context,
       //     MaterialPageRoute(
-      //       builder: (context) => ComplainChatScreen(complainType: complainType, complaindate: date, threadId: threadId)
+      //       builder: (context) => ActivePassDetail()
       //     ));
     },
     child: Container(

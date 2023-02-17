@@ -10,14 +10,11 @@ import 'package:zsz/Models/VisitorModel/visitorevent/visitorevent.dart';
 List<VisitorContactList> passVisitorContactList = [];
 
 Future<List> passVisitorContactFunc() async {
-  final response =
-      await https.post(Uri.parse("${Api_Address}passes/get_user_contact.php"),
-      body: {
-        "user_id":"1"
-      });
+  final response = await https.post(
+      Uri.parse("${Api_Address}passes/get_user_contact.php"),
+      body: {"user_id": "1"});
 
   if (response.statusCode == 200) {
-
     var data = jsonDecode(response.body.toString());
     // print(data);
     passVisitorContactList.clear();

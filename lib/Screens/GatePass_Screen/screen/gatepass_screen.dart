@@ -2,8 +2,11 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
+import 'package:provider/provider.dart';
 import 'package:zsz/Constant.dart';
 import 'package:zsz/Functions/Visitor_List_Func/pass_event_list.dart';
+import 'package:zsz/Screens/GatePass_Screen/function/get_activepass_func.dart';
+import 'package:zsz/Screens/GatePass_Screen/provider/gate_pass_provider.dart';
 import 'package:zsz/Screens/GatePass_Screen/screen/generate_gate_pass_screen.dart';
 import 'package:zsz/Screens/GatePass_Screen/screen/mygate_pass_screen.dart';
 import 'package:zsz/Screens/GatePass_Screen/widget/gate_pass_history_tile.dart';
@@ -54,12 +57,12 @@ class GatePassScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                  margin: EdgeInsets.fromLTRB(0, 0, 0, _size.height * 0.033),
+                  // margin: EdgeInsets.fromLTRB(0, 0, 0,10),
                   child: PopHeadingBar(context, "My GatePass", 20, "null")),
 
               Center(
                 child: Container(
-                  margin: EdgeInsets.only(bottom: 15),
+                  margin: EdgeInsets.only(bottom: 15,top: 15),
                   child: GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -88,87 +91,112 @@ class GatePassScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
-                  margin: EdgeInsets.fromLTRB(_size.width * 0.018,
-                      _size.height * 0.02, 0, _size.height * 0.02),
-                  child: Text("Visitor History",
-                      style: GoogleFonts.ubuntu(
-                          fontSize: height(18), color: theme.focusColor))),
-              gatePassHistoryTile(
-                  context, "Farhan Ashraf", "2023-01-31 14:51:40"),
+                Container(
+                  margin: EdgeInsets.only(top: 25),
+                  child:
+                      Consumer<GatePassProvider>(builder: (context, value, child) {
+                    return Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                value.changePropPage(0);
+                              },
+                              child: Container(
+                                margin: EdgeInsets.only(right: 18),
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 8, horizontal: 13),
+                                decoration: BoxDecoration(
+                                  color: value.propPage == 0?
+                                  theme.primaryColor:Colors.white ,
+                                    border: Border.all(
+                                        width: 1,
+                                        color: value.propPage == 0
+                                            ? theme.primaryColor
+                                            :theme.primaryColor ),
+                                    borderRadius: BorderRadius.circular(13)),
+                                child: Text("Active Passes",
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      color: value.propPage == 0
+                                          ? Colors.white
+                                          : theme.primaryColor,
+                                    )),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                value.changePropPage(1);
+                              },
+                              child:Container(
+                                margin: EdgeInsets.only(right: 18),
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 8, horizontal: 13),
+                                decoration: BoxDecoration(
+                                  color: value.propPage == 1?
+                                  theme.primaryColor:Colors.white ,
+                                    border: Border.all(
+                                        width: 1,
+                                        color: value.propPage == 1
+                                            ? theme.primaryColor
+                                            : theme.primaryColor),
+                                    borderRadius: BorderRadius.circular(13)),
+                                child: Text("Scaned Passes",
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      color: value.propPage == 1
+                                          ? Colors.white
+                                          : theme.primaryColor,
+                                          fontWeight: FontWeight.w500
+                                    )),
+                              ),
+                            ),
+                          ],
+                        ),
+                        value.propPage == 0?
+                        Column(
+                          children: [
+                            StreamBuilder(
+                            stream: activePassFunc()
+                                .asStream(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return Column(
+                                  children: [
+                                    SizedBox(
+                                      height: _size.height / 3.7,
+                                    ),
+                                    Center(
+                                      child: CircularProgressIndicator(
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              }
+                              else {
+                                return Container(
+                                  child: ListView.builder(
+                                      reverse: true,
+                                      shrinkWrap: true,
+                                      physics: NeverScrollableScrollPhysics(),
+                                      itemCount: activePassList.length,
+                                      itemBuilder: (context, index) {
+                                        return Container();
+                                      }),
+                                );
+                              }
+                            })]):Column()
+                      ],
+                    );
+                  }),
+                ),
 
-              // Container(
-              //   padding: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
-              //   decoration: BoxDecoration(
-              //     borderRadius: BorderRadius.circular(15),
-              //     color: theme.shadowColor
-              //   ),
-              //   child: Row(
-              //     children: [
-              //        Column(
-              //         mainAxisAlignment: MainAxisAlignment.start,
-              //         crossAxisAlignment: CrossAxisAlignment.start,
-              //          children: [
-              //            Text("Name",
-              //                   style: GoogleFonts.ubuntu(
-              //                       fontSize: 15, color: theme.highlightColor)),
-              //            Container(
-              //             margin: EdgeInsets.symmetric(vertical: 10),
-              //              child: Text("Date",
-              //                     style: GoogleFonts.ubuntu(
-              //                         fontSize: 15, color: theme.highlightColor)),
-              //            ),
-              //              Text("Time",
-              //                   style: GoogleFonts.ubuntu(
-              //                       fontSize: 15, color: theme.highlightColor)),
-              //          ],
-              //        ),
-              //        Container(
-              //         margin: EdgeInsets.symmetric(horizontal: 10),
-              //          child: Column(
-              //           mainAxisAlignment: MainAxisAlignment.start,
-              //           crossAxisAlignment: CrossAxisAlignment.start,
-              //            children: [
-              //              Text(":",
-              //                     style: GoogleFonts.ubuntu(
-              //                         fontSize: 15, color: theme.highlightColor)),
-              //              Container(
-              //               margin: EdgeInsets.symmetric(vertical: 10),
-              //                child: Text(":",
-              //                       style: GoogleFonts.ubuntu(
-              //                           fontSize: 15, color: theme.highlightColor)),
-              //              ),
-              //                Text(":",
-              //                     style: GoogleFonts.ubuntu(
-              //                         fontSize: 15, color: theme.highlightColor)),
-              //            ],
-              //          ),
-              //        ),
-              //        Column(
-              //         mainAxisAlignment: MainAxisAlignment.start,
-              //         crossAxisAlignment: CrossAxisAlignment.start,
-              //          children: [
-              //            Text("Farhan",
-              //                   style: GoogleFonts.ubuntu(
-              //                       fontSize: 15, color: theme.highlightColor)),
-              //            Container(
-              //             margin: EdgeInsets.symmetric(vertical: 10),
-              //              child: Text("12-May-23",
-              //                     style: GoogleFonts.ubuntu(
-              //                         fontSize: 15, color: theme.highlightColor)),
-              //            ),
-              //              Text("12:03",
-              //                   style: GoogleFonts.ubuntu(
-              //                       fontSize: 15, color: theme.highlightColor)),
-              //          ],
-              //        ),
-              //     ],
-              //   ),
-              // )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+
+            ]))
+      )
+          );
+}}
