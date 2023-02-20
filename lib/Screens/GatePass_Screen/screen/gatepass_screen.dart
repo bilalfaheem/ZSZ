@@ -22,181 +22,257 @@ class GatePassScreen extends StatelessWidget {
     final theme = Theme.of(context);
     SizeConfig().init(context);
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: Container(
-        margin: EdgeInsets.only(bottom: 15, right: 10),
-        child: FloatingActionButton(
-          onPressed: () {
-            passEventFunc();
-            passDurationFunc();
-            passTypeFunc();
-            passVisitorTypeFunc();
-            passVisitorContactFunc();
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => GenerateGatePassScreen()));
-            // isExtended: true,
-          },
-          backgroundColor: theme.primaryColor,
-          shape: CircleBorder(),
-          child: Icon(
-            Icons.add,
-            size: 28,
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        floatingActionButton: Container(
+          margin: EdgeInsets.only(bottom: 15, right: 10),
+          child: FloatingActionButton(
+            onPressed: () {
+              passEventFunc();
+              passDurationFunc();
+              passTypeFunc();
+              passVisitorTypeFunc();
+              passVisitorContactFunc();
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => GenerateGatePassScreen()));
+              // isExtended: true,
+            },
+            backgroundColor: theme.primaryColor,
+            shape: CircleBorder(),
+            child: Icon(
+              Icons.add,
+              size: 28,
+            ),
+            // foregroundColor: theme.primaryColor,
           ),
-          // foregroundColor: theme.primaryColor,
         ),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(_size.width * padding_horizontal,
-              _size.height * padding_top, _size.width * padding_horizontal, 0
-              // _size.height * padding_bottom
-              ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                  // margin: EdgeInsets.fromLTRB(0, 0, 0,10),
-                  child: PopHeadingBar(context, "My GatePass", 20, "null")),
-
-              Center(
-                child: Container(
-                  margin: EdgeInsets.only(bottom: 15,top: 15),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MyGatePassScreen()));
-                    },
-                    child: Card(
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Container(
-                        padding: EdgeInsets.all(30),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: theme.shadowColor,
-                        ),
-                        child: PrettyQr(
-                          data: "User_Token_Shared",
-                          elementColor: theme.primaryColor,
-                          roundEdges: true,
-                          size: 100,
-                        ),
+        body: SingleChildScrollView(
+          child: SafeArea(
+              child: Padding(
+                  padding: EdgeInsets.fromLTRB(
+                      _size.width * padding_horizontal,
+                      _size.height * padding_top,
+                      _size.width * padding_horizontal,
+                      0
+                      // _size.height * padding_bottom
                       ),
-                    ),
-                  ),
-                ),
-              ),
-                Container(
-                  margin: EdgeInsets.only(top: 25),
-                  child:
-                      Consumer<GatePassProvider>(builder: (context, value, child) {
-                    return Column(
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            GestureDetector(
+                        Container(
+                            // margin: EdgeInsets.fromLTRB(0, 0, 0,10),
+                            child: PopHeadingBar(
+                                context, "My GatePass", 20, "null")),
+                        Center(
+                          child: Container(
+                            margin: EdgeInsets.only(bottom: 15, top: 15),
+                            child: GestureDetector(
                               onTap: () {
-                                value.changePropPage(0);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            MyGatePassScreen()));
                               },
-                              child: Container(
-                                margin: EdgeInsets.only(right: 18),
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 8, horizontal: 13),
-                                decoration: BoxDecoration(
-                                  color: value.propPage == 0?
-                                  theme.primaryColor:Colors.white ,
-                                    border: Border.all(
-                                        width: 1,
-                                        color: value.propPage == 0
-                                            ? theme.primaryColor
-                                            :theme.primaryColor ),
-                                    borderRadius: BorderRadius.circular(13)),
-                                child: Text("Active Passes",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      color: value.propPage == 0
-                                          ? Colors.white
-                                          : theme.primaryColor,
-                                    )),
+                              child: Card(
+                                elevation: 2,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: Container(
+                                  padding: EdgeInsets.all(30),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: theme.shadowColor,
+                                  ),
+                                  child: PrettyQr(
+                                    data: "User_Token_Shared",
+                                    elementColor: theme.primaryColor,
+                                    roundEdges: true,
+                                    size: 100,
+                                  ),
+                                ),
                               ),
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                value.changePropPage(1);
-                              },
-                              child:Container(
-                                margin: EdgeInsets.only(right: 18),
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 8, horizontal: 13),
-                                decoration: BoxDecoration(
-                                  color: value.propPage == 1?
-                                  theme.primaryColor:Colors.white ,
-                                    border: Border.all(
-                                        width: 1,
-                                        color: value.propPage == 1
-                                            ? theme.primaryColor
-                                            : theme.primaryColor),
-                                    borderRadius: BorderRadius.circular(13)),
-                                child: Text("Scaned Passes",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      color: value.propPage == 1
-                                          ? Colors.white
-                                          : theme.primaryColor,
-                                          fontWeight: FontWeight.w500
-                                    )),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                        value.propPage == 0?
-                        Column(
-                          children: [
-                            StreamBuilder(
-                            stream: activePassFunc()
-                                .asStream(),
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return Column(
+                        Container(
+                          margin: EdgeInsets.only(top: 25),
+                          child: Consumer<GatePassProvider>(
+                              builder: (context, value, child) {
+                            return Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    SizedBox(
-                                      height: _size.height / 3.7,
+                                    GestureDetector(
+                                      onTap: () {
+                                        value.changePropPage(0);
+                                      },
+                                      child: Container(
+                                        margin: EdgeInsets.only(right: 18),
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 8, horizontal: 13),
+                                        decoration: BoxDecoration(
+                                            color: value.propPage == 0
+                                                ? theme.primaryColor
+                                                : Colors.white,
+                                            border: Border.all(
+                                                width: 1,
+                                                color: value.propPage == 0
+                                                    ? theme.primaryColor
+                                                    : theme.primaryColor),
+                                            borderRadius:
+                                                BorderRadius.circular(13)),
+                                        child: Text("Active Passes",
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              color: value.propPage == 0
+                                                  ? Colors.white
+                                                  : theme.primaryColor,
+                                            )),
+                                      ),
                                     ),
-                                    Center(
-                                      child: CircularProgressIndicator(
-                                        color: Colors.black,
+                                    GestureDetector(
+                                      onTap: () {
+                                        value.changePropPage(1);
+                                      },
+                                      child: Container(
+                                        margin: EdgeInsets.only(right: 18),
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 8, horizontal: 13),
+                                        decoration: BoxDecoration(
+                                            color: value.propPage == 1
+                                                ? theme.primaryColor
+                                                : Colors.white,
+                                            border: Border.all(
+                                                width: 1,
+                                                color: value.propPage == 1
+                                                    ? theme.primaryColor
+                                                    : theme.primaryColor),
+                                            borderRadius:
+                                                BorderRadius.circular(13)),
+                                        child: Text("Scaned Passes",
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                color: value.propPage == 1
+                                                    ? Colors.white
+                                                    : theme.primaryColor,
+                                                fontWeight: FontWeight.w500)),
                                       ),
                                     ),
                                   ],
-                                );
-                              }
-                              else {
-                                return Container(
-                                  child: ListView.builder(
-                                      reverse: true,
-                                      shrinkWrap: true,
-                                      physics: NeverScrollableScrollPhysics(),
-                                      itemCount: activePassList.length,
-                                      itemBuilder: (context, index) {
-                                        return Container();
-                                      }),
-                                );
-                              }
-                            })]):Column()
-                      ],
-                    );
-                  }),
-                ),
-
-
-            ]))
-      )
-          );
-}}
+                                ),
+                                value.propPage == 0
+                                    ? Container(
+                                        margin:
+                                            EdgeInsets.symmetric(vertical: 20),
+                                        child: Column(children: [
+                                          StreamBuilder(
+                                              stream:
+                                                  activePassFunc().asStream(),
+                                              builder: (context, snapshot) {
+                                                if (snapshot.connectionState ==
+                                                    ConnectionState.waiting) {
+                                                  return Column(
+                                                    children: [
+                                                      SizedBox(
+                                                        height:100
+                                                      ),
+                                                      Center(
+                                                        child:
+                                                            CircularProgressIndicator(
+                                                          color: Colors.black,
+                                                          strokeWidth: 2,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  );
+                                                } else {
+                                                  return Container(
+                                                    child: ListView.builder(
+                                                        // reverse: true,
+                                                        shrinkWrap: true,
+                                                        physics:
+                                                            NeverScrollableScrollPhysics(),
+                                                        itemCount:
+                                                            activePassList
+                                                                .length,
+                                                        itemBuilder:
+                                                            (context, index) {
+                                                          final iteration =
+                                                              activePassList[
+                                                                  index];
+                                                          return gatePassHistoryTile(
+                                                              context,
+                                                              iteration,
+                                                              iteration
+                                                                  .contactName,
+                                                              iteration
+                                                                  .endDate);
+                                                        }),
+                                                  );
+                                                }
+                                              })
+                                        ]),
+                                      )
+                                    :  Container(
+                                        margin:
+                                            EdgeInsets.symmetric(vertical: 20),
+                                        child: Column(children: [
+                                          StreamBuilder(
+                                              stream:
+                                                  scanPassFunc().asStream(),
+                                              builder: (context, snapshot) {
+                                                if (snapshot.connectionState ==
+                                                    ConnectionState.waiting) {
+                                                  return Column(
+                                                    children: [
+                                                      SizedBox(
+                                                        height:100
+                                                      ),
+                                                      Center(
+                                                        child:
+                                                            CircularProgressIndicator(
+                                                          color: Colors.black,
+                                                          strokeWidth: 2,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  );
+                                                } else {
+                                                  return Container(
+                                                    child: ListView.builder(
+                                                        // reverse: true,
+                                                        shrinkWrap: true,
+                                                        physics:
+                                                            NeverScrollableScrollPhysics(),
+                                                        itemCount:
+                                                            scanPassList
+                                                                .length,
+                                                        itemBuilder:
+                                                            (context, index) {
+                                                          final iteration =
+                                                              scanPassList[
+                                                                  index];
+                                                          return gatePassScannedTile(
+                                                              context,
+                                                              iteration
+                                                                  .qrCode,
+                                                              iteration
+                                                                  .isScan
+                                                                  );
+                                                        }),
+                                                  );
+                                                }
+                                              })
+                                        ]),
+                                      )
+                              ],
+                            );
+                          }),
+                        ),
+                      ]))),
+        ));
+  }
+}

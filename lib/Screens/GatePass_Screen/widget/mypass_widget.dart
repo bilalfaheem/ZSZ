@@ -37,15 +37,15 @@ Widget myQrWidget(context) {
             size: 250,
           ),
         ),
-        Text("Scan to Pay",
-            maxLines: 1,
-            textAlign: TextAlign.start,
-            style: GoogleFonts.ubuntu(
-                fontSize: MediaQuery.of(context).size.height * 0.025,
+        // Text("Scan to Pay",
+        //     maxLines: 1,
+        //     textAlign: TextAlign.start,
+        //     style: GoogleFonts.ubuntu(
+        //         fontSize: MediaQuery.of(context).size.height * 0.025,
 
-                // fontWeight: TextWeight,
+        //         // fontWeight: TextWeight,
 
-                color: Theme.of(context).primaryColor)),
+        //         color: Theme.of(context).primaryColor)),
       ],
     ),
   );

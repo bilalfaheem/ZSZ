@@ -38,7 +38,13 @@ class ActivePassDetailScreen extends StatelessWidget {
                       // 0
                       _size.height * 0.033),
                   child: PopHeadingBar(context, "Pass Detail", 22, "Back")),
-              passDetailWidget(context, qrCode, name, passType, event, date)
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(child: passDetailWidget(context, qrCode, name, passType, event, date)),
+                  
+                ],
+              )
               // PrettyQr(
 
               //     data: "User_Token_Shared",

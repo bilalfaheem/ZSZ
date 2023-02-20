@@ -10,7 +10,7 @@ Widget passDetailWidget(context, qrCode, name, passType, event, validTill) {
     color: Theme.of(context).scaffoldBackgroundColor,
     // padding: EdgeInsets.symmetric(vertical: 40),
     child: Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,

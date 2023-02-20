@@ -1,37 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:zsz/Constant.dart';
 import 'package:zsz/Screens/Chat_Screen/Pages/ComplainChatScreen/complain_chat_screen.dart';
 import 'package:zsz/Screens/GatePass_Screen/screen/activePass_detail.dart';
 import 'package:zsz/Screens/GatePass_Screen/widget/passDetail.dart';
 
-Widget gatePassHistoryTile(context, complainType, date) {
+Widget gatePassHistoryTile(context,iteration, complainType, date) {
   final size = MediaQuery.of(context).size;
   final theme = Theme.of(context);
   return GestureDetector(
     // onHorizontalDragEnd: (details) => print(details),
     onTap: () {
       // print(threadId);
-      // Navigator.push(
-      //     context,
-      //     MaterialPageRoute(
-      //       builder: (context) => ActivePassDetail()
-      //     ));
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ActivePassDetailScreen(qrCode: iteration.qrCode.toString(), name: iteration.contactName.toString(), 
+            passType: iteration.passType.toString(), event: iteration.passEvent.toString(), date: date)
+          ));
     },
     child: Container(
-        margin: EdgeInsets.only(top: size.height * 0.01),
+        margin: EdgeInsets.only(top: 12),
         child: ListTile(
-          horizontalTitleGap: size.width * 0.05,
+          horizontalTitleGap: 15,
           selected: false,
-          contentPadding: EdgeInsets.symmetric(
-              horizontal: size.width * 0.05, vertical: size.width * 0.01),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(size.height * 0.02)),
+          // contentPadding: EdgeInsets.symmetric(
+          //     horizontal: size.width * 0.05, vertical: size.width * 0.01),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           tileColor: theme.shadowColor,
           leading: Container(
             // margin: EdgeInsets.fromLTRB(size.width * 0.03,
             //     size.width * 0.027, size.width * 0.1, size.width * 0.027),
-            padding: EdgeInsets.all(size.width * 0.02),
+            padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
                 color: complainType == "tanker"
                     ? theme.primaryColor
@@ -52,65 +54,68 @@ Widget gatePassHistoryTile(context, complainType, date) {
                 // Color.fromARGB(255, 228, 114, 106),
                 shape: BoxShape.circle),
             child: Image.asset(
-              complainType == "tanker"
-                  ? "assets/Icons/Tanker.png"
-                  : complainType == "maintenance"
-                      ? "assets/Icons/Warning.png"
-                      : complainType == "regular"
-                          ? "assets/Logo_app.png"
-                          : complainType == "general"
-                              ? "assets/Logo_app.png"
-                              : "assets/Icons/Warning.png",
+              ticket,
+              // complainType == "tanker"
+              //     ? "assets/Icons/Tanker.png"
+              //     : complainType == "maintenance"
+              //         ? "assets/Icons/Warning.png"
+              //         : complainType == "regular"
+              //             ? "assets/Logo_app.png"
+              //             : complainType == "general"
+              //                 ? "assets/Logo_app.png"
+              //                 : "assets/Icons/Warning.png",
               color: complainType == "regular"
                   ? theme.primaryColor
                   : complainType == "general"
                       ? Colors.red
                       : Colors.white,
-              height: size.height * 0.03,
+              height: 20,
               fit: BoxFit.fill,
             ),
           ),
           title: Text(
               complainType[0].toUpperCase() +
                   complainType.substring(1).toLowerCase(),
-              //  complainType == "tanker"?   complainType.replaceFirst(RegExp(r"t"), "T",0):
-              //       complainType == "maintenance"?  complainType.replaceFirst(RegExp(r"m"), "M",0):
-              //       complainType == "regular"?   complainType.replaceFirst(RegExp(r"r"), "R",0):
-              //        complainType,
-
-              style: GoogleFonts.ubuntu(
-                  fontSize: size.height * 0.021, color: Colors.black)),
+              style: GoogleFonts.ubuntu(fontSize: 15.5, color: Colors.black)),
           subtitle: Container(
-            margin: EdgeInsets.only(top: size.width * 0.012),
+            margin: EdgeInsets.only(top: 4),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                      padding: EdgeInsets.symmetric(vertical: 3, horizontal: 0),
+                      margin: EdgeInsets.only(right: 10),
+                      child: Text("Valid till:",
+                          style: GoogleFonts.ubuntu(
+                              fontSize: 13, color: Colors.black)),
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                       decoration: BoxDecoration(
                           // color: Colors.purple,
                           borderRadius: BorderRadius.circular(30)),
                       child: Text(
                           DateFormat.MMMEd().format(DateTime.parse(date)),
                           style: GoogleFonts.ubuntu(
-                              fontSize: 16, color: theme.highlightColor)),
+                              fontSize: 14, color: theme.highlightColor)),
                     ),
                     Container(
-                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      margin: EdgeInsets.symmetric(horizontal: 3),
                       child: Text("|",
                           style: GoogleFonts.ubuntu(
-                              fontSize: 16, color: theme.highlightColor)),
+                              fontSize: 14, color: theme.highlightColor)),
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(vertical: 3, horizontal: 0),
+                      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                       decoration: BoxDecoration(
                           // color: Colors.purple,
                           borderRadius: BorderRadius.circular(30)),
                       child: Text(DateFormat.jm().format(DateTime.parse(date)),
                           style: GoogleFonts.ubuntu(
-                              fontSize: 16, color: theme.highlightColor)),
+                              fontSize: 14, color: theme.highlightColor)),
                     )
                   ],
                 ),
@@ -143,15 +148,117 @@ Widget gatePassHistoryTile(context, complainType, date) {
               //         style: GoogleFonts.ubuntu(
               //             fontSize: 16, color: Colors.white)),
               // ),
-              IconButton(
-                onPressed: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) => ComplainChatScreen(complainType: complainType, complaindate: date, threadId: threadId)
-                  //     ));
-                },
-                icon: Icon(
+              Container(
+                // color: Colors.amber,
+                child: Icon(
+                  Icons.arrow_forward_ios,
+                  color: theme.primaryColor,
+                ),
+              ),
+            ],
+          ),
+        )),
+  );
+}
+Widget gatePassScannedTile(context, complainType, date) {
+  final size = MediaQuery.of(context).size;
+  final theme = Theme.of(context);
+  return GestureDetector(
+    onTap: () {
+      // print(threadId);
+      // Navigator.push(
+      //     context,
+      //     MaterialPageRoute(
+      //       builder: (context) => ActivePassDetail()
+      //     ));
+    },
+    child: Container(
+        margin: EdgeInsets.only(top: 12),
+        child: ListTile(
+          horizontalTitleGap: 15,
+          selected: false,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          tileColor: theme.shadowColor,
+          leading: Container(
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                color: complainType == "tanker"
+                    ? theme.primaryColor
+                    :
+                    complainType == "maintenance"
+                        ? Color.fromARGB(191, 238, 62, 49)
+                        : complainType == "regular" || complainType == "general"
+                            ? Colors.white
+                            :
+                            theme.primaryColor,
+                shape: BoxShape.circle),
+            child: Image.asset(
+              ticket,
+              color: complainType == "regular"
+                  ? theme.primaryColor
+                  : complainType == "general"
+                      ? Colors.red
+                      : Colors.white,
+              height: 20,
+              fit: BoxFit.fill,
+            ),
+          ),
+          title: Text(
+              complainType[0].toUpperCase() +
+                  complainType.substring(1).toLowerCase(),
+              style: GoogleFonts.ubuntu(fontSize: 15.5, color: Colors.black)),
+          subtitle: Container(
+            margin: EdgeInsets.only(top: 4),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(right: 10),
+                      child: Text("Expired at:",
+                          style: GoogleFonts.ubuntu(
+                              fontSize: 13, color: Colors.black)),
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+                      decoration: BoxDecoration(
+                          // color: Colors.purple,
+                          borderRadius: BorderRadius.circular(30)),
+                      child: Text(
+                          DateFormat.MMMEd().format(DateTime.parse(date)),
+                          style: GoogleFonts.ubuntu(
+                              fontSize: 14, color: theme.highlightColor)),
+                    ),
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 3),
+                      child: Text("|",
+                          style: GoogleFonts.ubuntu(
+                              fontSize: 14, color: theme.highlightColor)),
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+                      decoration: BoxDecoration(
+                          // color: Colors.purple,
+                          borderRadius: BorderRadius.circular(30)),
+                      child: Text(DateFormat.jm().format(DateTime.parse(date)),
+                          style: GoogleFonts.ubuntu(
+                              fontSize: 14, color: theme.highlightColor)),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                // color: Colors.amber,
+                child: Icon(
                   Icons.arrow_forward_ios,
                   color: theme.primaryColor,
                 ),
