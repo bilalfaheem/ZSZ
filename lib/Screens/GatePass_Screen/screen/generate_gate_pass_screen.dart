@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:zsz/Constant.dart';
 import 'package:zsz/Functions/Visitor_List_Func/pass_event_list.dart';
 import 'package:zsz/Screens/GatePass_Screen/function/generatePassApi.dart';
+import 'package:zsz/Screens/GatePass_Screen/provider/gate_pass_provider.dart';
 import 'package:zsz/Widgets/Heading_Bar/PopHeadingBar.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:zsz/responsive.dart';
@@ -127,6 +129,7 @@ class _GenerateGatePassScreenState extends State<GenerateGatePassScreen> {
     final size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
     SizeConfig().init(context);
+    final gatePassProvider = Provider.of<GatePassProvider>(context);
     return Scaffold(
         body: SafeArea(
             child: SingleChildScrollView(
@@ -816,10 +819,10 @@ class _GenerateGatePassScreenState extends State<GenerateGatePassScreen> {
                           );
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         } else {
-                          print(DateTime.now().toString());
-                          print(
-                              "eventID$eventId passTypeId$passTypeId passDurationId$passDurationId passContactId$passContactId visitorTYpeID$visitorTypeId");
-                          print("APi");
+                          // print(DateTime.now().toString());
+                          // print(
+                          //     "eventID$eventId passTypeId$passTypeId passDurationId$passDurationId passContactId$passContactId visitorTYpeID$visitorTypeId");
+                          // print("APi");
                           // generate();
                           generatePassFunc(
                               context,
@@ -831,6 +834,7 @@ class _GenerateGatePassScreenState extends State<GenerateGatePassScreen> {
                               passContactId,
                               contactNameController.text.toString(),
                               contactNoController.text.toString());
+                              gatePassProvider.reloadFunc();
                         }
                       }
                       if (contactVisibility == true) {
@@ -849,6 +853,7 @@ class _GenerateGatePassScreenState extends State<GenerateGatePassScreen> {
                           print("fill form Field............");
                         } else {
                           print("API Api");
+
                           generatePassFunc(
                               context,
                               contactVisibility,
@@ -859,6 +864,7 @@ class _GenerateGatePassScreenState extends State<GenerateGatePassScreen> {
                               passContactId,
                               contactNameController.text.toString(),
                               contactNoController.text.toString());
+                              gatePassProvider.reloadFunc();
                         }
                       }
                     },

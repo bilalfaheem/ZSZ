@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as https;
+import 'package:provider/provider.dart';
 import 'package:zsz/Constant.dart';
 import 'package:zsz/Models/chat_history/chat_history.dart';
+import 'package:zsz/Screens/GatePass_Screen/provider/gate_pass_provider.dart';
 import 'package:zsz/Screens/GatePass_Screen/screen/activePass_detail.dart';
 import 'package:zsz/Screens/Setting/Pages/Update_Password.dart/Dialog_box/Failed_Success_Dialog_Box.dart';
 import 'package:zsz/Screens/Setting/Pages/Update_Password.dart/Dialog_box/Pass_Success_Dialog_Box.dart';
@@ -17,14 +19,15 @@ Future generatePassFunc(
     userContacId,
     userContactName,
     userContactNo) async {
-  print("Generate Pass");
-  print(status);
-  print(userContactName);
-  print(userContactNo);
-  print(
-      "eventID$eventTypeId passTypeId$passTypeId passDurationId$passValidityId passContactId$userContacId visitorTYpeID$visitorTypeId");
+  // print("Generate Pass");
+  // print(status);
+  // print(userContactName);
+  // print(userContactNo);
+  // print(
+  //     "eventID$eventTypeId passTypeId$passTypeId passDurationId$passValidityId passContactId$userContacId visitorTYpeID$visitorTypeId");
   final size = MediaQuery.of(context).size;
   final theme = Theme.of(context);
+  final gatePassProvider = Provider.of<GatePassProvider>(context,listen: false);
 
   final response = await https.post(
       Uri.parse("https://cybernsoft.com/api/passes/create_pass.php"),
@@ -55,6 +58,7 @@ Future generatePassFunc(
     print(dataStatus);
 
     if (dataStatus == "200") {
+      gatePassProvider.reloadFunc();
       print("<<<<<<<<<<<<<<<<<<<<<<<<<Succesful>>>>>>>>>>>>>>>>>>>>>>>>>");
       print(data["message"]);
       var dataResponse = data["response"];

@@ -10,7 +10,7 @@ List<ActivePassModel> activePassList = [];
 Future<List<ActivePassModel>> activePassFunc() async {
   final response = await https.post(
       Uri.parse("${Api_Address}passes/active_passes.php"),
-      body: {"address_id": "1"});
+      body: {"address_id": userLoginAddress_Id_S});
   print("hittttttttt");
 
   if (response.statusCode == 200) {
@@ -31,7 +31,7 @@ List<ScanPassModel> scanPassList = [];
 Future<List<ScanPassModel>> scanPassFunc() async {
   final response = await https.post(
       Uri.parse("${Api_Address}passes/scan_passes.php"),
-      body: {"address_id": "1"});
+      body: {"address_id": userLoginAddress_Id_S});
   print("hittttttttt");
 
   if (response.statusCode == 200) {

@@ -13,13 +13,29 @@ import 'package:zsz/Screens/GatePass_Screen/widget/gate_pass_history_tile.dart';
 import 'package:zsz/Widgets/Heading_Bar/PopHeadingBar.dart';
 import 'package:zsz/responsive.dart';
 
-class GatePassScreen extends StatelessWidget {
+class GatePassScreen extends StatefulWidget {
   const GatePassScreen({super.key});
 
+  @override
+  State<GatePassScreen> createState() => _GatePassScreenState();
+}
+
+class _GatePassScreenState extends State<GatePassScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+      passEventFunc();
+      passDurationFunc();
+      passTypeFunc();
+      passVisitorTypeFunc();
+      passVisitorContactFunc();
+  }
   @override
   Widget build(BuildContext context) {
     final _size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
+    
     SizeConfig().init(context);
     return Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -27,11 +43,11 @@ class GatePassScreen extends StatelessWidget {
           margin: EdgeInsets.only(bottom: 15, right: 10),
           child: FloatingActionButton(
             onPressed: () {
-              passEventFunc();
-              passDurationFunc();
-              passTypeFunc();
-              passVisitorTypeFunc();
-              passVisitorContactFunc();
+              // passEventFunc();
+              // passDurationFunc();
+              // passTypeFunc();
+              // passVisitorTypeFunc();
+              // passVisitorContactFunc();
               Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -152,7 +168,7 @@ class GatePassScreen extends StatelessWidget {
                                                     : theme.primaryColor),
                                             borderRadius:
                                                 BorderRadius.circular(13)),
-                                        child: Text("Scaned Passes",
+                                        child: Text("Scanned Passes",
                                             style: TextStyle(
                                                 fontSize: 15,
                                                 color: value.propPage == 1
@@ -258,7 +274,7 @@ class GatePassScreen extends StatelessWidget {
                                                           return gatePassScannedTile(
                                                               context,
                                                               iteration
-                                                                  .qrCode,
+                                                                  .contactName,
                                                               iteration
                                                                   .isScan
                                                                   );

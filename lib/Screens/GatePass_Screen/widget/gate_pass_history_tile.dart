@@ -253,18 +253,18 @@ Widget gatePassScannedTile(context, complainType, date) {
               ],
             ),
           ),
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                // color: Colors.amber,
-                child: Icon(
-                  Icons.arrow_forward_ios,
-                  color: theme.primaryColor,
-                ),
-              ),
-            ],
-          ),
+          // trailing: Row(
+          //   mainAxisSize: MainAxisSize.min,
+          //   children: [
+          //     Container(
+          //       // color: Colors.amber,
+          //       child: Icon(
+          //         Icons.arrow_forward_ios,
+          //         color: theme.primaryColor,
+          //       ),
+          //     ),
+          //   ],
+          // ),
         )),
   );
 }

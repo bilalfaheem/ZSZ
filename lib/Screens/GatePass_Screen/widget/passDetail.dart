@@ -7,6 +7,7 @@ import 'package:zsz/Constant.dart';
 Widget passDetailWidget(context, qrCode, name, passType, event, validTill) {
   final theme = Theme.of(context);
   return Container(
+    margin: EdgeInsets.symmetric(vertical: 20),
     color: Theme.of(context).scaffoldBackgroundColor,
     // padding: EdgeInsets.symmetric(vertical: 40),
     child: Column(
@@ -197,14 +198,28 @@ Widget passDetailWidget(context, qrCode, name, passType, event, validTill) {
                             ),
                             Container(
                               margin: EdgeInsets.only(bottom: 10),
-                              child: Text(
-                                  DateFormat.MMMEd()
-                                      .format(DateTime.parse(validTill)),
-                                  maxLines: 1,
-                                  textAlign: TextAlign.start,
-                                  style: GoogleFonts.ubuntu(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w600)),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                          DateFormat.jm().format(
+                                              DateTime.parse(validTill)),
+                                          textAlign: TextAlign.left,
+                                          style: GoogleFonts.ubuntu(
+                                              fontSize: 17,
+                                              color: theme.focusColor,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                  Text(
+                                      DateFormat.MMMEd()
+                                          .format(DateTime.parse(validTill)),
+                                      maxLines: 1,
+                                      textAlign: TextAlign.start,
+                                      style: GoogleFonts.ubuntu(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w600)),
+                                ],
+                              ),
                             ),
                           ],
                         )

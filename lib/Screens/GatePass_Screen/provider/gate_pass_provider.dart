@@ -7,8 +7,17 @@ class GatePassProvider with ChangeNotifier {
   int _propPage = 0;
   int get propPage => _propPage;
 
+  bool _reload = true;
+  bool get reload => _reload;
+
   void changePage(String pageType) {
     _pageType = pageType;
+    notifyListeners();
+  }
+
+  void reloadFunc (){
+    print('<<<<<<<<<<<reload>>>>>>>>>>>');
+    _reload = !_reload;
     notifyListeners();
   }
 

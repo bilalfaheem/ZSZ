@@ -11,6 +11,7 @@ class ScanPassModel {
   String? createdAt;
   dynamic updatedAt;
   dynamic deletedAt;
+  String? contactName;
 
   ScanPassModel({
     this.id,
@@ -23,6 +24,7 @@ class ScanPassModel {
     this.createdAt,
     this.updatedAt,
     this.deletedAt,
+    this.contactName
   });
 
   factory ScanPassModel.fromJson(Map<dynamic, dynamic> json) => ScanPassModel(
@@ -36,6 +38,7 @@ class ScanPassModel {
         createdAt: json['created_at'] as String?,
         updatedAt: json['updated_at'] as dynamic,
         deletedAt: json['deleted_at'] as dynamic,
+        contactName: json['contact_name'] as String?,
       );
 
   Map<String, dynamic> toJson() => {
@@ -49,6 +52,7 @@ class ScanPassModel {
         'created_at': createdAt,
         'updated_at': updatedAt,
         'deleted_at': deletedAt,
+        'contact_name':contactName
       };
 
   @override
@@ -70,5 +74,6 @@ class ScanPassModel {
       isWhatsapp.hashCode ^
       createdAt.hashCode ^
       updatedAt.hashCode ^
-      deletedAt.hashCode;
+      deletedAt.hashCode ^
+      contactName.hashCode;
 }
