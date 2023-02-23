@@ -101,6 +101,8 @@ dependencies:
   open_file: ^3.2.1
   flutter_share: ^2.0.0
   external_path: ^1.0.3
+  share_plus: ^4.5.3
+
 
 
 

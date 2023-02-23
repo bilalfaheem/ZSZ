@@ -13,7 +13,7 @@ import 'package:screenshot/screenshot.dart';
 import 'package:zsz/Constant.dart';
 import 'package:zsz/Screens/GatePass_Screen/function/save_pass.dart';
 import 'package:zsz/Screens/GatePass_Screen/provider/gate_pass_provider.dart';
-import 'package:zsz/Screens/GatePass_Screen/widget/mypass_widget.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:zsz/Screens/GatePass_Screen/widget/passDetail.dart';
 import 'package:zsz/responsive.dart';
 
@@ -58,11 +58,11 @@ class ActivePassDetailScreen extends StatelessWidget {
       IconButton(
           onPressed: () {
                   Navigator.pop(context);
-      //             Timer(
-      // Duration(seconds: 2),
-      // (){
-      //   gatePassProvider.reloadFunc();
-      // });
+                  Timer(
+      Duration(seconds: 2),
+      (){
+        gatePassProvider.reloadFunc();
+      });
                 },
           icon: Icon(
                       Icons.arrow_back_ios,
@@ -102,6 +102,8 @@ class ActivePassDetailScreen extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: ()async{
+                     
+                      print("share");
                       await passSSController.capture().then((image)async{
                         if(image != null){
                           final directory = await ExternalPath.getExternalStoragePublicDirectory(ExternalPath.DIRECTORY_DOWNLOADS);
@@ -109,7 +111,9 @@ class ActivePassDetailScreen extends StatelessWidget {
                           final imagePath = await io.File('${directory}/$v.png').create();
                           await imagePath.writeAsBytes(image);
                           print(imagePath.path);
-                           await FlutterShare.shareFile(title: "Pass", filePath: imagePath.path);
+                          await  Share.shareFiles([imagePath.path]);
+                          // .shareXFiles(XFile(imagePath.path))
+                            // await FlutterShare.shareFile(title: "Pass", filePath: imagePath.path);
                           // await Share
                           
 

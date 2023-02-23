@@ -180,58 +180,62 @@ class _GatePassScreenState extends State<GatePassScreen> {
                                   ],
                                 ),
                                 value.propPage == 0
-                                    ? Container(
-                                        margin:
-                                            EdgeInsets.symmetric(vertical: 20),
-                                        child: Column(children: [
-                                          StreamBuilder(
-                                              stream:
-                                                  activePassFunc().asStream(),
-                                              builder: (context, snapshot) {
-                                                if (snapshot.connectionState ==
-                                                    ConnectionState.waiting) {
-                                                  return Column(
-                                                    children: [
-                                                      SizedBox(
-                                                        height:100
-                                                      ),
-                                                      Center(
-                                                        child:
-                                                            CircularProgressIndicator(
-                                                          color: Colors.black,
-                                                          strokeWidth: 2,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  );
-                                                } else {
-                                                  return Container(
-                                                    child: ListView.builder(
-                                                        // reverse: true,
-                                                        shrinkWrap: true,
-                                                        physics:
-                                                            NeverScrollableScrollPhysics(),
-                                                        itemCount:
-                                                            activePassList
-                                                                .length,
-                                                        itemBuilder:
-                                                            (context, index) {
-                                                          final iteration =
-                                                              activePassList[
-                                                                  index];
-                                                          return gatePassHistoryTile(
-                                                              context,
-                                                              iteration,
-                                                              iteration
-                                                                  .contactName,
-                                                              iteration
-                                                                  .endDate);
-                                                        }),
-                                                  );
-                                                }
-                                              })
-                                        ]),
-                                      )
+                                    ? Consumer<GatePassProvider>(
+                                      builder: (context,value,child) {
+                                        return Container(
+                                            margin:
+                                                EdgeInsets.symmetric(vertical: 20),
+                                            child: Column(children: [
+                                              StreamBuilder(
+                                                  stream:
+                                                      activePassFunc().asStream(),
+                                                  builder: (context, snapshot) {
+                                                    if (snapshot.connectionState ==
+                                                        ConnectionState.waiting) {
+                                                      return Column(
+                                                        children: [
+                                                          SizedBox(
+                                                            height:100
+                                                          ),
+                                                          Center(
+                                                            child:
+                                                                CircularProgressIndicator(
+                                                              color: Colors.black,
+                                                              strokeWidth: 2,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    } else {
+                                                      return Container(
+                                                        child: ListView.builder(
+                                                             reverse: true,
+                                                            shrinkWrap: true,
+                                                            physics:
+                                                                NeverScrollableScrollPhysics(),
+                                                            itemCount:
+                                                                activePassList
+                                                                    .length,
+                                                            itemBuilder:
+                                                                (context, index) {
+                                                              final iteration =
+                                                                  activePassList[
+                                                                      index];
+                                                              return gatePassHistoryTile(
+                                                                  context,
+                                                                  iteration,
+                                                                  iteration
+                                                                      .contactName,
+                                                                  iteration
+                                                                      .endDate);
+                                                            }),
+                                                      );
+                                                    }
+                                                  })
+                                            ]),
+                                          );
+                                      }
+                                    )
                                     :  Container(
                                         margin:
                                             EdgeInsets.symmetric(vertical: 20),
@@ -259,7 +263,7 @@ class _GatePassScreenState extends State<GatePassScreen> {
                                                 } else {
                                                   return Container(
                                                     child: ListView.builder(
-                                                        // reverse: true,
+                                                         reverse: true,
                                                         shrinkWrap: true,
                                                         physics:
                                                             NeverScrollableScrollPhysics(),

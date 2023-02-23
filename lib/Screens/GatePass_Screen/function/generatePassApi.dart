@@ -84,27 +84,27 @@ Future generatePassFunc(
   }
 }
 
-Future generate() async {
-  print("generate");
-  final Response = await https.post(
-      Uri.parse("https://cybernsoft.com/api/passes/create_pass.php"),
-      body: {
-        "address_id": "1",
-        "pass_type_id": "1",
-        "pass_date": "2023-02-02 05:05:05",
-        "event_type_id": "1",
-        "visitor_type_id": "1",
-        "pass_validity_id": "1",
-        "user_contact_id": "3"
-      });
+// Future generate() async {
+//   print("generate");
+//   final Response = await https.post(
+//       Uri.parse("https://cybernsoft.com/api/passes/create_pass.php"),
+//       body: {
+//         "address_id": "1",
+//         "pass_type_id": "1",
+//         "pass_date": "2023-02-02 05:05:05",
+//         "event_type_id": "1",
+//         "visitor_type_id": "1",
+//         "pass_validity_id": "1",
+//         "user_contact_id": "3"
+//       });
 
-  if (Response.statusCode == 200) {
-    var data = jsonDecode(Response.body.toString());
-    print(data);
-  } else {
-    print("Error");
-  }
-}
+//   if (Response.statusCode == 200) {
+//     var data = jsonDecode(Response.body.toString());
+//     print(data);
+//   } else {
+//     print("Error");
+//   }
+// }
 
 // Future<List> getNotification() async {
 //   final response = await https
