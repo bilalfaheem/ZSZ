@@ -29,13 +29,13 @@ Widget passDetailWidget(context, qrCode, name, passType, event, validTill) {
                 //  image: AssetImage(zsz),
                 roundEdges: true,
 
-                size: 250,
+                size: 200,
               ),
             ),
           ],
         ),
         Container(
-          margin: EdgeInsets.only(top: 20),
+          margin: EdgeInsets.only(top: 10),
           child: Card(
             // color: Colors.amber,
 

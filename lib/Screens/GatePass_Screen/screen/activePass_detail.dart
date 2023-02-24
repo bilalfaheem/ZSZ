@@ -1,20 +1,17 @@
 import 'dart:async';
 import 'dart:io' as io;
-import 'dart:typed_data';
 import 'package:external_path/external_path.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_share/flutter_share.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:open_file/open_file.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:provider/provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:zsz/Constant.dart';
-import 'package:zsz/Screens/GatePass_Screen/function/save_pass.dart';
+import 'package:cross_file/cross_file.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:zsz/Screens/GatePass_Screen/provider/gate_pass_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:zsz/Screens/GatePass_Screen/widget/passDetail.dart';
+import 'package:zsz/Screens/fun.dart';
 import 'package:zsz/responsive.dart';
 
 class ActivePassDetailScreen extends StatelessWidget {
@@ -28,6 +25,12 @@ class ActivePassDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+  /// Get storage premission request from user
+  Future<bool> getStoragePremission() async {
+    return await Permission.storage.request().isGranted;
+  }
+  
     final ThemeData theme = Theme.of(context);
     final _size = MediaQuery.of(context).size;
     SizeConfig().init(context);
@@ -58,11 +61,11 @@ class ActivePassDetailScreen extends StatelessWidget {
       IconButton(
           onPressed: () {
                   Navigator.pop(context);
-                  Timer(
-      Duration(seconds: 2),
-      (){
-        gatePassProvider.reloadFunc();
-      });
+      //             Timer(
+      // Duration(seconds: 2),
+      // (){
+      //   gatePassProvider.reloadFunc();
+      // });
                 },
           icon: Icon(
                       Icons.arrow_back_ios,
@@ -102,21 +105,29 @@ class ActivePassDetailScreen extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: ()async{
-                     
                       print("share");
                       await passSSController.capture().then((image)async{
+                        print("Capture");
                         if(image != null){
+                          print("not Null");
+                          if(await getStoragePremission()){
                           final directory = await ExternalPath.getExternalStoragePublicDirectory(ExternalPath.DIRECTORY_DOWNLOADS);
                           final String v = name.split(" ").first;
-                          final imagePath = await io.File('${directory}/$v.png').create();
-                          await imagePath.writeAsBytes(image);
-                          print(imagePath.path);
-                          await  Share.shareFiles([imagePath.path]);
-                          // .shareXFiles(XFile(imagePath.path))
-                            // await FlutterShare.shareFile(title: "Pass", filePath: imagePath.path);
-                          // await Share
+                          final String d = date.split(":").last;
+                          String downloadImagePath = '${directory}/${v+d}.png';
+                          final bool fileExist = await io.File(downloadImagePath).exists();
+                          print("<<<<<<<<<<<<<<<<<<<<<$fileExist>>>>>>>>>>>>>>>>>>>>>");
+                          if(!fileExist){
+                            final imagePath = await io.File(downloadImagePath).create();
+                           await imagePath.writeAsBytes(image);
+                           downloadImagePath = imagePath.path;
+                          }
                           
-
+                           List<XFile> shareList = [];
+                           shareList.add(XFile(downloadImagePath));
+                          // print(imagePath.path);
+                          print(shareList);
+                          await Share.shareXFiles(shareList,text: "$userLoginSociety_S Gate Pass");}
                         }
                       });
                     },
