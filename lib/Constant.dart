@@ -9,6 +9,7 @@ String userLoginPassword_S = "null";
 String userLoginupdate_S = "null";
 String userLoginSociety_S = "null";
 String userLoginSociety_id_S = "null";
+String userLoginQr_S = "null";
 
 // static values
 

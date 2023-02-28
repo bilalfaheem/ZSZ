@@ -32,7 +32,7 @@ Future<void> Login_Post_Api(
 
   if (response.statusCode == 200) {
     userLoginData = jsonDecode(response.body.toString());
-
+print(userLoginData);
     print('Post Succesfull');
     L_status = userLoginData[0]["status"];
     print("Status $L_status");
@@ -62,6 +62,7 @@ Future<void> Login_Post_Api(
       pref.setString("userLoginUpdate", userLoginData[0]["is_updated"]);
       pref.setString("userLoginSociety", userLoginData[0]["project_title"]);
       pref.setString("userLoginSociety_Id", userLoginData[0]["project_id"]);
+      pref.setString("userLoginQr", userLoginData[0]["qr_code"]);
 
       //1.0.3
       Shared_Pref_Login_Id_Func();

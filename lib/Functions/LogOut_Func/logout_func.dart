@@ -19,6 +19,7 @@ LogOut_Func(context, bool Loading) async {
   userLoginupdate_S = "null";
   userLoginSociety_S = "null";
   userLoginSociety_id_S = "null";
+  userLoginQr_S = "null";
 
   Timer(
       Duration(seconds: Loading ? 2 : 0),

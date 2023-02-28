@@ -105,6 +105,7 @@ class ActivePassDetailScreen extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: ()async{
+                      print(name);
                       print("share");
                       await passSSController.capture().then((image)async{
                         print("Capture");
@@ -115,6 +116,7 @@ class ActivePassDetailScreen extends StatelessWidget {
                           final String v = name.split(" ").first;
                           final String d = date.split(":").last;
                           String downloadImagePath = '${directory}/${v+d}.png';
+                          print(downloadImagePath);
                           final bool fileExist = await io.File(downloadImagePath).exists();
                           print("<<<<<<<<<<<<<<<<<<<<<$fileExist>>>>>>>>>>>>>>>>>>>>>");
                           if(!fileExist){

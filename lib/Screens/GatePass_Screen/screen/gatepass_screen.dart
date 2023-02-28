@@ -102,7 +102,7 @@ class _GatePassScreenState extends State<GatePassScreen> {
                                     color: theme.shadowColor,
                                   ),
                                   child: PrettyQr(
-                                    data: "User_Token_Shared",
+                                    data:userLoginQr_S,
                                     elementColor: theme.primaryColor,
                                     roundEdges: true,
                                     size: 100,

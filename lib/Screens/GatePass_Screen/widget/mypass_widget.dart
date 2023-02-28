@@ -29,7 +29,7 @@ Widget myQrWidget(context) {
             color: theme.shadowColor,
           ),
           child: PrettyQr(
-            data: "User_Token_Shared",
+            data:userLoginQr_S,
             elementColor: theme.primaryColor,
             //  image: AssetImage(zsz),
             roundEdges: true,
