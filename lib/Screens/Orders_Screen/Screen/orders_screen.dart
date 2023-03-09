@@ -2,9 +2,10 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:zsz/Functions/Push_Notification/Function/NotificationCount/NotiCountApiFunc.dart';
-import 'package:zsz/Functions/Push_Notification/Notification.dart';
+
 import 'package:zsz/Functions/Push_Notification/notification_func.dart';
 import 'package:zsz/Functions/Shared_Pref_Login_Id_func/shared_Pref_Login_Id_func.dart';
 import 'package:zsz/Provider/Notification_Icon_Provider/notification_icon_provider.dart';
@@ -14,8 +15,8 @@ import 'package:zsz/Screens/Orders_Screen/Pages/Order/Pages/Order_Details/functi
 import 'package:zsz/Screens/Orders_Screen/Pages/Order/Pages/order.dart';
 import 'package:zsz/Screens/Orders_Screen/Pages/Order_History/order_history.dart';
 import 'package:zsz/Constant.dart';
+import 'package:zsz/Widgets/App_Update/AppUpdateWidget.dart';
 import 'package:zsz/Widgets/Tab_Button/tab_button.dart';
-import 'package:zsz/main.dart';
 import 'package:zsz/responsive.dart';
 
 class Orders_Screen extends StatefulWidget {
@@ -88,7 +89,7 @@ class _Orders_ScreenState extends State<Orders_Screen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               //heading
-
+    
               // //heading
               // Container(
               //   margin: EdgeInsets.fromLTRB(0, 0, 0, _size.height * 0.038),
@@ -134,20 +135,21 @@ class _Orders_ScreenState extends State<Orders_Screen> {
                       style: GoogleFonts.ubuntu(
                           fontSize: height(21), color: theme.focusColor),
                     ),
-
+    
                     Container(
                       //  color: Colors.amber,
                       child: Stack(clipBehavior: Clip.none, children: [
                         IconButton(
-                            onPressed: () {
-                              //  await callbackDispatcher2();
-
-                              // notificationsService.sendNotification2("qqq", "qqqq", 342, "qqq", "qqqqq");
-                              //  sendNotification("ddd", "ddddd", 91, "n", "n");
-                              // // Notification Count Seen
+                            onPressed: ()async {
+                              // ff();
+                              // updateALert(context);
+                              //  Navigator.push(context,MaterialPageRoute(builder: (context)=>updateALert(context)));
+                              // dd(context, theme, "updateMsg");
+                            // print(appVersion);
+                            // appUpdateWidget(context, theme,"Update_Msg");
                               Notification_Seen_Count_Function(
                                   context); //remove
-
+    
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -191,13 +193,13 @@ class _Orders_ScreenState extends State<Orders_Screen> {
                         })
                       ]),
                     )
-
+    
                     // Icons.notifications
                     // ))
                   ],
                 ),
               ),
-
+    
               // Container(
               //   margin: EdgeInsets.fromLTRB(0, 0, 0, _size.height * 0.02),
               //   child: Center(
@@ -230,7 +232,7 @@ class _Orders_ScreenState extends State<Orders_Screen> {
                       })
                 ],
               ),
-
+    
               //search bar
               // Container(
               //   margin: EdgeInsets.only(top: _size.height * 0.03),
@@ -254,9 +256,9 @@ class _Orders_ScreenState extends State<Orders_Screen> {
               //     ),
               //   ),
               // ),
-
+    
               //Page view
-
+    
               Expanded(
                 child: PageView(
                   onPageChanged: (int page) {
@@ -267,9 +269,9 @@ class _Orders_ScreenState extends State<Orders_Screen> {
                   controller: _pageControle,
                   children: const [
                     //Active Orders
-
+    
                     Order(),
-
+    
                     //Order History
                     Order_History()
                   ],

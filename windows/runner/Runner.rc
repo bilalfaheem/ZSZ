@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "zsz" "\0"
+            VALUE "FileDescription", "WMS" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "zsz" "\0"
+            VALUE "InternalName", "WMS" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
             VALUE "OriginalFilename", "zsz.exe" "\0"
-            VALUE "ProductName", "zsz" "\0"
+            VALUE "ProductName", "WMS" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

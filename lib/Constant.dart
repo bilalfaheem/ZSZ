@@ -10,6 +10,7 @@ String userLoginupdate_S = "null";
 String userLoginSociety_S = "null";
 String userLoginSociety_id_S = "null";
 String userLoginQr_S = "null";
+String appVersion = "null";
 
 // static values
 
@@ -19,12 +20,15 @@ double padding_bottom = 0.02;
 
 String Api_Address = "https://cybernsoft.com/api/";
 String Api_Address_Test = "https://cybernsoft.com/saima_test_api/";
-const logo2 = "assets/Logo/ZSZSaima.png";
-// "assets/Logo2.png";
+const logo2 =
+//  "assets/Logo/ZSZSaima.png";
+ "assets/Logo2.png";
 const gas = "assets/Icons/gas.png";
 const ticket = "assets/Icons/ticket.png";
-const zszlogo = "assets/Logo/ZSZSaima.png";
+const zszlogo = "assets/Logo.png";
+// "assets/Logo/ZSZSaima.png";
 const zsz = "assets/Logo/ZSZ.png";
+const logo = "assets/Logo_app.png";
 const galleryIcon = "assets/Icons/gallery.png";
 const add = "assets/Icons/add.png";
 const file = "assets/Icons/file.png";
@@ -34,3 +38,10 @@ const send2 = "assets/Icons/send2.png";
 // "assets/Logo.png"
 
 const bluecardColor = Color(0xff015e8b);
+
+
+// Map firstMap = {
+//   "name":"Bilal",
+//   "rollNo": "31",
+//   "class":"alpha"
+// };
